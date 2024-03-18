@@ -1,0 +1,109 @@
+html {
+  height: 100% !important;
+  font-family: sans-serif;
+}
+
+.headerLeftMenuIcon{
+  filter: drop-shadow(0px 1000px 0 var(--menuBarIconDeactive));
+  transform: translateY(-1000px);
+}
+
+.viewMain {
+  height: 100% !important;
+  overflow: hidden !important;
+  margin: 0px !important;
+  display: flex !important;
+}
+.dimmed.dimmable > .ui.visible.dimmer,
+.ui.active.dimmer {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+
+.ui.modal > :first-child:not(.icon) {
+  border-radius: 0px;
+}
+
+.columns {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#left {
+  flex-shrink: 0;
+  margin-top: 15px;
+  background-color: white;
+  width: 5%;
+  align-items: center;
+}
+#right {
+  width: 100%;
+}
+.top-left {
+  flex-shrink: 0;
+  background-color: #333;
+  color: white;
+}
+.top-right {
+  flex-shrink: 0;
+  color: white;
+}
+
+.rightBottomView {
+  display: flex;
+  padding-top: 10px;
+  margin-top: 30px !important;
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color:  var(--mainBackGroundColor) !important;
+}
+
+.rightBottomViewForDrawer {
+  display: flex;
+  margin-top: 30px !important;
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: #f9f9f4;
+}
+
+.rightBottomViewForDrawer {
+  display: flex;
+  margin-top: 30px !important;
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: #f9f9f4;
+}
+
+.topIconView {
+  width: 100%;
+  justify-content: center;
+  border-bottom: 1px solid var(--mainColor) !important;
+  padding-bottom: 27px !important;
+  display: flex;
+  cursor: pointer;
+}
+
+.customMainBottomContainer {
+  flex: auto;
+  padding: 20px;
+}
+
+.customDimmer {
+  margin: 0px !important;
+}
+
+@media screen and (min-width: 991px) {
+}
+
+@media screen and (max-width: 991px) {
+  .bottom {
+    display: none;
+  }
+  #left {
+    display: none;
+  }
+
+  .customMainBottomContainer {
+    padding: 0px;
+  }
+}

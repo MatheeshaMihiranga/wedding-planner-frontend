@@ -1,0 +1,153 @@
+@font-face {
+  font-family: "ProximaNova";
+  src: local("ProximaNova"),
+    url("./fonts/proxima/Proxima-Nova.ttf") format("truetype");
+}
+
+html {
+  height: 100% !important;
+  font-family: sans-serif !important;
+}
+body {
+  height: 100% !important;
+  overflow: hidden !important;
+  margin: 0px !important;
+  display: flex !important;
+}
+.app {
+  height: 100% !important;
+  font-family: sans-serif !important;
+}
+
+p{
+color: var(--mainTextColor);
+}
+
+a{
+  color: var(--mainTextColor);
+
+}
+
+span{
+  color: var(--mainTextColor);
+
+}
+
+.tbleR {
+  background-color: #fff;
+  color: var(--mainTextInptColor);
+  border-color: #f0f1f4;
+}
+
+.paddingRemoveLeft {
+  padding-left: 0px !important;
+}
+
+.paddingRemoveVertical {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.paddingRemoveHorizontal {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.paddingRemoveTop {
+  padding-top: 0px !important;
+}
+.paddingRemoveBottom {
+  padding-bottom: 0px !important;
+}
+
+.paddingTextInputVertical {
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
+}
+
+.topButtonView {
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+
+.addNewBtn {
+  float: right;
+}
+
+.modalRegisterButtonMain {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20;
+  align-items: flex-end;
+}
+
+.modalRegisterFlex {
+  flex: 1;
+}
+
+.modalRegisterButtonLeft {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.modalRegisterButtonLeftDrawingModals {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+.commonBackgroundShadow {
+  background: #fff !important;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 991px) {
+  .paddingRemoveLeft {
+    padding-left: 1rem !important;
+  }
+}
+
+.backgroundMain {
+  align-items: center !important;
+  padding: 0px !important;
+  margin-bottom: 10px !important;
+  margin: 0px !important;
+  margin-top: 20px !important;
+
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  min-height: 70px;
+  background: #ffffff;
+}
+
+.tabbMain {
+  display: flex;
+  padding: 0px !important;
+  margin-bottom: 10px !important;
+  margin: 0px !important;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  margin-top: 20px !important;
+  background: #ffffff;
+  padding-bottom: 20px !important;
+}
+
+.alignRight {
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+.full-height {
+  height: 100% !important;
+}
+
+.align-content-center {
+  text-align: center;
+}

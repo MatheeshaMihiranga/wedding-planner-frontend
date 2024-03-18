@@ -1,0 +1,128 @@
+.ui.modal {
+  background: transparent;
+  left: 0;
+  right: 0;
+}
+
+.pageTitleMain {
+  align-items: center !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  min-height: 70px;
+  background: #ffffff;
+}
+
+.pageTitle {
+  font-family: "ProximaNova";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  color: var(--mainColor);
+}
+
+.pageTitleContainer {
+  padding: 10px 0px !important;
+}
+
+.pageButtonContainer {
+  padding: 10px 0px !important;
+  justify-content: flex-start !important;
+  display: flex !important;
+}
+
+.customButtonMain {
+  display: flex;
+  border: 1px solid var(--mainColor);
+  border-radius: 4px;
+  align-items: center;
+}
+
+.customButtonMainOther {
+  display: flex;
+  border: 1px solid var(--mainColor);
+  justify-content: space-between;
+  border-radius: 4px;
+  align-items: center;
+}
+
+.customButtonText {
+  font-family: "ProximaNova";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: center;
+  color: #c1c7d0;
+}
+
+.customButtonTextSelect {
+  font-family: "ProximaNova";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.customButtonView {
+  padding: 15px 38px;
+  border-left: 1px solid var(--mainColor);
+  cursor: pointer;
+}
+
+.customButtonViewTitle {
+  padding: 15px 38px;
+  margin-right: 10px;
+  border-radius: 4px !important;
+}
+
+.customButtonViewStart {
+  padding: 15px 38px;
+  cursor: pointer;
+  border-radius: 5px !important;
+}
+
+.customButtonViewSelect {
+  background: var(--mainColor);
+  // width: 100%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+  .pageTitleMain {
+    border-radius: 5px;
+  }
+  .pageTitle {
+    font-size: 20px;
+  }
+  .customButtonView {
+    flex-direction: column;
+    border-left: 0px solid var(--mainColor);
+    border-top: 1px solid var(--mainColor);
+  }
+
+  .customButtonMain {
+    flex-direction: column;
+  }
+  .customButtonViewSelect {
+    width: 100%;
+  }
+
+  .customButtonMainOther {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .customButtonViewTitle {
+    padding: 15px 38px;
+    margin-right: 0px;
+    border-radius: 0px !important;
+    border-bottom: 1px solid var(--mainColor);
+  }
+}

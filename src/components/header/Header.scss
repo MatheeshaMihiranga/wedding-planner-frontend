@@ -1,0 +1,254 @@
+.middleRightContent {
+  text-align: left;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.headerSupplierButton{
+  .ui.button{
+    background: white !important;
+    color:  var(--mainColor) !important;
+  }
+}
+
+.mainCenterView {
+  display: flex !important;
+  align-items: flex-end !important;
+  flex-wrap: nowrap !important;
+  padding: 0px !important;
+}
+
+.headerRightView {
+  .ui.dropdown {
+    margin-right: 0px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .ui.compact.menu .item:last-child {
+    padding: 0 !important;
+  }
+  .ui.menu {
+    background: transparent !important;
+    min-height: 1.857143em !important;
+    border: 0px;
+    box-shadow: none;
+  }
+  .imageViewAvatar {
+    margin-right: 8px !important;
+  }
+  display: flex !important;
+  align-items: center !important;
+}
+.middleCenterContent {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.middleLeftContent {
+  text-align: right;
+}
+.middleLeftContents {
+  text-align: right;
+}
+.leftSignUp {
+  text-align: right;
+}
+.leftLogin {
+  text-align: center;
+}
+.rightContent {
+  text-align: left;
+  padding-left: 15px !important;
+  display: flex !important;
+  padding-bottom: 0px !important;
+  background-color: #ffffff;
+  flex-direction: row !important;
+}
+.logo {
+  object-fit: contain;
+  width: 65px;
+  max-height: 65px;
+  margin-left: 10px;
+}
+.postTest {
+  color: #ffffff;
+  font-family: "ProximaNova";
+  font-weight: 700;
+  font-size: 18px;
+  padding: 8px 10px 10px 10px;
+  :hover {
+    color: #ffffff;
+  }
+}
+
+.plusIcon {
+  color: #e44159;
+}
+
+.plusIconSelect {
+  color: #ffffff;
+}
+
+.postJobMain {
+  display: flex;
+  justify-content: flex-end;
+  cursor: default;
+  align-items: center;
+}
+
+.selectTab {
+  display: flex;
+  justify-content: flex-end;
+  cursor: default;
+  align-items: center;
+  background-color: #e44159;
+  border-radius: 5px;
+}
+
+.browerJob {
+  color: #141414;
+  font-family: "ProximaNova";
+  font-size: 18px;
+  cursor: default;
+  font-weight: 600;
+}
+
+.categoryJob {
+  color: #141414;
+  font-family: "ProximaNova";
+  font-size: 18px;
+  cursor: default;
+}
+
+.signUp {
+  color: #141414;
+  font-size: 18px;
+  cursor: default;
+  margin-right: 25px;
+}
+
+.login {
+  color: #141414;
+  font-size: 18px;
+  cursor: default;
+}
+
+element.style {
+  margin-right: 25px;
+}
+
+.envelopIcon {
+  margin-right: 25px !important;
+}
+
+.bellIcon {
+  margin-right: 25px !important;
+}
+
+.paintImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  margin-right: 15px;
+}
+
+.ui.top.left.pointing.dropdown > .menu {
+  padding: 10px;
+  width: 120px;
+}
+
+.userName {
+  font-family: "ProximaNova";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  color: var(--mainTextInptColor);
+}
+
+.userName2 {
+  font-family: "ProximaNova";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  color: var(--mainTextInptColor);
+}
+
+.postJobMainMobile {
+  display: flex;
+  justify-content: center;
+  cursor: default;
+}
+
+.userProfileTopHeader {
+  object-fit: cover;
+  min-width: 26px;
+  min-height: 26px;
+}
+
+.webSerachDiv {
+  margin-right: 30px;
+}
+
+@media screen and (min-width: 991px) {
+  .userName {
+    width: 60px;
+  }
+  .mainCenterView {
+    background: #ffffff !important;
+    padding: 10px 35px 0px 10px !important;
+  }
+  .mainContent {
+    width: 100%;
+  }
+  .headerDefaultView {
+    height: 75px;
+    border-bottom: 1px solid var(--mainColor);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .userName {
+    width: auto;
+  }
+  .customContainer {
+    margin-bottom: 15px !important;
+  }
+  .rightContent {
+    background-color: #ffffff;
+  }
+  .mainContentMobile {
+    height: 20px;
+    margin-top: 25px;
+  }
+  .logo {
+    object-fit: contain;
+    width: 50px;
+  }
+
+  .logoMenu {
+    object-fit: contain;
+    width: 18px;
+  }
+  .removePadding {
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .searchDiv {
+    margin-right: 30px;
+    flex: 1;
+  }
+
+  .userDiv {
+    margin-right: 30px;
+    display: flex;
+    width: 80px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

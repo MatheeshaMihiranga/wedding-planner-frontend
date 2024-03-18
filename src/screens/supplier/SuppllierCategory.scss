@@ -1,0 +1,25 @@
+.categoryViewMain {
+    display: flex;
+    background: var(--mainTextColor) !important;
+    border-radius: 5px !important;
+}
+
+.viewMainBackground {
+    display: flex;
+    background-color: var(--subBackgroundColor) !important;
+    min-height: 50px;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 10px;
+}
+
+.categoryName {
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.categoryViewTop {
+    margin-top: 25px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}

@@ -1,0 +1,100 @@
+.mainButtonContainerDark {
+  text-align: start;
+}
+.mainButtonContainerGreen {
+  text-align: start;
+}
+
+.buttonIcon {
+  margin-right: 10px !important;
+}
+
+.commonButton {
+  font-family: "ProximaNova";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  color: #ffffff !important;
+  padding: 15px 25px !important;
+  border-radius: 4px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.commonOutLineButton {
+  font-family: "ProximaNova";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  color: #ffffff !important;
+  padding: 14px 25px !important;
+  border-radius: 4px;
+  border-width: 1px solid;
+}
+
+.buttonGreenOutline {
+  background-color: #ffffff !important;
+  border: 1px solid var(--mainColor) !important ;
+  color: var(--mainColor) !important;
+}
+
+.buttonDarkOutline {
+  background-color: #ffffff !important;
+  border: 1px solid #292b32 !important ;
+  color: #292b32 !important;
+}
+
+.buttonBlueOutline {
+  background-color: #ffffff !important;
+  border: 1px solid #327ab7 !important ;
+  color: #327ab7 !important;
+}
+
+.buttonRedOutline {
+  background-color: #ffffff !important;
+  border: 1px solid #ff6666 !important ;
+  color: #ff6666 !important;
+}
+
+.buttonDark {
+  background-color: #292b32 !important;
+}
+
+.buttonGreen {
+  background-color: var(--mainColor) !important;
+}
+
+.buttonBlue {
+  background-color: #327ab7 !important;
+}
+
+.buttonRed {
+  background-color: #ff6666 !important;
+}
+
+.disableButtonMain {
+  font-family: "ProximaNova";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  color: #ffffff;
+  border-radius: 4px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.disableButtonOutlineMain {
+  font-family: "ProximaNova";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  color: #ffffff;
+  border-radius: 4px;
+  border-width: 1px;
+  width: fit-content;
+  cursor: pointer;
+}

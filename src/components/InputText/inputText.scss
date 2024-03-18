@@ -1,0 +1,114 @@
+.textWithIconMainView {
+  position: absolute;
+  top: 23px;
+  left: 25px;
+}
+
+.inputTextLable {
+  font-family: "ProximaNova";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--mainTextInputHeader);
+}
+
+.inputTextContanier {
+  margin-bottom: 10px !important;
+  margin-top: 5px;
+  .ui[class*="left icon"].input > input {
+    font-family: "ProximaNova" !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    background: #fff;
+    color: var(--mainTextInptColor) !important;
+  }
+}
+
+.textInputFormText {
+  font-family: "ProximaNova" !important;
+  margin: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  line-height: 1.21428571em;
+  padding: 0.67857143em 1em;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  background: #ffffff !important;
+  border: 1px solid var(--mainTextInputBorderColor) !important;
+  color: var(--mainTextInptColor) !important;
+  border-radius: 0.28571429rem;
+  box-shadow: 0 0 0 0 transparent inset;
+  transition: color 0.1s ease, border-color 0.1s ease;
+  width: 100%;
+}
+
+.customInputBackground {
+  background: #ffffff !important;
+  border: 1px solid #dcdcdc !important;
+}
+
+.textInputFormTextOther {
+  font-family: "ProximaNova" !important;
+  margin: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  line-height: 1.21428571em;
+  padding: 0.67857143em 1em;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  background: #fff;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  color: var(--mainTextInptColor) !important;
+  border-top-right-radius: 0.28571429rem;
+  border-top-left-radius: 0.28571429rem;
+  box-shadow: 0 0 0 0 transparent inset;
+  transition: color 0.1s ease, border-color 0.1s ease;
+  width: 100%;
+  min-height: 70px;
+}
+
+.textInputFormError {
+  font-family: "ProximaNova" !important;
+  margin: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  line-height: 1.21428571em;
+  padding: 0.67857143em 1em;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  background: #fff;
+  border: 1px solid #ef576a;
+  color: var(--mainTextInptColor) !important;
+  border-radius: 0.28571429rem;
+  box-shadow: 0 0 0 0 transparent inset;
+  transition: color 0.1s ease, border-color 0.1s ease;
+  width: 100%;
+}
+
+.textInputError {
+  font-family: "ProximaNova" !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #ef576a !important;
+  margin-top: 5px;
+}
+
+.textInputBottomContent {
+  background-color: #fff;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding: 8px;
+}
+
+.textInputBottomRightContent {
+  text-align: right;
+}
+
+.textInputBottomRightText {
+  font-family: "ProximaNova" !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  color: var(--mainTextInptColor) !important;
+  margin-top: 5px;
+}

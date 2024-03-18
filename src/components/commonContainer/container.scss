@@ -1,0 +1,37 @@
+/* computer */
+@media screen and (min-width: 991px) {
+  .topLeftContainer {
+    margin-left: 30px;
+  }
+  .topRightContainer {
+    margin-right: 30px;
+  }
+  .defaultContainer {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .drawerContainer {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+/* tablet and mobile */
+@media screen and (max-width: 991px) {
+  .topLeftContainer {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  .topRightContainer {
+    margin-right: 25px;
+    margin-left: 25px;
+  }
+  .defaultContainer {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .drawerContainer {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}

@@ -1,0 +1,130 @@
+.dropDownTextLabel {
+  font-family: "ProximaNova" !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--mainTextInputHeader);
+  margin-bottom: 10px !important;
+}
+
+.selectPadding {
+  padding: 12px !important;
+}
+
+.ui.search.dropdown>.text {
+  color:var(--mainTextColor) !important
+}
+
+.dropDownMain {
+  padding-top: 13px !important;
+  .ui.selection.dropdown {
+    width: 100% !important;
+    min-width: 0px !important;
+    min-height: 42px !important;
+    display: flex !important;;
+    align-items: center !important;;
+  }
+  .ui.dropdown > .text {
+    font-family: "ProximaNova" !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    background: #fff;
+    color: #707070;
+    border-radius: 0.28571429rem;
+  }
+
+  .ui.disabled.dropdown,
+  .ui.dropdown .menu > .disabled.item {
+    opacity: 1 !important;
+  }
+}
+
+
+.dropDownMainError {
+  padding-top: 13px !important;
+  padding-bottom: 5px !important;
+  .ui.selection.dropdown {
+    width: 100% !important;
+    min-width: 0px !important;
+    min-height: 42px !important;
+    display: flex !important;;
+    align-items: center !important;;
+    border: 1px solid #ef576a !important;
+  }
+  .ui.dropdown > .text {
+    font-family: "ProximaNova" !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    background: #fff;
+    color: #707070;
+    border-radius: 0.28571429rem;
+  }
+
+  .ui.disabled.dropdown,
+  .ui.dropdown .menu > .disabled.item {
+    opacity: 1 !important;
+  }
+}
+
+.textInputFormText {
+  font-family: "ProximaNova" !important;
+  margin: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  line-height: 1.21428571em;
+  padding: 0.67857143em 1em;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  background: #fff;
+  border: 1px solid var(--mainTextInputBorderColor) !important;
+  color: var(--mainTextInptColor) !important;
+  border-radius: 0.28571429rem;
+  box-shadow: 0 0 0 0 transparent inset;
+  transition: color 0.1s ease, border-color 0.1s ease;
+  width: 100%;
+}
+
+.ui.selection.dropdown {
+  border: 1px solid var(--mainTextInputBorderColor) !important;
+}
+
+.userBillingAddressCountrySelect {
+  .ui.selection.dropdown {
+    width: 100% !important;
+    margin-bottom: 30px;
+  }
+  .ui.dropdown > .text {
+    font-family: "ProximaNova" !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    background: #fff;
+    color: #707070;
+    border-radius: 0.28571429rem;
+  }
+}
+
+.textInputFormError {
+  font-family: "ProximaNova" !important;
+  margin: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  line-height: 1.21428571em;
+  padding: 0.67857143em 1em;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  background: #fff;
+  border: 1px solid #ef576a;
+  color: #707070;
+  border-radius: 0.28571429rem;
+  box-shadow: 0 0 0 0 transparent inset;
+  transition: color 0.1s ease, border-color 0.1s ease;
+  width: 100%;
+}
+
+.textDropDownError {
+  font-family: "ProximaNova" !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #ef576a !important;
+}
