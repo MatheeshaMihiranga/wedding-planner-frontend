@@ -1,6 +1,7 @@
 
 import SupplierCategoryList from "../screens/supplier/SupplierCategoryList";
-import WeddingVenues from "../screens/supplierVenues/WeddingVenues";
+import SupplierData from "../screens/supplierData/SupplierData";
+import SuppliersSearch from "../screens/suppliersLoad/SuppliersSearch";
 
 export const SupplierRoutes = [
   {
@@ -9,8 +10,18 @@ export const SupplierRoutes = [
     protectRoutes: false,
   },
   {
-    path: "wedding-venus",
-    route: <WeddingVenues />,
+    path: "supplier-register",
+    route: <SupplierData />,
+    protectRoutes: false,
+  },
+  {
+    path: "supplier-data/:id",
+    route: <SupplierData />,
+    protectRoutes: false,
+  },
+  {
+    path: "supplier-search",
+    route: <SuppliersSearch />,
     protectRoutes: false,
   },
 ];

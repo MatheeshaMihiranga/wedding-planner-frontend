@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import _ from "lodash";
 
-import { AUTH_TOKEN, LOADING, RESET_DATA, USER_DETAILS } from "./actionTypes";
+import { AUTH_TOKEN, LOADING, RESET_DATA, SUPPLIER_DATA, USER_DETAILS } from "./actionTypes";
 import { authAxios, gateAxios } from "../api";
 import { removeTokens, saveTokenInLocal } from "../../utils/cacheStorage";
 import { errorView, successMessage } from "../../helpers/ErrorHandler";
@@ -38,6 +38,7 @@ export const userLogin = (userDetails: any, navigate: any) => {
         type: AUTH_TOKEN,
         payload: res.data.token,
       });
+      dispatch(getUserDetails())
       navigate("/");
     } catch (err: any) {
       dispatch({
@@ -56,10 +57,17 @@ export const getUserDetails = () => {
         payload: true,
       });
       let res = await gateAxios.get("user/userProfile");
+      let isSupplierAvailable = res?.data?.data?.supplierId || false
       dispatch({
         type: USER_DETAILS,
         payload: res.data.data,
       });
+      if(isSupplierAvailable){
+        dispatch({
+          type: SUPPLIER_DATA,
+          payload: isSupplierAvailable,
+        });
+      }
     } catch (err: any) {
       errorView(err)
       dispatch({

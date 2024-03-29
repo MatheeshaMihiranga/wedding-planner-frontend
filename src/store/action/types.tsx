@@ -3,3 +3,7 @@ export interface UserAuth {
   userDetails:any
 }
 
+export interface SupplierData {
+  supplierData:any
+}
+

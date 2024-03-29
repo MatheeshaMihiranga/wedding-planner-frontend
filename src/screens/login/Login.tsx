@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { InputText, CustomButton } from "../../components";
-import { userLogin } from "../../store/action/auth";
+import { getUserDetails, userLogin } from "../../store/action/auth";
 import { useDispatchApp } from "../../store/Store";
 
 import "./Login.scss";

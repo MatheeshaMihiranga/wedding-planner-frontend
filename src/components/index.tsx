@@ -10,3 +10,6 @@ export * from "./commonContainer/commonContainer";
 export * from "./titleBar/Titlebar";
 export * from "./titleView/TitleView";
 export * from "./mainBottomButtonView/MainBottomButtonView";
+export * from "./commonTable/CommonTable";
+export * from "./confirmViewModal/ConfirmModal";
+export * from "./imageUpload/ImageUpload";

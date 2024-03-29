@@ -14,16 +14,6 @@ import { getUserDetails } from "../store/action/auth";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/reducer";
 
-interface childProps {
-  children: ReactChild | ReactChildren;
-}
-const publicRoutes = [
-  "/auth",
-  "/password-reset",
-  "/password-forgot",
-  "/unauthorized",
-];
-
 export const MainContentLayout = ({ children }: any) => {
   const location = useLocation();
   const navigate = useNavigate()
@@ -34,11 +24,7 @@ export const MainContentLayout = ({ children }: any) => {
 
   //load user details
   useEffect(()=>{
-    if(!isEmpty(getTokenInLocal()) ){
-      dispatch(getUserDetails())
-  }else{
-    navigate("/auth")
-  }
+ 
   },[token])
 
 

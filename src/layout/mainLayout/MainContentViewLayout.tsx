@@ -18,7 +18,6 @@ export const MainContentViewLayout = ({
   currentPath,
 }: MainContentViewLayoutProps) => {
   const [visible, setVisible] = useState(false);
-  const [visibleModal, setVisibleModal] = useState(false);
   const { width } = useWindowDimensions();
 
   return (

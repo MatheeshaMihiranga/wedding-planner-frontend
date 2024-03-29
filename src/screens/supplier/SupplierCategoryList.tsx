@@ -6,15 +6,35 @@ import { Categories } from "../../config/constants";
 import { TitleBar } from "../../components";
 
 import "./SuppllierCategory.scss";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducer";
 
 const SupplierCategoryList = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { userDetails } = useSelector((state: RootState) => state.auth);
+  const userRole = userDetails.role;
+  const isUser = userRole === "user" ? true : false;
+
   return (
     <>
-    <TitleBar titleName={"Supplier Category"}/>
+      <TitleBar titleName={"Supplier Category"} />
       {Categories.map((data: any) => {
         return (
-          <Grid  className="categoryViewTop" onClick={()=>navigate(`/supplier/${data.navigate}`)}>
+          <Grid
+            className="categoryViewTop"
+            onClick={() =>
+              navigate(
+                isUser
+                  ? "/supplier/supplier-search"
+                  : `/supplier/${data.navigate}`,
+                {
+                  state: {
+                    categoryType: data.categoryType,
+                  },
+                }
+              )
+            }
+          >
             <Grid.Column computer={16} className="categoryViewMain">
               <p className="categoryName">{data.text}</p>
             </Grid.Column>

@@ -14,13 +14,20 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducer";
 import { logout } from "../../store/action/auth";
 import { useDispatchApp } from "../../store/Store";
+import { isEmpty } from "lodash";
 
 export const Header = memo(({ isLogin }: any) => {
   const navigate: any = useNavigate();
   let { token,userDetails } = useSelector((state: RootState) => state.auth);
+  let { supplierData } = useSelector((state: RootState) => state.supplier);
+  const isSupplierRegister = !isEmpty(supplierData?.categoryType)
+
   const dispatch = useDispatchApp()
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+
+  }, [supplierData]);  
+
   const options = [
     {
       key: 1,
@@ -63,6 +70,8 @@ export const Header = memo(({ isLogin }: any) => {
         userImage={userImage}
         navigate={navigate}
         token={token}
+        isSupplierRegister={isSupplierRegister || false}
+        supplierData={supplierData}
       />
       <CommonContainer>
         <HeaderMobileView

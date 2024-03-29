@@ -6,7 +6,7 @@ import { LOGO } from "../../config/constants";
 import { CustomButton } from "../button/Button";
 
 export const HeaderWebView = memo(
-  ({ options, userImage, navigate, token }: any) => {
+  ({ options, userImage, navigate, token,isSupplierRegister,supplierData }: any) => {
     return (
       <div className="mainContent">
         <Grid verticalAlign="middle" className="headerDefaultView" centered>
@@ -31,11 +31,21 @@ export const HeaderWebView = memo(
                 </>
               ) : (
                 <>
+                 <CustomButton
+                    theme="green"
+                    title={"My Planning Tool"}
+                    onClick={() => 
+                    {}
+                    }
+                    customButtonStyle="headerSupplierButton"
+                    customColumnStyle="headerSupplierButton"
+                  />
                   <CustomButton
                     theme="green"
-                    title="Suppliers"
+                    title={!isSupplierRegister ? "Suppliers" : "Setting"}
                     onClick={() => 
-                      navigate("/supplier/categoryList")
+                      !isSupplierRegister ?
+                      navigate("/supplier/categoryList") : navigate(`/supplier/supplier-data/${supplierData._id}`)
                     }
                     customButtonStyle="headerSupplierButton"
                     customColumnStyle="headerSupplierButton"

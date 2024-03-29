@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, BrowserRouter, Routes, Outlet } from "react-router-dom";
+import { initializeApp } from "firebase/app";
 
 import ProtectRoute from "./protectRoute";
 import { MainRoutes } from "./routes";
@@ -11,10 +12,11 @@ import { MainContentLayout } from "./components";
 import { useThemeContext } from "./hooks/useThemeContext";
 import { THEME } from "./config/constants";
 import { store } from "./store/Store";
+import { firebaseConfig } from "./config/fireabse";
 
 const App: React.FC = () => {
   const { dispatch } = useThemeContext();
-
+  initializeApp(firebaseConfig);
   useEffect(() => {
     dispatch({ type: THEME });
     store.dispatch({

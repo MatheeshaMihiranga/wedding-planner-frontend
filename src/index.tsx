@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import App from "./App";
 import { store } from "./store/Store";
 import "./fonts/proxima/Proxima-Nova.ttf";
+import "react-datepicker/dist/react-datepicker.css";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeContextProvider } from "./context/ThemeContext";
