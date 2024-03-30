@@ -19,6 +19,7 @@ import {
 import {
   DisableCategory,
   Districts,
+  Packages,
   UnavailableDates,
   WeddingPackageTable,
   WeddingVenues,
@@ -39,6 +40,7 @@ import ConfirmModal from "../../components/confirmViewModal/ConfirmModal";
 import "./SupplierData.scss";
 import ImageUpload from "../../components/imageUpload/ImageUpload";
 import { isEmpty } from "lodash";
+import { formatDate } from "../../utils/utils";
 
 const SupplierData = ({ route }: any) => {
   const dispatch = useDispatchApp();
@@ -50,12 +52,14 @@ const SupplierData = ({ route }: any) => {
 
   const [packageData, setPackageData] = useState<any>([]);
   const [location, setLocation] = useState("Colombo");
+  const [maxCount, setMaxCount] = useState(Packages[0].value)
   const [enableEditPackage, setEnableEditPackage] = useState<any>(false);
   const [currentPackageId, setCurrentPackageId] = useState<any>(null);
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
   const [deleteData, setDeleteData] = useState<any>({});
-  const supplierCategory =
-    supplierData?.categoryType || navigationState?.categoryType;
+  const supplierCategory = navigationState?.categoryType;
+  const supplierRegisterOrNot =
+    supplierData?.categoryType || false;
   const supplierImage = supplierData?.images || [];
   const isCategoryVenue = supplierCategory === "Venues";
   const disableCategoryPackage = DisableCategory.some(
@@ -129,6 +133,7 @@ const SupplierData = ({ route }: any) => {
   };
 
   const onSubmitPackages = async (data: any) => {
+    data.maxCount = maxCount
     if (enableEditPackage) {
       let packageDetails = {
         id: supplierData?.packageId?._id,
@@ -279,7 +284,7 @@ const SupplierData = ({ route }: any) => {
     <>
       <TitleBar
         titleName={
-          isEmpty(supplierCategory)
+          isEmpty(supplierRegisterOrNot)
             ? `Wedding ${supplierCategory} Register`
             : "Profile Details"
         }
@@ -338,7 +343,8 @@ const SupplierData = ({ route }: any) => {
             <DatePicker
               selected={new Date()}
               onChange={(date: any) => {
-                addUnavailableData(date);
+                let selectDate = formatDate(date);
+                addUnavailableData(selectDate);
               }}
               minDate={new Date()}
             />
@@ -402,14 +408,17 @@ const SupplierData = ({ route }: any) => {
                   />
                 </Grid.Column>
                 <Grid.Column computer={4} tablet={16} mobile={16}>
-                  <InputNumber
-                    control={packageControl}
-                    errors={packageErrors.maxCount}
-                    required={true}
-                    labelName={"Max Count"}
+                  <DropDown
+                    labelName="Max Count"
                     placeholder="Max Count"
-                    name="maxCount"
-                    errorMessage="Please enter user name"
+                    defaultValue={maxCount}
+                    currentData={Packages}
+                    handleChangeState={(e: any, { value }: any) => {
+                      setMaxCount(value);
+                    }}
+                    search
+                    key={"userType"}
+                    customGridColumn={"customGridColomnTyp"}
                   />
                 </Grid.Column>
               </>
@@ -470,7 +479,7 @@ const SupplierData = ({ route }: any) => {
       <MainBottomButtonView
         cancelStatus={true}
         saveButtonStatus={true}
-        cancelButton={() => {}}
+        cancelButton={() => { }}
         saveButton={handleSubmit(onSubmit)}
         saveTitle={"Submit"}
         type="submit"

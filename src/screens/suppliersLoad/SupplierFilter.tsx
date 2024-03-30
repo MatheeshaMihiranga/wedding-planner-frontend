@@ -10,6 +10,7 @@ import RatingView from "../../components/rating/Rating";
 import MainBottomButtonView from "../../components/mainBottomButtonView/MainBottomButtonView";
 
 import "./supplierDetails.scss";
+import { formatDate } from "../../utils/utils";
 
 const SuppliersFilter = ({ filterSupplierData, supplierCategory }: any) => {
   const { height } = getWindowDimensions();
@@ -51,15 +52,15 @@ const SuppliersFilter = ({ filterSupplierData, supplierCategory }: any) => {
     setRating(null);
   };
 
-  const formatDate = (dateValue: any) => {
-    const date = new Date(dateValue);
-    const year = date.getUTCFullYear();
-    const month = String(date.getUTCMonth() + 1).padStart(2, "0");
-    const day = String(date.getUTCDate()).padStart(2, "0");
-    const formattedDate = `${year}-${month}-${day}`;
-    resetData();
-    return formattedDate;
-  };
+  // const formatDate = (dateValue: any) => {
+  //   const date = new Date(dateValue);
+  //   const year = date.getUTCFullYear();
+  //   const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  //   const day = String(date.getUTCDate()).padStart(2, "0");
+  //   const formattedDate = `${year}-${month}-${day}`;
+  //   resetData();
+  //   return formattedDate;
+  // };
 
   return (
     <>
@@ -81,6 +82,7 @@ const SuppliersFilter = ({ filterSupplierData, supplierCategory }: any) => {
                 selected={date}
                 onChange={(date: any) => {
                   let selectDate = formatDate(date);
+                  resetData();
                   setDate(selectDate);
                 }}
                 minDate={new Date()}
