@@ -1,8 +1,14 @@
 import _ from "lodash";
 
-import { LOADING, SUPPLIER_DATA } from "./actionTypes";
+import {
+  LOADING,
+  SUPPLIER_DATA,
+  SUPPLIER_FILTER_DATA,
+  SUPPLIER_SEARCH_DATA,
+} from "./actionTypes";
 import { gateAxios } from "../api";
 import { errorView, successMessage } from "../../helpers/ErrorHandler";
+import { RootState } from "../reducer";
 
 export const getSupplierDataById = (id: any) => {
   return async (dispatch: Function) => {
@@ -114,6 +120,63 @@ export const deleteSupplierPackages = (packageData: any) => {
         packageData.data
       );
       successMessage("Package delete successfully");
+      return res;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const searchSupplierData = (type?: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      let res = await gateAxios.post(`/supplier/getSupplier`, { type });
+      successMessage("Package delete successfully");
+      dispatch({
+        type: SUPPLIER_SEARCH_DATA,
+        payload: res.data.data,
+      });
+      return res;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const supplierFilterDetails = (filterData?: any) => {
+  return async (dispatch: Function, getState: () => RootState) => {
+    let { supplierFilterData } = getState().supplier;
+
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      let filterSupplierData = {
+        ...supplierFilterData,
+        ...filterData,
+      };
+      dispatch({
+        type: SUPPLIER_FILTER_DATA,
+        payload: filterSupplierData,
+      });
+      let res = await gateAxios.post(`/supplier/getSupplier`, filterData);
+      dispatch({
+        type: SUPPLIER_SEARCH_DATA,
+        payload: res.data.data,
+      });
       return res;
     } catch (err: any) {
       errorView(err);

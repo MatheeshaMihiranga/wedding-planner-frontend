@@ -1,10 +1,20 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
+import {
+  Grid,
+  GridColumn,
+  GridRow,
+} from "semantic-ui-react";
 import { CommonContainer } from "../../components";
 
-import "./supplierDetails.scss"
+import SupplierViewCard from "./SupplierCard";
+import getWindowDimensions from "../../hooks/windowsSize";
 
-const SuppliersListView = () => {
+import "./supplierDetails.scss";
+
+
+const SuppliersListView = ({supplierSearchData}:any) => {
+  const { height } = getWindowDimensions();
+
   return (
     <>
       <Grid className={`supplierDetailsMain`}>
@@ -12,8 +22,22 @@ const SuppliersListView = () => {
           computer={16}
           tablet={16}
           className={`supplierDetailsContent`}
+          style={{ height: height - 190 }}
         >
-          <CommonContainer></CommonContainer>
+          <CommonContainer>
+            <Grid columns={3} divided>
+              <GridRow>
+                {supplierSearchData.map((data:any)=>{
+                  return(
+                    <GridColumn>
+                    <SupplierViewCard data={data}/>
+                  </GridColumn>
+                  )
+                })}
+               
+              </GridRow>
+            </Grid>
+          </CommonContainer>
         </Grid.Column>
       </Grid>
     </>

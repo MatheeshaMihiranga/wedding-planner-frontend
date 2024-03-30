@@ -1,9 +1,15 @@
 export interface UserAuth {
   token: string;
-  userDetails:any
+  userDetails: any;
 }
 
 export interface SupplierData {
-  supplierData:any
+  supplierData: any;
+  supplierFilterData: {
+    type: string;
+    location: string | null;
+    maxCount: any | null;
+    date: string | null;
+  };
+  supplierSearchData:any
 }
-

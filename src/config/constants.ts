@@ -18,6 +18,50 @@ const USER_TYPE = [
   },
 ];
 
+const RATING = [
+  {
+    key: 5,
+    text: 5,
+    value: 5,
+  },
+  {
+    key: 4,
+    text:4,
+    value: 4,
+  },
+  {
+    key: 3,
+    text: 3,
+    value: 3,
+  },
+  {
+    key: 2,
+    text: 2,
+    value: 2,
+  },
+  {
+    key: 1,
+    text: 1,
+    value: 1,
+  }
+];
+
+const Packages = [
+  { key: 1, text: 100, value: 100 },
+  { key: 2, text: 150, value: 150 },
+  { key: 3, text: 200, value: 200 },
+  { key: 4, text: 250, value: 250 },
+  { key: 5, text: 300, value: 300 },
+  { key: 6, text: 350, value: 350 },
+  { key: 7, text: 400, value: 400 },
+  { key: 8, text: 450, value: 450 },
+  { key: 9, text: 500, value: 500 },
+  { key: 10, text: 550, value: 550 },
+  { key: 11, text: 600, value: 600 },
+  { key: 12, text: 650, value: 650 },
+  { key: 13, text: 700, value: 700 }
+];
+
 const Districts = [
   { key: 1, text: "Ampara", value: "Ampara" },
   { key: 2, text: "Anuradhapura", value: "Anuradhapura" },
@@ -149,4 +193,4 @@ const Categories = [
   },
 ];
 
-export { API_URL, THEME, LOGO, USER_TYPE, Categories, Districts,WeddingVenues,WeddingPackageTable,DisableCategory,UnavailableDates };
+export { API_URL, THEME, LOGO, USER_TYPE, Categories, Districts,WeddingVenues,WeddingPackageTable,DisableCategory,UnavailableDates,RATING,Packages };

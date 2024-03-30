@@ -8,3 +8,8 @@ export const USER_DETAILS = "USER_DETAILS";
 
 //Supplier action type
 export const SUPPLIER_DATA = "SUPPLIER_DATA";
+export const SUPPLIER_FILTER_DATA = "SUPPLIER_FILTER_DATA";
+export const SUPPLIER_SEARCH_DATA = "SUPPLIER_SEARCH_DATA";
+
+
+
