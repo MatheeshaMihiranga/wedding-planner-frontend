@@ -1,6 +1,7 @@
 
 import SupplierCategoryList from "../screens/supplier/SupplierCategoryList";
 import SupplierData from "../screens/supplierData/SupplierData";
+import SupplierDetailsView from "../screens/supplierDetailsView/SupplierDetailsView";
 import SuppliersSearch from "../screens/suppliersLoad/SuppliersSearch";
 
 export const SupplierRoutes = [
@@ -22,6 +23,11 @@ export const SupplierRoutes = [
   {
     path: "supplier-search",
     route: <SuppliersSearch />,
+    protectRoutes: false,
+  },
+  {
+    path: "supplier-details/:id",
+    route: <SupplierDetailsView />,
     protectRoutes: false,
   },
 ];

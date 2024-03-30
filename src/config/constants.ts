@@ -124,6 +124,29 @@ const WeddingVenues = [
   },
 ]
 
+const WeddingVenuesDetails = [
+  {
+    name: "Packaging Name",
+    col: 3,
+  },
+  {
+    name: "Hall Name",
+    col: 3,
+  },
+  {
+    name: "Max Count",
+    col: 3,
+  },
+  {
+    name: "Price",
+    col: 3,
+  },
+  {
+    name: "Description",
+    col: 4,
+  },
+]
+
 const WeddingPackageTable = [
   {
     name: "Packaging Name",
@@ -140,6 +163,21 @@ const WeddingPackageTable = [
   {
     name: "",
     col: 4,
+  },
+]
+
+const WeddingPackageTableDetails = [
+  {
+    name: "Packaging Name",
+    col: 5,
+  },
+  {
+    name: "Description",
+    col: 5,
+  },
+  {
+    name: "Price",
+    col: 6,
   },
 ]
 
@@ -193,4 +231,4 @@ const Categories = [
   },
 ];
 
-export { API_URL, THEME, LOGO, USER_TYPE, Categories, Districts,WeddingVenues,WeddingPackageTable,DisableCategory,UnavailableDates,RATING,Packages };
+export { API_URL, THEME, LOGO, USER_TYPE, Categories, Districts,WeddingVenues,WeddingPackageTable,DisableCategory,UnavailableDates,RATING,Packages,WeddingVenuesDetails,WeddingPackageTableDetails };

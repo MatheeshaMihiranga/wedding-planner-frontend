@@ -9,10 +9,12 @@ import {
 } from "semantic-ui-react";
 
 import "./supplierDetails.scss"
+import { useNavigate } from "react-router-dom";
 
-const SupplierViewCard = ({data}:any) => {    
+const SupplierViewCard = ({data}:any) => { 
+    const navigate = useNavigate()       
   return (
-    <div className="supplierCardData">
+    <div className="supplierCardData" onClick={()=>navigate(`/supplier/supplier-details/${data._id}`)}>
       <Card>
         <Image src={data?.images?.[0]} wrapped ui={false} />
         <CardContent>

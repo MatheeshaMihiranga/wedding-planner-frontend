@@ -20,7 +20,7 @@ export const Header = memo(({ isLogin }: any) => {
   const navigate: any = useNavigate();
   let { token,userDetails } = useSelector((state: RootState) => state.auth);
   let { supplierData } = useSelector((state: RootState) => state.supplier);
-  const isSupplierRegister = !isEmpty(supplierData?.categoryType)
+  const isSupplierRegister = !isEmpty(supplierData?.categoryType) && userDetails.role === "supplier"
 
   const dispatch = useDispatchApp()
 
