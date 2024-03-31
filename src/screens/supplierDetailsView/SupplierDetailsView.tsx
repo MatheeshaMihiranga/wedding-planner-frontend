@@ -83,6 +83,7 @@ const SupplierDetailsView = () => {
           <p>{supplierData?.location}</p>
         </Grid.Column>
         <Grid.Column computer={16}>
+        <TitleView title="Package Details" />
           {packageData.length !== 0 ? (
             <CommonTable
               tableHeaderData={
