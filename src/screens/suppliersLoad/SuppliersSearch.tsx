@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 import { TitleBar } from "../../components";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import SuppliersFilter from "./SupplierFilter";
 import SuppliersListView from "./SuppliersListView";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,8 +11,8 @@ import { RootState } from "../../store/reducer";
 
 const SuppliersSearch = () => {
   const dispatch = useDispatchApp()
-  const { state: navigationState }: any = useLocation();
-  const supplierCategory = navigationState?.categoryType;
+  const [searchParams,setSearchParams] = useSearchParams()
+  const supplierCategory = searchParams.get('category');
   const {supplierSearchData} = useSelector((state:RootState)=> state.supplier)
 
   useEffect(()=>{

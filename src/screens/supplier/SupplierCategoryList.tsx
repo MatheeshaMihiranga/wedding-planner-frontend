@@ -25,13 +25,8 @@ const SupplierCategoryList = () => {
             onClick={() =>
               navigate(
                 isUser
-                  ? "/supplier/supplier-search"
-                  : `/supplier/${data.navigate}`,
-                {
-                  state: {
-                    categoryType: data.categoryType,
-                  },
-                }
+                  ? `/supplier/supplier-search?category=${data.categoryType}`
+                  : `/supplier/${data.navigate}?category=${data.categoryType}`
               )
             }
           >

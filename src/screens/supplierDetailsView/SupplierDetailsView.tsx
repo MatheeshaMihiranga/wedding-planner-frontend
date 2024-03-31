@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Grid, Image, Table } from "semantic-ui-react";
+import { Grid, Table } from "semantic-ui-react";
 import { useDispatchApp } from "../../store/Store";
 import { getSupplierDataById } from "../../store/action/supplier";
 import { useSelector } from "react-redux";
@@ -14,11 +14,11 @@ import {
 } from "../../config/constants";
 
 const SupplierDetailsView = () => {
-  const { id } = useParams();
+  const { id} = useParams();
   const dispatch = useDispatchApp();
   const { supplierData } = useSelector((state: RootState) => state.supplier);
   const isCategoryVenue = supplierData?.categoryType === "Venues" || false;
-  const packageData = supplierData?.packageId?.packages || [];
+  const packageData = supplierData?.packageId?.packages || [];  
 
   useEffect(() => {
     if (id) {

@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { Grid, Table } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
 import { MdDeleteOutline, MdModeEditOutline } from "react-icons/md";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 
@@ -48,7 +48,7 @@ const SupplierData = ({ route }: any) => {
   const { userDetails } = useSelector((state: RootState) => state.auth);
   const { supplierData } = useSelector((state: RootState) => state.supplier);
   const { id } = useParams();
-  const { state: navigationState }: any = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [packageData, setPackageData] = useState<any>([]);
   const [location, setLocation] = useState("Colombo");
@@ -57,7 +57,9 @@ const SupplierData = ({ route }: any) => {
   const [currentPackageId, setCurrentPackageId] = useState<any>(null);
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
   const [deleteData, setDeleteData] = useState<any>({});
-  const supplierCategory = navigationState?.categoryType;
+  const category = searchParams.get('category');
+
+  const supplierCategory = category;
   const supplierRegisterOrNot =
     supplierData?.categoryType || false;
   const supplierImage = supplierData?.images || [];

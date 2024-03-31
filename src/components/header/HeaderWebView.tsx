@@ -45,7 +45,7 @@ export const HeaderWebView = memo(
                     title={!isSupplierRegister ? "Suppliers" : "Setting"}
                     onClick={() => 
                       !isSupplierRegister ?
-                      navigate("/supplier/categoryList") : navigate(`/supplier/supplier-data/${supplierData._id}`)
+                      navigate("/supplier/categoryList") : navigate(`/supplier/supplier-data/${supplierData._id}?category=${supplierData.categoryType}`)
                     }
                     customButtonStyle="headerSupplierButton"
                     customColumnStyle="headerSupplierButton"

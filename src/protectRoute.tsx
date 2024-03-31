@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import isEmpty from "lodash/isEmpty";
 import { getTokenInLocal } from "./utils/cacheStorage";
 
