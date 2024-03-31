@@ -1,24 +1,26 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Grid, Table } from "semantic-ui-react";
-import { useDispatchApp } from "../../store/Store";
-import { getSupplierDataById } from "../../store/action/supplier";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/reducer";
-import { CommonTable, ImageView, TitleBar, TitleView } from "../../components";
 
-import "./supplierDetailsView.scss";
+import { CommonTable, ImageView, TitleBar, TitleView } from "../../components";
 import {
   WeddingVenuesDetails,
   WeddingPackageTableDetails,
 } from "../../config/constants";
 
+import { useDispatchApp } from "../../store/Store";
+import { getSupplierDataById } from "../../store/action/supplier";
+import { RootState } from "../../store/reducer";
+
+import "./supplierDetailsView.scss";
+
 const SupplierDetailsView = () => {
-  const { id} = useParams();
+  const { id } = useParams();
   const dispatch = useDispatchApp();
   const { supplierData } = useSelector((state: RootState) => state.supplier);
   const isCategoryVenue = supplierData?.categoryType === "Venues" || false;
-  const packageData = supplierData?.packageId?.packages || [];  
+  const packageData = supplierData?.packageId?.packages || [];
 
   useEffect(() => {
     if (id) {
@@ -83,7 +85,7 @@ const SupplierDetailsView = () => {
           <p>{supplierData?.location}</p>
         </Grid.Column>
         <Grid.Column computer={16}>
-        <TitleView title="Package Details" />
+          <TitleView title="Package Details" />
           {packageData.length !== 0 ? (
             <CommonTable
               tableHeaderData={

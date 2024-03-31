@@ -5,6 +5,7 @@ import { MdDeleteOutline, MdModeEditOutline } from "react-icons/md";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
+import { isEmpty } from "lodash";
 
 import {
   CommonTable,
@@ -36,11 +37,10 @@ import {
   updateSupplierData,
 } from "../../store/action/supplier";
 import ConfirmModal from "../../components/confirmViewModal/ConfirmModal";
+import ImageUpload from "../../components/imageUpload/ImageUpload";
+import { formatDate } from "../../utils/utils";
 
 import "./SupplierData.scss";
-import ImageUpload from "../../components/imageUpload/ImageUpload";
-import { isEmpty } from "lodash";
-import { formatDate } from "../../utils/utils";
 
 const SupplierData = ({ route }: any) => {
   const dispatch = useDispatchApp();
