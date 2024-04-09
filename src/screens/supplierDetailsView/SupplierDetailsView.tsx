@@ -1,9 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Grid, Table } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
-import { CommonTable, ImageView, TitleBar, TitleView } from "../../components";
+import {
+  CommonTable,
+  CustomButton,
+  ImageView,
+  TitleBar,
+  TitleView,
+  CommentView,
+} from "../../components";
 import {
   WeddingVenuesDetails,
   WeddingPackageTableDetails,
@@ -14,11 +21,14 @@ import { getSupplierDataById } from "../../store/action/supplier";
 import { RootState } from "../../store/reducer";
 
 import "./supplierDetailsView.scss";
+import RatingView from "../../components/rating/Rating";
+import AddCommentModal from "../../components/addComment/AddCommentModal";
 
 const SupplierDetailsView = () => {
   const { id } = useParams();
   const dispatch = useDispatchApp();
   const { supplierData } = useSelector((state: RootState) => state.supplier);
+  const [visibleComment, setVisibleComment] = useState(false);
   const isCategoryVenue = supplierData?.categoryType === "Venues" || false;
   const packageData = supplierData?.packageId?.packages || [];
 
@@ -98,7 +108,26 @@ const SupplierDetailsView = () => {
             </CommonTable>
           ) : null}
         </Grid.Column>
+        <Grid.Column computer={16}>
+          <TitleView title="Reviews" />
+          <RatingView ratingValue={(data: any) => {}} />
+        </Grid.Column>
+        <Grid.Column computer={16}>
+          <CustomButton
+            title="Add Review"
+            onClick={() => setVisibleComment(true)}
+          />
+        </Grid.Column>
+        <Grid.Column computer={16}>
+        <TitleView title="Reviews" />
+          <CommentView reviewData={supplierData?.reviewId?.reviews || []} />
+        </Grid.Column>
       </Grid>
+      <AddCommentModal
+        title="Add Comment"
+        viewModal={visibleComment}
+        cancel={() => setVisibleComment(false)}
+      />
     </>
   );
 };

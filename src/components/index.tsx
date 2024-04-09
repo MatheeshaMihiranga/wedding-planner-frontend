@@ -13,4 +13,6 @@ export * from "./mainBottomButtonView/MainBottomButtonView";
 export * from "./commonTable/CommonTable";
 export * from "./confirmViewModal/ConfirmModal";
 export * from "./imageUpload/ImageUpload";
-export * from "./rating/Rating"
+export * from "./rating/Rating";
+export * from "./addComment/AddCommentModal";
+export * from "./commentView/CommentView"

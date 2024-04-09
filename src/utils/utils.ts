@@ -26,3 +26,14 @@ export const formatDate = (dateValue: any) => {
   const formattedDate = `${year}-${month}-${day}`;
   return formattedDate;
 };
+
+
+export const handleDashBoard = (userRole:any,userDetails:any,navigate:any) =>{
+  if(userRole === "user"){
+    navigate(`/dashboard/${userDetails._id}`)
+  }else if (userRole === "supplier"){
+    navigate(`/dashboard/${userDetails.supplierId?._id}`)
+  }else{
+    navigate(`/dashboard`)
+  }
+}

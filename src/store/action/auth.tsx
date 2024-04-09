@@ -1,10 +1,17 @@
 import { Dispatch } from "redux";
 import _ from "lodash";
 
-import { AUTH_TOKEN, LOADING, RESET_DATA, SUPPLIER_DATA, USER_DETAILS } from "./actionTypes";
+import {
+  AUTH_TOKEN,
+  LOADING,
+  RESET_DATA,
+  SUPPLIER_DATA,
+  USER_DETAILS,
+} from "./actionTypes";
 import { authAxios, gateAxios } from "../api";
 import { removeTokens, saveTokenInLocal } from "../../utils/cacheStorage";
 import { errorView, successMessage } from "../../helpers/ErrorHandler";
+import { handleDashBoard } from "../../utils/utils";
 
 export const addToken = (token: any) => {
   return (dispatch: Dispatch) => {
@@ -38,8 +45,7 @@ export const userLogin = (userDetails: any, navigate: any) => {
         type: AUTH_TOKEN,
         payload: res.data.token,
       });
-      dispatch(getUserDetails())
-      navigate("/");
+      dispatch(getUserDetails(navigate));
     } catch (err: any) {
       dispatch({
         type: LOADING,
@@ -49,27 +55,30 @@ export const userLogin = (userDetails: any, navigate: any) => {
   };
 };
 
-export const getUserDetails = () => {
-  return async (dispatch: Function) => {    
+export const getUserDetails = (navigate?: any) => {
+  return async (dispatch: Function) => {
     try {
       dispatch({
         type: LOADING,
         payload: true,
       });
       let res = await gateAxios.get("user/userProfile");
-      let isSupplierAvailable = res?.data?.data?.supplierId || false
+      let isSupplierAvailable = res?.data?.data?.supplierId || false;
+      if(navigate){
+        handleDashBoard(res.data.data.role, res.data.data, navigate);
+      }
       dispatch({
         type: USER_DETAILS,
         payload: res.data.data,
       });
-      if(isSupplierAvailable){
+      if (isSupplierAvailable) {
         dispatch({
           type: SUPPLIER_DATA,
           payload: isSupplierAvailable,
         });
       }
     } catch (err: any) {
-      errorView(err)
+      errorView(err);
       dispatch({
         type: LOADING,
         payload: false,
@@ -78,23 +87,23 @@ export const getUserDetails = () => {
   };
 };
 
-export const userRegister = (userData:any,navigate:any) => {
-  return async (dispatch: Function) => {    
+export const userRegister = (userData: any, navigate: any) => {
+  return async (dispatch: Function) => {
     try {
       dispatch({
         type: LOADING,
         payload: true,
       });
-      let res = await authAxios.post("user/signUp",userData);
-      if(res){
-        navigate("/auth")
+      let res = await authAxios.post("user/signUp", userData);
+      if (res) {
+        navigate("/auth");
       }
       dispatch({
         type: USER_DETAILS,
         payload: res?.data?.data,
       });
-    } catch (err: any) {      
-      errorView(err)
+    } catch (err: any) {
+      errorView(err);
       dispatch({
         type: LOADING,
         payload: false,
@@ -103,12 +112,12 @@ export const userRegister = (userData:any,navigate:any) => {
   };
 };
 
-export const logout = (navigate:any) => {
+export const logout = (navigate: any) => {
   return (dispatch: Function) => {
     dispatch({
-      type: RESET_DATA
+      type: RESET_DATA,
     });
-    removeTokens()
-    navigate("/auth")
+    removeTokens();
+    navigate("/auth");
   };
 };

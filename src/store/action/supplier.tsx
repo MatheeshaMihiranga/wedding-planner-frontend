@@ -32,7 +32,7 @@ export const getSupplierDataById = (id: any) => {
   };
 };
 
-export const updateSupplierData = (supplierData: any, navigate: any) => {
+export const updateSupplierData = (supplierData: any,supplierCategory:any, navigate: any) => {
   return async (dispatch: Function) => {
     try {
       dispatch({
@@ -45,7 +45,7 @@ export const updateSupplierData = (supplierData: any, navigate: any) => {
       );
       if (res) {
         successMessage("Update supplier data successfully");
-        navigate(`/supplier/supplier-data/${res.data.data._id}`);
+        navigate(`/supplier/supplier-data/${res.data.data._id}?category=${supplierCategory}`);
       }
       dispatch({
         type: SUPPLIER_DATA,
@@ -177,6 +177,28 @@ export const supplierFilterDetails = (filterData?: any) => {
         type: SUPPLIER_SEARCH_DATA,
         payload: res.data.data,
       });
+      return res;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+
+export const addComment = (data?: any) => {
+  return async (dispatch: Function, getState: () => RootState) => {
+    let { supplierData } = getState().supplier;
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      let res = await gateAxios.post(`/review/createReview/${data.reviewId}`, data.data);
+      dispatch(getSupplierDataById(supplierData._id))
       return res;
     } catch (err: any) {
       errorView(err);

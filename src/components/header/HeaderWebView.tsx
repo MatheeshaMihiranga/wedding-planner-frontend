@@ -4,14 +4,15 @@ import { Grid, Dropdown } from "semantic-ui-react";
 import "./Header.scss";
 import { LOGO } from "../../config/constants";
 import { CustomButton } from "../button/Button";
+import { handleDashBoard } from "../../utils/utils";
 
 export const HeaderWebView = memo(
-  ({ options, userImage, navigate, token,isSupplierRegister,supplierData }: any) => {
+  ({ options, userImage, navigate, token,isSupplierRegister,supplierData,userRole,userDetails }: any) => {
     return (
       <div className="mainContent">
         <Grid verticalAlign="middle" className="headerDefaultView" centered>
           <Grid.Column computer={3} className="rightContent" only="computer">
-            <div onClick={() => navigate("/")}>
+            <div onClick={() =>handleDashBoard(userRole,userDetails,navigate)}>
               <img src={LOGO} alt="logo" className="logo" />
             </div>
           </Grid.Column>

@@ -3,12 +3,18 @@ import Dashboard from "../screens/dashboard/Dashboard";
 import PasswordReset from "../screens/passwordReset/PasswordReset";
 import PasswordForgot from "../screens/forgotPassword/ForgotPassword";
 import RegisterUser from "../screens/registerUser/Register";
+import UserDashBoard from "../screens/userDashboard/UserDashboard";
 
 export const CommonRoutes = [
   {
-    path: "/",
+    path: "/dashboard",
     route: <Dashboard />,
     protectRoutes: false,
+  },
+  {
+    path: "/dashboard/:id",
+    route: <UserDashBoard />,
+    protectRoutes: true,
   },
   {
     path: "/auth",

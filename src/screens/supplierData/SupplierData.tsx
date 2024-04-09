@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import { isEmpty } from "lodash";
 
 import {
+  CommentView,
   CommonTable,
   CustomButton,
   DropDown,
@@ -41,6 +42,7 @@ import ImageUpload from "../../components/imageUpload/ImageUpload";
 import { formatDate } from "../../utils/utils";
 
 import "./SupplierData.scss";
+import RatingView from "../../components/rating/Rating";
 
 const SupplierData = ({ route }: any) => {
   const dispatch = useDispatchApp();
@@ -52,16 +54,15 @@ const SupplierData = ({ route }: any) => {
 
   const [packageData, setPackageData] = useState<any>([]);
   const [location, setLocation] = useState("Colombo");
-  const [maxCount, setMaxCount] = useState(Packages[0].value)
+  const [maxCount, setMaxCount] = useState(Packages[0].value);
   const [enableEditPackage, setEnableEditPackage] = useState<any>(false);
   const [currentPackageId, setCurrentPackageId] = useState<any>(null);
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
   const [deleteData, setDeleteData] = useState<any>({});
-  const category = searchParams.get('category');
+  const category = searchParams.get("category");
 
   const supplierCategory = category;
-  const supplierRegisterOrNot =
-    supplierData?.categoryType || false;
+  const supplierRegisterOrNot = supplierData?.categoryType || false;
   const supplierImage = supplierData?.images || [];
   const isCategoryVenue = supplierCategory === "Venues";
   const disableCategoryPackage = DisableCategory.some(
@@ -119,7 +120,7 @@ const SupplierData = ({ route }: any) => {
       id: supplierData._id,
       data: data,
     };
-    dispatch(updateSupplierData(supplierDetails, navigate));
+    dispatch(updateSupplierData(supplierDetails, supplierCategory, navigate));
   };
 
   const updateSupplierImages = (data: any) => {
@@ -131,11 +132,11 @@ const SupplierData = ({ route }: any) => {
         images: updateImages,
       },
     };
-    dispatch(updateSupplierData(supplierDetails, navigate));
+    dispatch(updateSupplierData(supplierDetails, supplierCategory, navigate));
   };
 
   const onSubmitPackages = async (data: any) => {
-    data.maxCount = maxCount
+    data.maxCount = maxCount;
     if (enableEditPackage) {
       let packageDetails = {
         id: supplierData?.packageId?._id,
@@ -186,7 +187,7 @@ const SupplierData = ({ route }: any) => {
         unavailableDates: getData,
       },
     };
-    dispatch(updateSupplierData(supplierDetails, navigate));
+    dispatch(updateSupplierData(supplierDetails, supplierCategory, navigate));
   };
 
   const addUnavailableData = (date: any) => {
@@ -196,7 +197,7 @@ const SupplierData = ({ route }: any) => {
         unavailableDates: [...currentUnavailableData, date],
       },
     };
-    dispatch(updateSupplierData(supplierDetails, navigate));
+    dispatch(updateSupplierData(supplierDetails, supplierCategory, navigate));
   };
 
   const loadUnavailableDataData = () => {
@@ -474,6 +475,13 @@ const SupplierData = ({ route }: any) => {
                 </CommonTable>
               ) : null}
             </Grid.Column>
+            <TitleView
+              title="Reviews"
+              CustomTitleViewMain="weddingMenuPackageTitle"
+            />
+            <Grid.Column computer={16} tablet={16} mobile={16}>
+              <CommentView reviewData={supplierData?.reviewId?.reviews || []} />
+            </Grid.Column>
           </Grid>
         </form>
       ) : null}
@@ -481,7 +489,7 @@ const SupplierData = ({ route }: any) => {
       <MainBottomButtonView
         cancelStatus={true}
         saveButtonStatus={true}
-        cancelButton={() => { }}
+        cancelButton={() => {}}
         saveButton={handleSubmit(onSubmit)}
         saveTitle={"Submit"}
         type="submit"

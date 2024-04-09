@@ -3,6 +3,8 @@ import { Grid, Rating } from "semantic-ui-react";
 import { CommonContainer } from "../../components";
 import { RATING } from "../../config/constants";
 
+import "./rating.scss"
+
 const RatingView = ({ ratingValue }: any) => {
   return (
     <>
@@ -22,6 +24,8 @@ const RatingView = ({ ratingValue }: any) => {
                     className={index !== 0 ? "paddingRemoveTop" : ""}
                     onClick={() => ratingValue(data.value)}
                   >
+                    <div className="ratingViewMain">
+                    <p className="ratingCountText">{data.value} Star</p>
                     <Rating
                       size="huge"
                       icon="star"
@@ -29,6 +33,8 @@ const RatingView = ({ ratingValue }: any) => {
                       maxRating={data.value}
                       disabled
                     />
+                    </div>
+                    
                   </Grid.Column>
                 );
               })}

@@ -72,6 +72,8 @@ export const Header = memo(({ isLogin }: any) => {
         token={token}
         isSupplierRegister={isSupplierRegister || false}
         supplierData={supplierData}
+        userRole={userDetails?.role}
+        userDetails={userDetails}
       />
       <CommonContainer>
         <HeaderMobileView

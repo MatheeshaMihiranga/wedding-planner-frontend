@@ -18,7 +18,7 @@ const Login = () => {
 
   useEffect(()=>{
     if(!isEmpty(getTokenInLocal()) ){
-        navigate("/")
+        dispatch(getUserDetails(navigate))
     }
   },[])
 
