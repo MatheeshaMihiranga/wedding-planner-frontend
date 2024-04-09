@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { Grid, Table } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
+import WriteReview from "../../components/writeReview/writeReview";
+
 import { CommonTable, ImageView, TitleBar, TitleView } from "../../components";
 import {
   WeddingVenuesDetails,
@@ -99,6 +101,7 @@ const SupplierDetailsView = () => {
           ) : null}
         </Grid.Column>
       </Grid>
+      <WriteReview/>
     </>
   );
 };
