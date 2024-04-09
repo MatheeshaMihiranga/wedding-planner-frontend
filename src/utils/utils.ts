@@ -30,9 +30,9 @@ export const formatDate = (dateValue: any) => {
 
 export const handleDashBoard = (userRole:any,userDetails:any,navigate:any) =>{
   if(userRole === "user"){
-    navigate(`/dashboard/${userDetails._id}`)
+    navigate(`/user-dashboard/${userDetails._id}`)
   }else if (userRole === "supplier"){
-    navigate(`/dashboard/${userDetails.supplierId?._id}`)
+    navigate(`/supplier-dashboard/${userDetails.supplierId?._id}`)
   }else{
     navigate(`/dashboard`)
   }

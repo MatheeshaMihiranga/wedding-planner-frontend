@@ -1,3 +1,4 @@
+import { images } from "../assets/images";
 import { getCompanyLogo } from "../utils/utils";
 
 const API_URL = "http://localhost:4005";
@@ -26,7 +27,7 @@ const RATING = [
   },
   {
     key: 4,
-    text:4,
+    text: 4,
     value: 4,
   },
   {
@@ -43,7 +44,7 @@ const RATING = [
     key: 1,
     text: 1,
     value: 1,
-  }
+  },
 ];
 
 const Packages = [
@@ -59,7 +60,7 @@ const Packages = [
   { key: 10, text: 550, value: 550 },
   { key: 11, text: 600, value: 600 },
   { key: 12, text: 650, value: 650 },
-  { key: 13, text: 700, value: 700 }
+  { key: 13, text: 700, value: 700 },
 ];
 
 const Districts = [
@@ -99,7 +100,7 @@ const UnavailableDates = [
     name: "",
     col: 2,
   },
-]
+];
 
 const WeddingVenues = [
   {
@@ -122,7 +123,7 @@ const WeddingVenues = [
     name: "",
     col: 4,
   },
-]
+];
 
 const WeddingVenuesDetails = [
   {
@@ -145,7 +146,7 @@ const WeddingVenuesDetails = [
     name: "Description",
     col: 4,
   },
-]
+];
 
 const WeddingPackageTable = [
   {
@@ -164,7 +165,7 @@ const WeddingPackageTable = [
     name: "",
     col: 4,
   },
-]
+];
 
 const WeddingPackageTableDetails = [
   {
@@ -179,56 +180,130 @@ const WeddingPackageTableDetails = [
     name: "Price",
     col: 6,
   },
-]
+];
 
-const DisableCategory = [
-  "Attire",
-  "Jewellery"
-]
+const DisableCategory = ["Attire", "Jewellery"];
+
+const UserDashboardData = [
+  {
+    key: 1,
+    text: "Dashboard",
+    navigate: "user-dashboard",
+    image:images.UserDashboard
+  },
+  {
+    key: 2,
+    text: "My Suppliers",
+    navigate: "user-dashboard/supplier",
+    image:images.Suppliers
+  },
+  {
+    key: 3,
+    text: "Checklist",
+    navigate: "user-dashboard/checklist",
+    image:images.Checklist
+  },
+  {
+    key: 4,
+    text: "Budget",
+    navigate: "user-dashboard/budget",
+    image:images.Budget
+  },
+  {
+    key: 5,
+    text: "Guests",
+    navigate: "user-dashboard/guests",
+    image:images.Guest
+  },
+];
+
+const SupplierDashboardData = [
+  {
+    key: 1,
+    text: "Business Information",
+    navigate: "supplier-dashboard",
+    image:images.SupplierDashboard
+  },
+  {
+    key: 2,
+    text: "Inquires",
+    navigate: "supplier-dashboard/inquires",
+    image:images.Inquiries
+  },
+  {
+    key: 3,
+    text: "Reviews",
+    navigate: "supplier-dashboard/reviews",
+    image:images.Reviews
+  },
+  {
+    key: 4,
+    text: "Account Settings",
+    navigate: "supplier-dashboard/setting",
+    image:images.AccountSetting
+  }
+];
 
 const Categories = [
   {
     key: 1,
     text: "Wedding Venues",
     navigate: "supplier-register",
-    categoryType:"Venues"
+    categoryType: "Venues",
   },
   {
     key: 2,
     text: "Wedding Photographers",
     navigate: "supplier-register",
-    categoryType:"Photographer"
+    categoryType: "Photographer",
   },
   {
     key: 3,
     text: "Wedding Music & DJs",
     navigate: "supplier-register",
-    categoryType:"Music"
+    categoryType: "Music",
   },
   {
     key: 4,
     text: "Transport",
     navigate: "supplier-register",
-    categoryType:"Transport"
+    categoryType: "Transport",
   },
   {
     key: 2,
     text: "Wedding Decorations & Styling",
     navigate: "supplier-register",
-    categoryType:"Decorations"
+    categoryType: "Decorations",
   },
   {
     key: 3,
     text: "Wedding Attire",
     navigate: "supplier-register",
-    categoryType:"Attire"
+    categoryType: "Attire",
   },
   {
     key: 4,
     text: "Jewellery",
     navigate: "supplier-register",
-    categoryType:"Jewellery"
+    categoryType: "Jewellery",
   },
 ];
 
-export { API_URL, THEME, LOGO, USER_TYPE, Categories, Districts,WeddingVenues,WeddingPackageTable,DisableCategory,UnavailableDates,RATING,Packages,WeddingVenuesDetails,WeddingPackageTableDetails };
+export {
+  API_URL,
+  THEME,
+  LOGO,
+  USER_TYPE,
+  Categories,
+  Districts,
+  WeddingVenues,
+  WeddingPackageTable,
+  DisableCategory,
+  UnavailableDates,
+  RATING,
+  Packages,
+  WeddingVenuesDetails,
+  WeddingPackageTableDetails,
+  UserDashboardData,
+  SupplierDashboardData
+};

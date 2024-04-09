@@ -13,6 +13,7 @@ import { useThemeContext } from "./hooks/useThemeContext";
 import { THEME } from "./config/constants";
 import { store } from "./store/Store";
 import { firebaseConfig } from "./config/fireabse";
+import { getUserDetails } from "./store/action/auth";
 
 const App: React.FC = () => {
   const { dispatch } = useThemeContext();

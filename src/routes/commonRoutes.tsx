@@ -4,6 +4,7 @@ import PasswordReset from "../screens/passwordReset/PasswordReset";
 import PasswordForgot from "../screens/forgotPassword/ForgotPassword";
 import RegisterUser from "../screens/registerUser/Register";
 import UserDashBoard from "../screens/userDashboard/UserDashboard";
+import SupplierDashboard from "../screens/supplierDashboard/SupplierDashboard";
 
 export const CommonRoutes = [
   {
@@ -12,8 +13,13 @@ export const CommonRoutes = [
     protectRoutes: false,
   },
   {
-    path: "/dashboard/:id",
+    path: "/user-dashboard/:id",
     route: <UserDashBoard />,
+    protectRoutes: true,
+  },
+  {
+    path: "/supplier-dashboard/:id",
+    route: <SupplierDashboard />,
     protectRoutes: true,
   },
   {

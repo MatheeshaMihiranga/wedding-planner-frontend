@@ -16,3 +16,4 @@ export * from "./imageUpload/ImageUpload";
 export * from "./rating/Rating";
 export * from "./addComment/AddCommentModal";
 export * from "./commentView/CommentView"
+export * from "./tabView/TabView"
