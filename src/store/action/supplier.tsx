@@ -9,6 +9,7 @@ import {
 import { gateAxios } from "../api";
 import { errorView, successMessage } from "../../helpers/ErrorHandler";
 import { RootState } from "../reducer";
+import { getUserDetails } from "./auth";
 
 export const getSupplierDataById = (id: any) => {
   return async (dispatch: Function) => {
@@ -18,6 +19,7 @@ export const getSupplierDataById = (id: any) => {
         payload: true,
       });
       let res = await gateAxios.get(`supplier/getSupplier/${id}`);
+      dispatch(getUserDetails())      
       dispatch({
         type: SUPPLIER_DATA,
         payload: res.data.data,
