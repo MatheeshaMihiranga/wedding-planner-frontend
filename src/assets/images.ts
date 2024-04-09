@@ -9,6 +9,13 @@ import Inquiries from "./images/inquires.png"
 import Reviews from "./images/reviews.png"
 import AccountSetting from "./images/accountSetting.png"
 
+import CommonDashboard from "./images/commonDashboard.png"
+
+import DashboardImage1 from "./images/dashboardImage1.png"
+import DashboardImage2 from "./images/dashboardImage2.png"
+import DashboardImage3 from "./images/dashboardImage3.png"
+import DashboardImage4 from "./images/dashboardImage4.png"
+
 
 export const images = {
     UserDashboard,
@@ -19,5 +26,10 @@ export const images = {
     SupplierDashboard,
     Inquiries,
     Reviews,
-    AccountSetting
+    AccountSetting,
+    CommonDashboard,
+    DashboardImage1,
+    DashboardImage2,
+    DashboardImage3,
+    DashboardImage4
 };

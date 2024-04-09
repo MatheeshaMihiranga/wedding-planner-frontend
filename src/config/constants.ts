@@ -244,6 +244,33 @@ const SupplierDashboardData = [
   }
 ];
 
+const CommonDashboardDetails = [
+  {
+    key: 1,
+    mainTile: "Discover and book your dream wedding suppliers all in one place.",
+    subTitle: "Bliss simplifies wedding planning! Discover a curated selection of top-rated vendors and book them directly through our platform. Find everything you need for your dream wedding, all in one convenient place.",
+    image:images.DashboardImage1
+  },
+  {
+    key: 2,
+    mainTile: "Bliss : Your All-in-One Wedding Solution",
+    subTitle: "Plan your dream wedding with ease! Bliss connects you with top-rated vendors and simplifies the booking process. Find everything you need, from photographers to florists, all in one convenient place.",
+    image:images.DashboardImage2
+  },
+  {
+    key: 3,
+    mainTile: "Bliss: Say 'I Do' to Stress-Free Planning",
+    subTitle: "Eliminate wedding planning stress with Bliss! Our platform offers a seamless experience, connecting you with trusted vendors, streamlining communication, and keeping you organized every step of the way.",
+    image:images.DashboardImage3
+  },
+  {
+    key: 4,
+    mainTile: "Bliss: Create Your Perfect Wedding Day.",
+    subTitle: "Bliss empowers you to customize your dream wedding. Explore our curated selection of vendors, manage your budget, and create a wedding that reflects your unique style, all on one user-friendly platform.",
+    image:images.DashboardImage4
+  }
+];
+
 const Categories = [
   {
     key: 1,
@@ -305,5 +332,6 @@ export {
   WeddingVenuesDetails,
   WeddingPackageTableDetails,
   UserDashboardData,
-  SupplierDashboardData
+  SupplierDashboardData,
+  CommonDashboardDetails,
 };

@@ -1,0 +1,63 @@
+.commonDashboardImage {
+    width: 100%;
+}
+
+.containerCommonDashboard {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centeredCommonDashboardText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: white;
+}
+
+.centeredSubCommonDashboardText{
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: white;
+}
+
+.commonDashboardContentImage{
+    min-height: 250px !important;
+}
+
+.commonDashboardContentTextRight{
+    text-align: end !important;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: white !important;
+}
+
+.commonDashboardContentTextLeft{
+    text-align: left !important;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.commonDashboardContentImageAlign{
+    text-align: center !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.commonDashboardColorMain{
+    background-color: var(--mainColor);
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 50px !important;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+}
+
+.commonDashboardWithoutColorMain{
+    margin-bottom: 50px !important;
+}
