@@ -41,6 +41,7 @@ const AddCommentModal = ({
     data.supplierReview = ""
     const commentData ={
         reviewId:supplierData.reviewId._id,
+        supplierId:supplierData._id,
         data:data
     }    
     if(isEmpty(userDetails._id)) return errorView("Something went wrong")

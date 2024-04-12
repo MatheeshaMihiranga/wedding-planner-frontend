@@ -6,6 +6,8 @@ import { Grid } from "semantic-ui-react";
 import { UserDashboardData } from "../../config/constants";
 import { TabView } from "../../components";
 
+import "./userDashboard.scss"
+
 const UserDashBoard = () => {
   const { id } = useParams();
   const dispatch = useDispatchApp();
@@ -19,6 +21,14 @@ const UserDashBoard = () => {
   return (
     <>
      <TabView loadData={UserDashboardData}/>
+     <Grid className="userDashboardMain">
+              {/* <Grid.Column
+                computer={16}
+                className="paddingRemoveBottom commentViewWithUser"
+              >
+               
+              </Grid.Column> */}
+            </Grid>
     </>
   );
 };

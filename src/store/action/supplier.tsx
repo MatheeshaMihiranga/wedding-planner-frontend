@@ -216,7 +216,7 @@ export const addComment = (data?: any) => {
         payload: true,
       });
       let res = await gateAxios.post(
-        `/review/createReview/${data.reviewId}`,
+        `/review/createReview/${data.supplierId}/${data.reviewId}`,
         data.data
       );
       dispatch(getSupplierDataById(supplierData._id));
