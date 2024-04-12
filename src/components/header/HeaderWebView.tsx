@@ -7,12 +7,23 @@ import { CustomButton } from "../button/Button";
 import { handleDashBoard } from "../../utils/utils";
 
 export const HeaderWebView = memo(
-  ({ options, userImage, navigate, token,isSupplierRegister,supplierData,userRole,userDetails }: any) => {
+  ({
+    options,
+    userImage,
+    navigate,
+    token,
+    isSupplierRegister,
+    supplierData,
+    userRole,
+    userDetails,
+  }: any) => {
     return (
       <div className="mainContent">
         <Grid verticalAlign="middle" className="headerDefaultView" centered>
           <Grid.Column computer={3} className="rightContent" only="computer">
-            <div onClick={() =>handleDashBoard(userRole,userDetails,navigate)}>
+            <div
+              onClick={() => handleDashBoard(userRole, userDetails, navigate)}
+            >
               <img src={LOGO} alt="logo" className="logo" />
             </div>
           </Grid.Column>
@@ -32,25 +43,28 @@ export const HeaderWebView = memo(
                 </>
               ) : (
                 <>
-                 <CustomButton
-                    theme="green"
-                    title={"My Planning Tool"}
-                    onClick={() => 
-                    {}
-                    }
-                    customButtonStyle="headerSupplierButton"
-                    customColumnStyle="headerSupplierButton"
-                  />
                   <CustomButton
                     theme="green"
-                    title={!isSupplierRegister ? "Suppliers" : "Setting"}
-                    onClick={() => 
-                      !isSupplierRegister ?
-                      navigate("/supplier/categoryList") : navigate(`/supplier/supplier-data/${supplierData._id}?category=${supplierData.categoryType}`)
-                    }
+                    title={"My Planning Tool"}
+                    onClick={() => {}}
                     customButtonStyle="headerSupplierButton"
                     customColumnStyle="headerSupplierButton"
                   />
+                  {!isSupplierRegister ? (
+                    <CustomButton
+                      theme="green"
+                      title={!isSupplierRegister ? "Suppliers" : "Setting"}
+                      onClick={() =>
+                        !isSupplierRegister
+                          ? navigate("/supplier/categoryList")
+                          : navigate(
+                              `/supplier/supplier-data/${supplierData._id}?category=${supplierData.categoryType}`
+                            )
+                      }
+                      customButtonStyle="headerSupplierButton"
+                      customColumnStyle="headerSupplierButton"
+                    />
+                  ) : null}
                   <Dropdown
                     trigger={userImage}
                     options={options}

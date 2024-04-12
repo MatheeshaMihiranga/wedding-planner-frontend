@@ -5,6 +5,7 @@ export interface UserAuth {
 
 export interface SupplierData {
   supplierData: any;
+  supplierReview:any;
   supplierFilterData: {
     type: string;
     location: string | null;

@@ -18,7 +18,7 @@ export const CommentView = ({reviewData = []}:any) =>{
                     />
                 </Grid.Column>
                 <Grid.Column computer={16} className="paddingRemoveTop" >
-                    <p>{data?.userReview}</p>
+                    <p className="commentView">{data?.userReview}</p>
                 </Grid.Column>
             </Grid>
         )

@@ -4,10 +4,14 @@ import { useDispatchApp } from "../../store/Store";
 import { getSupplierDataById } from "../../store/action/supplier";
 import { TabView } from "../../components";
 import { SupplierDashboardData } from "../../config/constants";
+import SupplierBusinessData from "./SupplierBusinessData";
+import { RootState } from "../../store/reducer";
+import { useSelector } from "react-redux";
 
 const SupplierDashboard = () => {
   const { id } = useParams();
   const dispatch = useDispatchApp()
+  const { supplierData } = useSelector((state: RootState) => state.supplier);
 
   useEffect(() => {
     if (id) {
@@ -16,7 +20,8 @@ const SupplierDashboard = () => {
   }, [id]);
 
   return <>
-  <TabView loadData={SupplierDashboardData}/>
+  <TabView loadData={SupplierDashboardData} id={supplierData?._id}/>
+  <SupplierBusinessData/>
  </>
 };
 

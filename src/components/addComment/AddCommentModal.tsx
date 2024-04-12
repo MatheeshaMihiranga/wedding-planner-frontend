@@ -43,7 +43,7 @@ const AddCommentModal = ({
     const commentData ={
         reviewId:supplierData.reviewId._id,
         data:data
-    }
+    }    
     if(isEmpty(userDetails._id)) return errorView("Something went wrong")
     let res =  await dispatch(addComment(commentData));
     if(res){

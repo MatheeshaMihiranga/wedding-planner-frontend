@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 
 export const getCompanyLogo = (theme: any) => {
   switch (theme) {
@@ -32,7 +33,12 @@ export const handleDashBoard = (userRole:any,userDetails:any,navigate:any) =>{
   if(userRole === "user"){
     navigate(`/user-dashboard/${userDetails._id}`)
   }else if (userRole === "supplier"){
-    navigate(`/supplier-dashboard/${userDetails.supplierId?._id}`)
+    if( isEmpty(userDetails.supplierId.categoryType)){
+      navigate(`/supplier/categoryList`)
+     
+    }else{
+      navigate(`/supplier-dashboard/${userDetails.supplierId?._id}`)
+    }
   }else{
     navigate(`/dashboard`)
   }

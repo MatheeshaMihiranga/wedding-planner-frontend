@@ -4,6 +4,7 @@ import {
   LOADING,
   SUPPLIER_DATA,
   SUPPLIER_FILTER_DATA,
+  SUPPLIER_REVIEWS,
   SUPPLIER_SEARCH_DATA,
 } from "./actionTypes";
 import { gateAxios } from "../api";
@@ -18,8 +19,8 @@ export const getSupplierDataById = (id: any) => {
         type: LOADING,
         payload: true,
       });
+      dispatch(getUserDetails());
       let res = await gateAxios.get(`supplier/getSupplier/${id}`);
-      dispatch(getUserDetails())      
       dispatch({
         type: SUPPLIER_DATA,
         payload: res.data.data,
@@ -34,7 +35,11 @@ export const getSupplierDataById = (id: any) => {
   };
 };
 
-export const updateSupplierData = (supplierData: any,supplierCategory:any, navigate: any) => {
+export const updateSupplierData = (
+  supplierData: any,
+  supplierCategory: any,
+  navigate: any
+) => {
   return async (dispatch: Function) => {
     try {
       dispatch({
@@ -47,7 +52,10 @@ export const updateSupplierData = (supplierData: any,supplierCategory:any, navig
       );
       if (res) {
         successMessage("Update supplier data successfully");
-        navigate(`/supplier/supplier-data/${res.data.data._id}?category=${supplierCategory}`);
+        dispatch(getUserDetails());
+        navigate(
+          `/supplier/supplier-data/${res.data.data._id}?category=${supplierCategory}`
+        );
       }
       dispatch({
         type: SUPPLIER_DATA,
@@ -190,7 +198,6 @@ export const supplierFilterDetails = (filterData?: any) => {
   };
 };
 
-
 export const addComment = (data?: any) => {
   return async (dispatch: Function, getState: () => RootState) => {
     let { supplierData } = getState().supplier;
@@ -199,9 +206,35 @@ export const addComment = (data?: any) => {
         type: LOADING,
         payload: true,
       });
-      let res = await gateAxios.post(`/review/createReview/${data.reviewId}`, data.data);
-      dispatch(getSupplierDataById(supplierData._id))
+      let res = await gateAxios.post(
+        `/review/createReview/${data.reviewId}`,
+        data.data
+      );
+      dispatch(getSupplierDataById(supplierData._id));
       return res;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const getReviewDetailsBySupplierId = (id: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      dispatch(getUserDetails());
+      let res = await gateAxios.get(`review/getAllReviewBySupplier/${id}`);     
+      dispatch({
+        type: SUPPLIER_REVIEWS,
+        payload: res.data.data.reviews,
+      });
     } catch (err: any) {
       errorView(err);
       dispatch({

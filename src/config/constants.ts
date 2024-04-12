@@ -221,7 +221,7 @@ const SupplierDashboardData = [
   {
     key: 1,
     text: "Business Information",
-    navigate: "supplier-dashboard",
+    navigate: "supplier-dashboard/",
     image:images.SupplierDashboard
   },
   {
@@ -233,7 +233,7 @@ const SupplierDashboardData = [
   {
     key: 3,
     text: "Reviews",
-    navigate: "supplier-dashboard/reviews",
+    navigate: "supplier/supplier-reviews/",
     image:images.Reviews
   },
   {

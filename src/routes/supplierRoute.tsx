@@ -2,6 +2,7 @@
 import SupplierCategoryList from "../screens/supplier/SupplierCategoryList";
 import SupplierData from "../screens/supplierData/SupplierData";
 import SupplierDetailsView from "../screens/supplierDetailsView/SupplierDetailsView";
+import SupplierReviews from "../screens/supplierReviews.tsx/SupplierReviews";
 import SuppliersSearch from "../screens/suppliersLoad/SuppliersSearch";
 
 export const SupplierRoutes = [
@@ -28,6 +29,11 @@ export const SupplierRoutes = [
   {
     path: "supplier-details/:id",
     route: <SupplierDetailsView />,
+    protectRoutes: false,
+  },
+  {
+    path: "supplier-reviews/:id",
+    route: <SupplierReviews />,
     protectRoutes: false,
   },
 ];

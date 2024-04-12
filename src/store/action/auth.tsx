@@ -63,7 +63,7 @@ export const getUserDetails = (navigate?: any) => {
         payload: true,
       });
       let res = await gateAxios.get("user/userProfile");
-      let isSupplierAvailable = res?.data?.data?.supplierId || false;
+      let isSupplierAvailable = res?.data?.data?.supplierId || false;      
       if(navigate){
         handleDashBoard(res.data.data.role, res.data.data, navigate);
       }
