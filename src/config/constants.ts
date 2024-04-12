@@ -188,13 +188,13 @@ const UserDashboardData = [
   {
     key: 1,
     text: "Dashboard",
-    navigate: "user-dashboard",
+    navigate: "user-dashboard/",
     image:images.UserDashboard
   },
   {
     key: 2,
     text: "My Suppliers",
-    navigate: "user-dashboard/supplier",
+    navigate: "user/my-supplier/",
     image:images.Suppliers
   },
   {

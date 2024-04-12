@@ -47,7 +47,6 @@ const SupplierBusinessData = ({ route }: any) => {
   const { userDetails } = useSelector((state: RootState) => state.auth);
   const { supplierData } = useSelector((state: RootState) => state.supplier);
   const { id } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const [packageData, setPackageData] = useState<any>([]);
   const [location, setLocation] = useState("Colombo");
@@ -79,6 +78,8 @@ const SupplierBusinessData = ({ route }: any) => {
       supplierName: supplierData?.supplierName || userDetails.name,
       description: supplierData?.description || "",
       webLink: supplierData?.webLink || "",
+      contactEmail: supplierData?.contactEmail || "",
+      contactUserName: supplierData?.contactUserName || "",
     };
   }, [userDetails, supplierData]);
 
@@ -328,6 +329,28 @@ const SupplierBusinessData = ({ route }: any) => {
               labelName={"Web Site"}
               placeholder="Web Site"
               name="webLink"
+            />
+          </Grid.Column>
+          <Grid.Column computer={8} tablet={16} mobile={16}>
+            <InputText
+              register={register}
+              errors={errors.contactEmail}
+              labelName={"Contact Email"}
+              placeholder="Contact Email"
+              name="contactEmail"
+              required={true}
+              errorMessage="Please enter contact email"
+            />
+          </Grid.Column>
+          <Grid.Column computer={8} tablet={16} mobile={16}>
+            <InputText
+              register={register}
+              errors={errors.contactUserName}
+              labelName={"Contact User Name"}
+              placeholder="Contact User Name"
+              name="contactUserName"
+              required={true}
+              errorMessage="Please enter contact user name"
             />
           </Grid.Column>
           <Grid.Column computer={16} className="supplierDatePicker">

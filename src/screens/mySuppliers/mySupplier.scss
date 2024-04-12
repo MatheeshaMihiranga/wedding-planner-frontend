@@ -1,0 +1,46 @@
+.mySupplierMain {
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    min-height: 70px;
+    background: #ffffff;
+    margin-bottom: 15px !important;
+    margin-top: 25px !important;
+}
+
+.supplierDataView {
+    align-items: center !important;
+    padding: 15px !important;
+    margin: 0px !important;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    min-height: 70px;
+    background: #ffffff;
+    margin-bottom: 15px !important;
+    margin-top: 25px !important;
+    margin-left: 25px !important;
+    margin-right: 25px !important;
+}
+
+.supplierImageView {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
+
+.supplierNameViewMain {
+    display: flex !important;
+    align-items: center;
+}
+
+.supplierName {
+    margin-top: 0px !important;
+    margin-left: 25px;
+    color: var(--mainTextColor)
+}
+
+.supplierSubDetails {
+    margin-left: 15px;
+}

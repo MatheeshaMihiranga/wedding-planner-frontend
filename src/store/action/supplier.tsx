@@ -7,6 +7,7 @@ import {
   SUPPLIER_FILTER_DATA,
   SUPPLIER_REVIEWS,
   SUPPLIER_SEARCH_DATA,
+  USER_MY_SUPPLIER,
 } from "./actionTypes";
 import { gateAxios } from "../api";
 import { errorView, successMessage } from "../../helpers/ErrorHandler";
@@ -335,6 +336,31 @@ export const updateEnquireData = (data: any) => {
         data.data
       );
       dispatch(getUserDetails());
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const getMySupplierData = (id: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      const res = await gateAxios.get(`enquire/getSupplierListByUserId/${id}`);
+
+      dispatch({
+        type: USER_MY_SUPPLIER,
+        payload: res.data.data,
+      });
+
       return true;
     } catch (err: any) {
       errorView(err);

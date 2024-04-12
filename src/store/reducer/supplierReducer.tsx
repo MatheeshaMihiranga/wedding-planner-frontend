@@ -5,13 +5,15 @@ import {
   SUPPLIER_FILTER_DATA,
   SUPPLIER_REVIEWS,
   SUPPLIER_SEARCH_DATA,
-  SUPPLIER_ENQUIRE
+  SUPPLIER_ENQUIRE,
+  USER_MY_SUPPLIER
 } from "../action/actionTypes";
 
 const initialState: SupplierData = {
   supplierData: [],
   supplierReview: [],
   supplierEnquire:[],
+  mySupplier:[],
   supplierFilterData: {
     type: "",
     location: null,
@@ -53,6 +55,12 @@ export function supplierReducer(
       return {
         ...state,
         supplierEnquire: action.payload,
+      };
+    }
+    case USER_MY_SUPPLIER: {
+      return {
+        ...state,
+        mySupplier: action.payload,
       };
     }
     case RESET_DATA: {

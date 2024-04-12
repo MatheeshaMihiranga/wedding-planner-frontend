@@ -7,6 +7,7 @@ export interface SupplierData {
   supplierData: any;
   supplierReview:any;
   supplierEnquire:any;
+  mySupplier:any;
   supplierFilterData: {
     type: string;
     location: string | null;

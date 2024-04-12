@@ -3,6 +3,7 @@ import Suppliers from "./images/suppliers.png"
 import Checklist from "./images/checklist.png"
 import Budget from "./images/budget.png"
 import Guest from "./images/guestes.png"
+import DefaultUserImage from "./images/default_profile_pic.jpeg"
 
 import SupplierDashboard from "./images/suppliers.png"
 import Inquiries from "./images/inquires.png"
@@ -31,5 +32,6 @@ export const images = {
     DashboardImage1,
     DashboardImage2,
     DashboardImage3,
-    DashboardImage4
+    DashboardImage4,
+    DefaultUserImage
 };

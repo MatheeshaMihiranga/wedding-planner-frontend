@@ -7,10 +7,13 @@ import { UserDashboardData } from "../../config/constants";
 import { TabView } from "../../components";
 
 import "./userDashboard.scss"
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducer";
 
 const UserDashBoard = () => {
   const { id } = useParams();
   const dispatch = useDispatchApp();
+  const {userDetails} = useSelector((state:RootState)=>state.auth)
 
   useEffect(() => {
     if (id) {
@@ -20,7 +23,7 @@ const UserDashBoard = () => {
 
   return (
     <>
-     <TabView loadData={UserDashboardData}/>
+     <TabView loadData={UserDashboardData} id={userDetails?._id}/>
      <Grid className="userDashboardMain">
               {/* <Grid.Column
                 computer={16}
