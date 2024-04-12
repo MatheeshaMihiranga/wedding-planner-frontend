@@ -1,4 +1,5 @@
 
+import SupplierEnquire from "../screens/supplieEnquire/SupplierEnquire";
 import SupplierCategoryList from "../screens/supplier/SupplierCategoryList";
 import SupplierData from "../screens/supplierData/SupplierData";
 import SupplierDetailsView from "../screens/supplierDetailsView/SupplierDetailsView";
@@ -34,6 +35,11 @@ export const SupplierRoutes = [
   {
     path: "supplier-reviews/:id",
     route: <SupplierReviews />,
+    protectRoutes: false,
+  },
+  {
+    path: "supplier-enquire/:id",
+    route: <SupplierEnquire />,
     protectRoutes: false,
   },
 ];

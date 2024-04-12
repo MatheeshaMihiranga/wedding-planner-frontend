@@ -18,3 +18,5 @@ export * from "./addComment/AddCommentModal";
 export * from "./commentView/CommentView"
 export * from "./tabView/TabView"
 export * from "./addComment/ReplayCommentModal"
+export * from "./addEnquire/AddEnquire"
+export * from "./addEnquire/AddEnquire"

@@ -23,12 +23,14 @@ import { RootState } from "../../store/reducer";
 import "./supplierDetailsView.scss";
 import RatingView from "../../components/rating/Rating";
 import AddCommentModal from "../../components/addComment/AddCommentModal";
+import AddEnquire from "../../components/addEnquire/AddEnquire";
 
 const SupplierDetailsView = () => {
   const { id } = useParams();
   const dispatch = useDispatchApp();
   const { supplierData } = useSelector((state: RootState) => state.supplier);
   const [visibleComment, setVisibleComment] = useState(false);
+  const [visibleEnquire, setVisibleEnquire] = useState(false);
   const isCategoryVenue = supplierData?.categoryType === "Venues" || false;
   const packageData = supplierData?.packageId?.packages || [];
 
@@ -87,6 +89,12 @@ const SupplierDetailsView = () => {
           );
         })}
         <Grid.Column computer={16}>
+          <CustomButton
+            title="Enquire now"
+            onClick={() => setVisibleEnquire(true)}
+          />
+        </Grid.Column>
+        <Grid.Column computer={16}>
           <TitleView title="Supplier Description" />
           <p>{supplierData?.description}</p>
         </Grid.Column>
@@ -119,7 +127,7 @@ const SupplierDetailsView = () => {
           />
         </Grid.Column>
         <Grid.Column computer={16}>
-        <TitleView title="Reviews" />
+          <TitleView title="Reviews" />
           <CommentView reviewData={supplierData?.reviewId?.reviews || []} />
         </Grid.Column>
       </Grid>
@@ -127,6 +135,11 @@ const SupplierDetailsView = () => {
         title="Add Comment"
         viewModal={visibleComment}
         cancel={() => setVisibleComment(false)}
+      />
+      <AddEnquire
+        title="Add Enquire"
+        viewModal={visibleEnquire}
+        cancel={() => setVisibleEnquire(false)}
       />
     </>
   );

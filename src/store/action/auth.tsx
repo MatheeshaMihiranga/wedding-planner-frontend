@@ -7,6 +7,8 @@ import {
   RESET_DATA,
   SUPPLIER_DATA,
   USER_DETAILS,
+  SUPPLIER_REVIEWS,
+  SUPPLIER_ENQUIRE,
 } from "./actionTypes";
 import { authAxios, gateAxios } from "../api";
 import { removeTokens, saveTokenInLocal } from "../../utils/cacheStorage";
@@ -63,8 +65,8 @@ export const getUserDetails = (navigate?: any) => {
         payload: true,
       });
       let res = await gateAxios.get("user/userProfile");
-      let isSupplierAvailable = res?.data?.data?.supplierId || false;      
-      if(navigate){
+      let isSupplierAvailable = res?.data?.data?.supplierId || false;
+      if (navigate) {
         handleDashBoard(res.data.data.role, res.data.data, navigate);
       }
       dispatch({
@@ -75,6 +77,14 @@ export const getUserDetails = (navigate?: any) => {
         dispatch({
           type: SUPPLIER_DATA,
           payload: isSupplierAvailable,
+        });
+        dispatch({
+          type: SUPPLIER_REVIEWS,
+          payload: isSupplierAvailable.reviewId?.reviews || [],
+        });
+        dispatch({
+          type: SUPPLIER_ENQUIRE,
+          payload: isSupplierAvailable.enquireId?.enquires || [],
         });
       }
     } catch (err: any) {

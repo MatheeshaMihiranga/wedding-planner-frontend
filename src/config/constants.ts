@@ -227,7 +227,7 @@ const SupplierDashboardData = [
   {
     key: 2,
     text: "Inquires",
-    navigate: "supplier-dashboard/inquires",
+    navigate: "supplier/supplier-enquire/",
     image:images.Inquiries
   },
   {

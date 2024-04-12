@@ -3,6 +3,7 @@ import _ from "lodash";
 import {
   LOADING,
   SUPPLIER_DATA,
+  SUPPLIER_ENQUIRE,
   SUPPLIER_FILTER_DATA,
   SUPPLIER_REVIEWS,
   SUPPLIER_SEARCH_DATA,
@@ -20,7 +21,7 @@ export const getSupplierDataById = (id: any) => {
         payload: true,
       });
       dispatch(getUserDetails());
-      let res = await gateAxios.get(`supplier/getSupplier/${id}`);      
+      let res = await gateAxios.get(`supplier/getSupplier/${id}`);
       dispatch({
         type: SUPPLIER_DATA,
         payload: res.data.data,
@@ -28,6 +29,10 @@ export const getSupplierDataById = (id: any) => {
       dispatch({
         type: SUPPLIER_REVIEWS,
         payload: res?.data?.data?.reviewId?.reviews || [],
+      });
+      dispatch({
+        type: SUPPLIER_ENQUIRE,
+        payload: res?.data?.data?.enquireId?.enquires || [],
       });
     } catch (err: any) {
       errorView(err);
@@ -258,11 +263,79 @@ export const getReviewDetailsBySupplierId = (id: any) => {
         payload: true,
       });
       dispatch(getUserDetails());
-      let res = await gateAxios.get(`review/getAllReviewBySupplier/${id}`);     
+      let res = await gateAxios.get(`review/getAllReviewBySupplier/${id}`);
       dispatch({
         type: SUPPLIER_REVIEWS,
         payload: res.data.data.reviews,
       });
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const createEnquireForSupplier = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      await gateAxios.post(`enquire/createEnquire/${data.parentId}`, data.data);
+      dispatch(getUserDetails());
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const getEnquireData = (id: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      const res = await gateAxios.get(
+        `enquire/getAllEnquireBySupplierId/${id}`
+      );
+      dispatch({
+        type: SUPPLIER_ENQUIRE,
+        payload: res.data.data?.enquires || [],
+      });
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const updateEnquireData = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      await gateAxios.put(
+        `enquire/updateEnquire/${data.parentId}/${data.enquireId}`,
+        data.data
+      );
+      dispatch(getUserDetails());
+      return true;
     } catch (err: any) {
       errorView(err);
       dispatch({
