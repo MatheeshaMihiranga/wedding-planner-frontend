@@ -24,6 +24,7 @@ export const InputNumber = ({
   otherValidation,
   checkValidation = false,
   enableMinus = false,
+  placeholder=""
 }: any) => {
   //check error message
   const checkErrorMessage = (errors: any) => {
@@ -120,6 +121,7 @@ export const InputNumber = ({
                     ? `textInputFormError ${customText}`
                     : `textInputFormText ${customText}`
                 }
+                placeholder={placeholder}
                 onChange={(e) => inputOnchangeValue(e, field)}
                 value={returnValue(field)}
               />

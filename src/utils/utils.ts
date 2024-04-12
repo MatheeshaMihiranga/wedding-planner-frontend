@@ -9,7 +9,6 @@ export const getCompanyLogo = (theme: any) => {
   }
 };
 
-
 export const getSupplierPackageEnable = (type: any) => {
   switch (type) {
     case "BLUE":
@@ -28,18 +27,20 @@ export const formatDate = (dateValue: any) => {
   return formattedDate;
 };
 
-
-export const handleDashBoard = (userRole:any,userDetails:any,navigate:any) =>{
-  if(userRole === "user"){
-    navigate(`/user-dashboard/${userDetails._id}`)
-  }else if (userRole === "supplier"){
-    if( isEmpty(userDetails.supplierId.categoryType)){
-      navigate(`/supplier/categoryList`)
-     
-    }else{
-      navigate(`/supplier-dashboard/${userDetails.supplierId?._id}`)
+export const handleDashBoard = (
+  userRole: any,
+  userDetails: any,
+  navigate: any
+) => {
+  if (userRole === "user") {
+    navigate(`/user-dashboard/${userDetails._id}`);
+  } else if (userRole === "supplier") {
+    if (isEmpty(userDetails?.supplierId?.categoryType)) {
+      navigate(`/supplier/categoryList`);
+    } else {
+      navigate(`/supplier-dashboard/${userDetails.supplierId?._id}`);
     }
-  }else{
-    navigate(`/dashboard`)
+  } else {
+    navigate(`/dashboard`);
   }
-}
+};

@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Grid } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
 
 import { InputText, CustomButton, DropDown } from "../../components";
 
@@ -9,10 +10,14 @@ import "./Register.scss";
 import { USER_TYPE } from "../../config/constants";
 import { useDispatchApp } from "../../store/Store";
 import { userRegister } from "../../store/action/auth";
+import { formatDate } from "../../utils/utils";
+import { InputNumber } from "../../components/InputText/InputNumber";
 
 const RegisterUser = () => {
   const navigate = useNavigate();
   const [userType, setUserType] = useState("user");
+  const [eventDate, setEventDate] = useState<any>(formatDate(new Date()));
+
   const dispatch = useDispatchApp();
 
   const {
@@ -20,6 +25,7 @@ const RegisterUser = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    control,
   } = useForm();
   const password = useRef({});
   password.current = watch("password", "");
@@ -29,6 +35,12 @@ const RegisterUser = () => {
   //handle login
   const onSubmit = async (data: any) => {
     data.role = userType;
+    if (userType === "user") {
+      data.eventDate = eventDate;
+    } else {
+      delete data.budget;
+    }
+
     dispatch(userRegister(data, navigate));
   };
 
@@ -113,7 +125,7 @@ const RegisterUser = () => {
             />
           </Grid.Column>
           <Grid.Column
-            style={{ paddingTop: "0px" }}
+            style={{ paddingTop: "0px", paddingBottom: "0px" }}
             computer={16}
             tablet={16}
             mobile={16}
@@ -131,6 +143,38 @@ const RegisterUser = () => {
               customGridColumn={"customGridColomnTyp"}
             />
           </Grid.Column>
+          {userType === "user" ? (
+            <>
+              <Grid.Column
+                style={{ paddingTop: "0px" }}
+                computer={16}
+                tablet={16}
+                mobile={16}
+                className="userRegisterEventDate"
+              >
+                <p className="eventDateTitle">Event Date</p>
+                <DatePicker
+                  selected={new Date(eventDate)}
+                  onChange={(date: any) => {
+                    let selectDate = formatDate(date);
+                    setEventDate(selectDate);
+                  }}
+                  minDate={new Date()}
+                />
+              </Grid.Column>
+              <Grid.Column computer={16} tablet={16} mobile={16}>
+                <InputNumber
+                  control={control}
+                  errors={errors.budget}
+                  required={true}
+                  labelName={"Budget"}
+                  placeholder="LKR"
+                  name="budget"
+                  errorMessage="Please enter budget"
+                />
+              </Grid.Column>
+            </>
+          ) : null}
           <Grid.Column computer={16} tablet={16} mobile={16}>
             <CustomButton
               theme="green"
