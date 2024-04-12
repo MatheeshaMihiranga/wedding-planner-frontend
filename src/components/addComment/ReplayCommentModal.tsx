@@ -1,26 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button, Modal, Grid, Rating } from "semantic-ui-react";
 import { InputTextArea } from "../InputText/InputTextArea";
 import { useForm } from "react-hook-form";
 import { useDispatchApp } from "../../store/Store";
-import { addComment } from "../../store/action/supplier";
+import { addComment, updateComment } from "../../store/action/supplier";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducer";
 import { isEmpty } from "lodash";
 import { errorView } from "../../helpers/ErrorHandler";
 
-const AddCommentModal = ({
+const ReplayCommentModal = ({
   viewModal = false,
   closeModal = () => {},
   cancel = () => {},
   size = "large",
   title = "",
   subTitle = "",
+  reviewData = {},
 }: any) => {
   const dispatch = useDispatchApp();
   const [starValue, setStarValue] = useState(0);
-  const {supplierData} = useSelector((state:RootState)=>state.supplier)
-  const {userDetails} = useSelector((state:RootState)=>state.auth)
+  const { supplierData } = useSelector((state: RootState) => state.supplier);
+  const { userDetails } = useSelector((state: RootState) => state.auth);
 
   const {
     register: registerPackage,
@@ -34,19 +35,16 @@ const AddCommentModal = ({
     reset();
   }, [viewModal]);
 
-  const submitData = async(data: any) => {
-    data.userName = userDetails.name
-    data.userId = userDetails._id
-    data.reviewCount = starValue
-    data.supplierReview = ""
-    const commentData ={
-        reviewId:supplierData.reviewId._id,
-        data:data
-    }    
-    if(isEmpty(userDetails._id)) return errorView("Something went wrong")
-    let res =  await dispatch(addComment(commentData));
-    if(res){
-        cancel()
+  const submitData = async (data: any) => {
+    const commentData = {
+      parentId: supplierData.reviewId._id,
+      reviewId: reviewData._id,
+      data: data,
+    };
+    if (isEmpty(userDetails._id)) return errorView("Something went wrong");
+    let res = await dispatch(updateComment(commentData));
+    if (res) {
+      cancel();
     }
   };
 
@@ -69,20 +67,24 @@ const AddCommentModal = ({
               <Rating
                 size="huge"
                 icon="star"
-                defaultRating={starValue}
+                defaultRating={reviewData?.reviewCount || 0}
                 maxRating={5}
                 onRate={handleRate}
+                disabled
               />
             </Grid.Column>
-            <Grid.Column computer={16}>
+            <Grid.Column computer={16} className="paddingRemoveTop">
+              <p className="commentView">{reviewData?.userReview}</p>
+            </Grid.Column>
+            <Grid.Column computer={16} className="paddingRemoveTop">
               <InputTextArea
                 register={registerPackage}
-                errors={errors.userReview}
+                errors={errors.supplierReview}
                 required={true}
-                labelName={"Comment"}
+                labelName={"Reply"}
                 placeholder="Comment"
-                name="userReview"
-                errorMessage="Please add comment"
+                name="supplierReview"
+                errorMessage="Please add review"
               />
             </Grid.Column>
           </Grid>
@@ -100,4 +102,4 @@ const AddCommentModal = ({
   );
 };
 
-export default AddCommentModal;
+export default ReplayCommentModal;

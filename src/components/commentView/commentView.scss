@@ -24,3 +24,17 @@
     border-radius: 5px;
     padding: 12px 10px;
   }
+
+  .commentViewReply{
+    border-width: 1px;
+    border-color: black;
+    border: solid;
+    border-radius: 5px;
+    padding: 12px 10px;
+    width: 95%;
+  }
+
+  .commentReplyViewMain{
+    display: flex !important;
+    justify-content: flex-end !important;
+  }

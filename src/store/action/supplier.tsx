@@ -20,10 +20,14 @@ export const getSupplierDataById = (id: any) => {
         payload: true,
       });
       dispatch(getUserDetails());
-      let res = await gateAxios.get(`supplier/getSupplier/${id}`);
+      let res = await gateAxios.get(`supplier/getSupplier/${id}`);      
       dispatch({
         type: SUPPLIER_DATA,
         payload: res.data.data,
+      });
+      dispatch({
+        type: SUPPLIER_REVIEWS,
+        payload: res?.data?.data?.reviewId?.reviews || [],
       });
     } catch (err: any) {
       errorView(err);
@@ -208,6 +212,30 @@ export const addComment = (data?: any) => {
       });
       let res = await gateAxios.post(
         `/review/createReview/${data.reviewId}`,
+        data.data
+      );
+      dispatch(getSupplierDataById(supplierData._id));
+      return res;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const updateComment = (data?: any) => {
+  return async (dispatch: Function, getState: () => RootState) => {
+    let { supplierData } = getState().supplier;
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      let res = await gateAxios.put(
+        `/review/updateReviews/${data.parentId}/${data.reviewId}`,
         data.data
       );
       dispatch(getSupplierDataById(supplierData._id));

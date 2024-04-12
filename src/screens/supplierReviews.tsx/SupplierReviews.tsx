@@ -48,7 +48,7 @@ const SupplierReviews = ({ route }: any) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid className="weddingVenue">
           <Grid.Column computer={16} tablet={16} mobile={16}>
-            <CommentView reviewData={supplierReview || []} />
+            <CommentView reviewData={supplierReview || []} enableReply={true} />
           </Grid.Column>
         </Grid>
       </form>
