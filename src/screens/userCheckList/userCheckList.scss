@@ -1,0 +1,54 @@
+.userCheckListMain {
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    min-height: 70px;
+    background: #ffffff;
+    margin-bottom: 15px !important;
+    margin-top: 25px !important;
+}
+
+.userCheckListDataViewMain {
+    align-items: center !important;
+    padding: 15px !important;
+    margin: 0px !important;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    background: #ffffff;
+    margin-bottom: 15px !important;
+    margin-top: 25px !important;
+    margin-left: 25px !important;
+    margin-right: 25px !important;
+
+    .ui.checkbox {
+        font-size: 15px !important;
+    }
+
+    .ui.checkbox label,
+    .ui.checkbox+label {
+        color: var(--mainTextColor) !important;
+    }
+}
+
+.checklistDelete {
+    justify-content: flex-end;
+    text-align: end;
+}
+
+.userChecklistCheckboxMain {
+    display: flex;
+}
+
+.viewCheckListSort {
+    display: flex !important;
+}
+
+.checklistCountView {
+    color: var(--mainTextColor) !important;
+}
+
+.ui.progress .bar {
+    background: var(--mainTextColor) !important;
+}

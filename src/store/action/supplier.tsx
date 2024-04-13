@@ -8,6 +8,7 @@ import {
   SUPPLIER_REVIEWS,
   SUPPLIER_SEARCH_DATA,
   USER_MY_SUPPLIER,
+  USER_SUPPLIER_LIST,
 } from "./actionTypes";
 import { gateAxios } from "../api";
 import { errorView, successMessage } from "../../helpers/ErrorHandler";
@@ -347,6 +348,7 @@ export const updateEnquireData = (data: any) => {
   };
 };
 
+//user
 export const getMySupplierData = (id: any) => {
   return async (dispatch: Function) => {
     try {
@@ -354,13 +356,104 @@ export const getMySupplierData = (id: any) => {
         type: LOADING,
         payload: true,
       });
-      const res = await gateAxios.get(`enquire/getSupplierListByUserId/${id}`);
+      const res = await gateAxios.get(
+        `enquire/getAllEnquireBySupplierId/${id}`
+      );
 
       dispatch({
         type: USER_MY_SUPPLIER,
-        payload: res.data.data,
+        payload: res?.data?.data || [],
       });
 
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const getCheckListData = (id: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      const res = await gateAxios.get(`checkList/userCheckList/${id}`);
+      dispatch({
+        type: USER_SUPPLIER_LIST,
+        payload: res?.data?.data || [],
+      });
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const updateCheckListData = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      await gateAxios.put(
+        `checkList/updateCheckList/${data.parentId}/${data.checkListId}`,data.data
+      );
+      dispatch(getCheckListData(data.id));
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const deleteCheckListData = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      await gateAxios.delete(
+        `checkList/deleteCheckList/${data.parentId}/${data.checkListId}`
+      );
+      dispatch(getCheckListData(data.id));
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const createCheckListData = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      await gateAxios.post(
+        `checkList/createCheckList/${data.id}`,data.data
+      );
+      dispatch(getCheckListData(data.userId));
       return true;
     } catch (err: any) {
       errorView(err);

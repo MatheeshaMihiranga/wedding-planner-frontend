@@ -200,7 +200,7 @@ const UserDashboardData = [
   {
     key: 3,
     text: "Checklist",
-    navigate: "user-dashboard/checklist",
+    navigate: "user/my-checkList/",
     image:images.Checklist
   },
   {
@@ -316,6 +316,34 @@ const Categories = [
   },
 ];
 
+const CheckListCategoryType = [
+  { key: 1, text: "Preparation", value: "Preparation" },
+  { key: 2, text: "Venue", value: "Venue" },
+  { key: 3, text: "Invitations", value: "Invitations" },
+  { key: 4, text: "Photography", value: "Photography" },
+  { key: 5, text: "Catering", value: "Catering" },
+  { key: 6, text: "Attire", value: "Attire" },
+  { key: 7, text: "Entertainment", value: "Entertainment" },
+  { key: 8, text: "Decorations", value: "Decorations" },
+  { key: 9, text: "Beauty", value: "Beauty" },
+  { key: 10, text: "Accommodation", value: "Accommodation" },
+  { key: 11, text: "Ceremony", value: "Ceremony" },
+  { key: 12, text: "Gifts", value: "Gifts" },
+  { key: 13, text: "Transport", value: "Transport" },
+  { key: 14, text: "Honeymoon", value: "Honeymoon" },
+  { key: 15, text: "Music", value: "Music" },
+  { key: 16, text: "Planning", value: "Planning" },
+  { key: 17, text: "Legal", value: "Legal" },
+  { key: 18, text: "Speeches", value: "Speeches" },
+  { key: 19, text: "Celebration", value: "Celebration" },
+  { key: 20, text: "Pre-Wedding", value: "Pre-Wedding" },
+];
+
+const Status = [
+  { key: 1, text: "Complete", value: true },
+  { key: 2, text: "Not Complete", value: false },
+];
+
 export {
   API_URL,
   THEME,
@@ -334,4 +362,6 @@ export {
   UserDashboardData,
   SupplierDashboardData,
   CommonDashboardDetails,
+  CheckListCategoryType,
+  Status
 };

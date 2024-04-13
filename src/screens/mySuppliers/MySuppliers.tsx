@@ -28,7 +28,7 @@ const MySupplier = () => {
     <>
       <TabView loadData={UserDashboardData} id={userDetails?._id} />
       <Grid className="mySupplierMain">
-        {mySupplier.length > 0 ? (
+        {mySupplier?.length > 0 ? (
           mySupplier.map((data: any, index: any) => {
             return (
               <Grid.Column
@@ -108,9 +108,11 @@ const MySupplier = () => {
             );
           })
         ) : (
-          <Message>
-            <MessageHeader>Not Available Supplier</MessageHeader>
-          </Message>
+          <Grid.Column computer={16}>
+            <Message>
+              <MessageHeader>Not Available Supplier</MessageHeader>
+            </Message>
+          </Grid.Column>
         )}
       </Grid>
     </>
