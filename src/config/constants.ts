@@ -167,6 +167,25 @@ const WeddingPackageTable = [
   },
 ];
 
+const BudgetDataView = [
+  {
+    name: "Description",
+    col: 4,
+  },
+  {
+    name: "Cost",
+    col: 4,
+  },
+  {
+    name: "Nots",
+    col: 4,
+  },
+  {
+    name: "",
+    col: 4,
+  },
+];
+
 const WeddingPackageTableDetails = [
   {
     name: "Packaging Name",
@@ -206,13 +225,13 @@ const UserDashboardData = [
   {
     key: 4,
     text: "Budget",
-    navigate: "user-dashboard/budget",
+    navigate: "user/my-budget/",
     image:images.Budget
   },
   {
     key: 5,
     text: "Guests",
-    navigate: "user-dashboard/guests",
+    navigate: "user/my-guest/",
     image:images.Guest
   },
 ];
@@ -363,5 +382,6 @@ export {
   SupplierDashboardData,
   CommonDashboardDetails,
   CheckListCategoryType,
-  Status
+  Status,
+  BudgetDataView
 };

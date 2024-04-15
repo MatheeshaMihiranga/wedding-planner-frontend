@@ -9,6 +9,7 @@ export interface SupplierData {
   supplierEnquire:any;
   mySupplier:any;
   checkList:any;
+  budgetData:any;
   supplierFilterData: {
     type: string;
     location: string | null;

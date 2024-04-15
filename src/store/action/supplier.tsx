@@ -7,6 +7,7 @@ import {
   SUPPLIER_FILTER_DATA,
   SUPPLIER_REVIEWS,
   SUPPLIER_SEARCH_DATA,
+  USER_BUDGET_LIST,
   USER_MY_SUPPLIER,
   USER_SUPPLIER_LIST,
 } from "./actionTypes";
@@ -454,6 +455,239 @@ export const createCheckListData = (data: any) => {
         `checkList/createCheckList/${data.id}`,data.data
       );
       dispatch(getCheckListData(data.userId));
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+//budget
+export const getUserBudget = (id: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      const res = await gateAxios.get(
+        `budget/userBudgetList/${id}`
+      );
+
+      dispatch({
+        type: USER_BUDGET_LIST,
+        payload: res?.data?.data || [],
+      });
+
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const createNewBudgetCategory = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+       await gateAxios.post(
+        `budget/createNewCategory/${data.budgetId}`,data.data
+      );
+      dispatch(getUserBudget(data.id))
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const createNewCategoryExpenses = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+       await gateAxios.post(
+        `budget/createNewCategoryExpenses/${data.budgetId}/${data.categoryId}`,data.data
+      );
+      dispatch(getUserBudget(data.id))
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const updateCategoryExpenses = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+       await gateAxios.put(
+        `budget/updateCategoryExpenses/${data.budgetId}/${data.categoryId}/${data.expensesId}`,data.data
+      );
+      dispatch(getUserBudget(data.id))
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const deleteCategoryExpenses = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+       await gateAxios.delete(
+        `budget/deleteCategoryExpenses/${data.budgetId}/${data.expensesId}`
+      );
+      dispatch(getUserBudget(data.id))
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+//guest
+//budget
+export const getUserGuest = (id: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      const res = await gateAxios.get(
+        `guest/userGuestList/${id}`
+      );
+
+      dispatch({
+        type: USER_BUDGET_LIST,
+        payload: res?.data?.data || [],
+      });
+
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const createNewTable = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+       await gateAxios.post(
+        `guest/createNewTable/${data.guestId}`,data.data
+      );
+      dispatch(getUserBudget(data.id))
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const createNewTableGuest = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+       await gateAxios.post(
+        `guest/createNewTableGuest/${data.guestId}/${data.tableId}`,data.data
+      );
+      dispatch(getUserBudget(data.id))
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const updateTableGuest = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+       await gateAxios.put(
+        `guest/updateTableGuest/${data.guestId}/${data.tableId}/${data.guestDataId}`,data.data
+      );
+      dispatch(getUserBudget(data.id))
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const deleteTableGuest = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+       await gateAxios.delete(
+        `guest/deleteTableGest/${data.guestId}/${data.guestDataId}`
+      );
+      dispatch(getUserBudget(data.id))
       return true;
     } catch (err: any) {
       errorView(err);
