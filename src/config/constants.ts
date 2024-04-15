@@ -186,6 +186,25 @@ const BudgetDataView = [
   },
 ];
 
+const GuestDataView = [
+  {
+    name: "Name",
+    col: 4,
+  },
+  {
+    name: "Email",
+    col: 4,
+  },
+  {
+    name: "status",
+    col: 4,
+  },
+  {
+    name: "",
+    col: 4,
+  },
+];
+
 const WeddingPackageTableDetails = [
   {
     name: "Packaging Name",
@@ -363,6 +382,12 @@ const Status = [
   { key: 2, text: "Not Complete", value: false },
 ];
 
+const GuestStatus = [
+  { key: 1, text: "Attending", value: "Attending" },
+  { key: 2, text: "Declined", value: "Declined" },
+  { key: 3, text: "Awaiting", value: "Awaiting" },
+];
+
 export {
   API_URL,
   THEME,
@@ -383,5 +408,7 @@ export {
   CommonDashboardDetails,
   CheckListCategoryType,
   Status,
-  BudgetDataView
+  BudgetDataView,
+  GuestStatus,
+  GuestDataView
 };

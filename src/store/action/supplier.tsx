@@ -8,6 +8,7 @@ import {
   SUPPLIER_REVIEWS,
   SUPPLIER_SEARCH_DATA,
   USER_BUDGET_LIST,
+  USER_GUEST_LIST,
   USER_MY_SUPPLIER,
   USER_SUPPLIER_LIST,
 } from "./actionTypes";
@@ -596,7 +597,7 @@ export const getUserGuest = (id: any) => {
       );
 
       dispatch({
-        type: USER_BUDGET_LIST,
+        type: USER_GUEST_LIST,
         payload: res?.data?.data || [],
       });
 
@@ -621,7 +622,7 @@ export const createNewTable = (data: any) => {
        await gateAxios.post(
         `guest/createNewTable/${data.guestId}`,data.data
       );
-      dispatch(getUserBudget(data.id))
+      dispatch(getUserGuest(data.id))
       return true;
     } catch (err: any) {
       errorView(err);
@@ -643,7 +644,7 @@ export const createNewTableGuest = (data: any) => {
        await gateAxios.post(
         `guest/createNewTableGuest/${data.guestId}/${data.tableId}`,data.data
       );
-      dispatch(getUserBudget(data.id))
+      dispatch(getUserGuest(data.id))
       return true;
     } catch (err: any) {
       errorView(err);
@@ -665,7 +666,29 @@ export const updateTableGuest = (data: any) => {
        await gateAxios.put(
         `guest/updateTableGuest/${data.guestId}/${data.tableId}/${data.guestDataId}`,data.data
       );
-      dispatch(getUserBudget(data.id))
+      dispatch(getUserGuest(data.id))
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const updateTable = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+       await gateAxios.put(
+        `guest/updateTable/${data.guestId}/${data.tableId}`,data.data
+      );
+      dispatch(getUserGuest(data.id))
       return true;
     } catch (err: any) {
       errorView(err);
@@ -687,7 +710,29 @@ export const deleteTableGuest = (data: any) => {
        await gateAxios.delete(
         `guest/deleteTableGest/${data.guestId}/${data.guestDataId}`
       );
-      dispatch(getUserBudget(data.id))
+      dispatch(getUserGuest(data.id))
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const deleteTableData = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+       await gateAxios.delete(
+        `guest/deleteTableData/${data.guestId}/${data.tableId}`
+      );
+      dispatch(getUserGuest(data.id))
       return true;
     } catch (err: any) {
       errorView(err);

@@ -19,6 +19,7 @@ const initialState: SupplierData = {
   mySupplier:[],
   checkList:[],
   budgetData:[],
+  guestData:[],
   supplierFilterData: {
     type: "",
     location: null,
@@ -83,7 +84,7 @@ export function supplierReducer(
     case USER_GUEST_LIST :{
       return {
         ...state,
-        budgetData: action.payload,
+        guestData: action.payload,
       };
     }
     case RESET_DATA: {
