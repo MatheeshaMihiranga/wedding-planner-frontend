@@ -1,6 +1,6 @@
 .userDashboardMain {
     align-items: center !important;
-    padding: 0px !important;
+    padding: 15px !important;
     margin: 0px !important;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
@@ -8,4 +8,33 @@
     background: #ffffff;
     margin-bottom: 15px !important;
     margin-top: 35px !important;
+  }
+
+  .userSummeryDetails{
+    align-items: center !important;
+    padding: 15px !important;
+    margin: 0px !important;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    min-height: 70px;
+    background: #ffffff;
+    margin-bottom: 15px !important;
+    margin-top: 25px !important;
+  }
+
+  .userDashboardRightMain{
+    padding: 0px !important;
+    margin: 0px !important;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    min-height: 70px;
+    background: #ffffff;
+    margin-bottom: 15px !important;
+    margin-top: 25px !important;
+  }
+
+  .viewUserDetailsContent{
+    display: flex;
+    margin-bottom: 25px !important;
+    align-items: center;
   }

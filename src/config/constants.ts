@@ -226,7 +226,7 @@ const UserDashboardData = [
   {
     key: 1,
     text: "Dashboard",
-    navigate: "user-dashboard/:id",
+    navigate: "user-dashboard/",
     image:images.UserDashboard
   },
   {

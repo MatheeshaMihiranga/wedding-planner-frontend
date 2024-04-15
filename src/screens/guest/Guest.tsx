@@ -67,7 +67,7 @@ const Guest = () => {
     }
   };
 
-  const getTotalCostAllCategory = (status: any) => {
+  const getTotalAttendingCount = (status: any) => {
     const getTotalCostData = TableData.reduce((result: any, data: any) => {
       return (result += getAttendingCount(data.guest, status));
     }, 0);
@@ -142,19 +142,19 @@ const Guest = () => {
             <Grid.Column>
               <h3 className="budgetTracker">Attending</h3>
               <h3 className="budgetTracker">
-                {getTotalCostAllCategory("Attending")}
+                {getTotalAttendingCount("Attending")}
               </h3>
             </Grid.Column>
             <Grid.Column>
               <h3 className="budgetTracker">Declined</h3>
               <h3 className="budgetTracker">
-                {getTotalCostAllCategory("Declined")}
+                {getTotalAttendingCount("Declined")}
               </h3>
             </Grid.Column>
             <Grid.Column>
               <h3 className="budgetTracker">Awaiting</h3>
               <h3 className="budgetTracker">
-                {getTotalCostAllCategory("Awaiting")}
+                {getTotalAttendingCount("Awaiting")}
               </h3>
             </Grid.Column>
           </Grid>
