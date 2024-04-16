@@ -42,13 +42,16 @@ export const userLogin = (userDetails: any, navigate: any) => {
     });
     try {
       let res = await authAxios.post("user/auth", userDetails);
-      saveTokenInLocal(res.data.token);
-      dispatch({
-        type: AUTH_TOKEN,
-        payload: res.data.token,
-      });
-      dispatch(getUserDetails(navigate));
+      if(res){
+        saveTokenInLocal(res.data.token);
+        dispatch({
+          type: AUTH_TOKEN,
+          payload: res.data.token,
+        });
+        dispatch(getUserDetails(navigate));
+      }
     } catch (err: any) {
+      errorView(err)
       dispatch({
         type: LOADING,
         payload: false,
