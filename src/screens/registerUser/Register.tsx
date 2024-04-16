@@ -174,6 +174,7 @@ const RegisterUser = () => {
                   placeholder="LKR"
                   name="budget"
                   errorMessage="Please enter budget"
+                  addCurrency={true}
                 />
               </Grid.Column>
             </>

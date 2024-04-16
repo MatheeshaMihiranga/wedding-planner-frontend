@@ -5,9 +5,9 @@ import "./inputText.scss";
 import { Controller } from "react-hook-form";
 
 export const InputNumber = ({
-  computer = undefined,
-  tablet = undefined,
-  mobile = undefined,
+  computer = 16,
+  tablet = 16,
+  mobile = 16,
   name,
   errors,
   control,
@@ -24,7 +24,8 @@ export const InputNumber = ({
   otherValidation,
   checkValidation = false,
   enableMinus = false,
-  placeholder=""
+  placeholder = "",
+  addCurrency = false,
 }: any) => {
   //check error message
   const checkErrorMessage = (errors: any) => {
@@ -71,7 +72,7 @@ export const InputNumber = ({
             return e;
           } else {
             if (!isNaN(e.target.value)) {
-              return e;
+              return e
             }
           }
         },
@@ -87,7 +88,7 @@ export const InputNumber = ({
   };
 
   //return input changes
-  const returnValue = (field: any) => {
+  const returnValue = (field: any) => {    
     return checkValidation
       ? transform.input(field.value)
       : checkNumber().input(field.value);
@@ -101,8 +102,12 @@ export const InputNumber = ({
           computer={computer}
           tablet={tablet}
           mobile={mobile}
-          className={`inputTextContanier ${customGridColumn}`}
+          className={`inputTextContanier paddingRemoveBottom ${customGridColumn}  ${
+            addCurrency ? "viewCurrencyData" : ""
+          }`}
         >
+          {addCurrency ? <p className="currencyValueView">LKR</p> : null}
+
           <Controller
             defaultValue={defaultValue}
             control={control}
@@ -127,7 +132,9 @@ export const InputNumber = ({
               />
             )}
           />
-          {errors && (
+        </Grid.Column>
+        <Grid.Column computer={16} className="paddingRemoveBottom paddingRemoveTop">
+        {errors && (
             <span className={`textInputError ${customErrorText}`}>
               {checkErrorMessage(errors)}
             </span>
