@@ -44,3 +44,15 @@
 .inputTextSupplierDateLable{
     margin-bottom: 5px !important;
 }
+
+.imageRemoveIcon{
+    position:absolute;
+    padding-top: 10px;
+    padding-left: 10px;
+    z-index: 100;
+}
+
+.customSupplierDataView{
+    width: 100% !important;
+    z-index: 200;
+}

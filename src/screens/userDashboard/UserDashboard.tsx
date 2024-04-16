@@ -4,7 +4,7 @@ import { useDispatchApp } from "../../store/Store";
 import { getUserDetails } from "../../store/action/auth";
 import { Grid, Icon, Progress } from "semantic-ui-react";
 import { UserDashboardData } from "../../config/constants";
-import { CustomButton, TabView, TitleView } from "../../components";
+import { CustomButton, ImageView, TabView, TitleView } from "../../components";
 
 import "./userDashboard.scss";
 import { useSelector } from "react-redux";
@@ -14,6 +14,7 @@ import {
   getUserBudget,
   getUserGuest,
 } from "../../store/action/supplier";
+import { isEmpty } from "lodash";
 
 const UserDashBoard = () => {
   const { id } = useParams();
@@ -89,6 +90,14 @@ const UserDashBoard = () => {
           className="userSummeryDetails"
         >
           <TitleView title="User Details" />
+          {!isEmpty(userDetails?.imageUrl) ? (
+            <Grid.Column computer={16}>
+              <ImageView
+                src={userDetails?.imageUrl}
+                customImageView={"customUserImage"}
+              />
+            </Grid.Column>
+          ) : null}
 
           <div className="viewUserDetailsContent">
             <Icon size="big" name="female" />
@@ -105,7 +114,10 @@ const UserDashBoard = () => {
             <p>{userDetails?.eventDate || "Please update your groom Name"}</p>
           </div>
 
-          <CustomButton title="Update Account Setting" />
+          <CustomButton
+            title="Update Account Setting"
+            onClick={() => navigate(`/user/user-setting/${id}`)}
+          />
         </Grid.Column>
         <Grid.Column computer={1} tablet={16} mobile={16}></Grid.Column>
         <Grid.Column computer={7} tablet={16} mobile={16}>

@@ -1,0 +1,92 @@
+.userDashboardMain {
+  align-items: center !important;
+  padding: 15px !important;
+  margin: 0px !important;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  min-height: 70px;
+  background: #ffffff;
+  margin-bottom: 15px !important;
+  margin-top: 35px !important;
+}
+
+.userSummeryDetails {
+  align-items: center !important;
+  padding: 15px !important;
+  margin: 0px !important;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  min-height: 70px;
+  background: #ffffff;
+  margin-bottom: 15px !important;
+  margin-top: 25px !important;
+
+  input[type=email],
+  input[type=password],
+  input[type=search],
+  input[type=text] {
+    font-family: "ProximaNova" !important;
+    margin: 0px !important;
+    outline: 0;
+    -webkit-appearance: none;
+    line-height: 1.21428571em;
+    padding: 0.67857143em 1em;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    background: #ffffff !important;
+    border: 1px solid var(--mainTextInputBorderColor) !important;
+    color: var(--mainTextInptColor) !important;
+    border-radius: 0.28571429rem;
+    box-shadow: 0 0 0 0 transparent inset;
+    transition: color 0.1s ease, border-color 0.1s ease;
+    width: 100%;
+  }
+
+  .react-datepicker-wrapper {
+    width: 100% !important;
+  }
+}
+
+
+
+.userDashboardRightMain {
+  padding: 0px !important;
+  margin: 0px !important;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  min-height: 70px;
+  background: #ffffff;
+  margin-bottom: 15px !important;
+  margin-top: 25px !important;
+}
+
+.viewUserDetailsContent {
+  display: flex;
+  margin-bottom: 25px !important;
+  align-items: center;
+}
+
+.userSummeryDetailsOther {
+  align-items: center !important;
+  // padding: 15px !important;
+  margin: 0px !important;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  min-height: 70px;
+  background: #ffffff;
+  margin-top: 10px !important;
+  margin-bottom: 0px !important;
+  padding-bottom: 20px !important;
+}
+
+.customUserImage{
+  width: 250px !important;
+  border-radius: 5px !important;
+  z-index: 200px;
+}
+
+.closeImageIcon{
+  position:absolute;
+  margin-top: 10px !important;
+  margin-left: 10px !important;
+}

@@ -43,13 +43,18 @@ export const HeaderWebView = memo(
                 </>
               ) : (
                 <>
-                  <CustomButton
-                    theme="green"
-                    title={"My Planning Tool"}
-                    onClick={() => {}}
-                    customButtonStyle="headerSupplierButton"
-                    customColumnStyle="headerSupplierButton"
-                  />
+                  {userRole === "user" ? (
+                    <CustomButton
+                      theme="green"
+                      title={"My Planning Tool"}
+                      onClick={() => {
+                        navigate(`/user-dashboard/${userDetails._id}`);
+                      }}
+                      customButtonStyle="headerSupplierButton"
+                      customColumnStyle="headerSupplierButton"
+                    />
+                  ) : null}
+
                   {!isSupplierRegister ? (
                     <CustomButton
                       theme="green"

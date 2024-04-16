@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { Grid, Table } from "semantic-ui-react";
+import { Grid, Icon, Table } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
 import { MdDeleteOutline, MdModeEditOutline } from "react-icons/md";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
@@ -127,6 +127,19 @@ const SupplierBusinessData = ({ route }: any) => {
       data: {
         supplierName: supplierData.supplierName,
         images: updateImages,
+      },
+    };
+    dispatch(updateSupplierData(supplierDetails, supplierCategory, navigate));
+  };
+
+  const deleteSupplierImages = (index: any) => {
+    const updateImages = [...supplierData.images];
+    updateImages.splice(index, 1);
+    let supplierDetails = {
+      id: supplierData._id,
+      data: {
+        supplierName: supplierData.supplierName,
+        images: updateImages
       },
     };
     dispatch(updateSupplierData(supplierDetails, supplierCategory, navigate));
@@ -381,9 +394,10 @@ const SupplierBusinessData = ({ route }: any) => {
               returnImageUrl={(data: any) => updateSupplierImages(data)}
             />
           </Grid.Column>
-          {supplierImage.map((data: any) => {
+          {supplierImage.map((data: any,index:any) => {
             return (
               <Grid.Column computer={4}>
+                <Icon name="close" color="grey" size="large" className="imageRemoveIcon" onClick={()=>deleteSupplierImages(index)} />
                 <ImageView src={data} customImageView={"customSupplierView"} />
               </Grid.Column>
             );

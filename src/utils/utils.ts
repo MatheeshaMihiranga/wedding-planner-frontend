@@ -33,7 +33,7 @@ export const handleDashBoard = (
   navigate: any
 ) => {
   if (userRole === "user") {
-    navigate(`/user-dashboard/${userDetails._id}`);
+    navigate(`/dashboard`);
   } else if (userRole === "supplier") {
     if (isEmpty(userDetails?.supplierId?.categoryType)) {
       navigate(`/supplier/categoryList`);

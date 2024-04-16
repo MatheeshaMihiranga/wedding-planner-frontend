@@ -134,3 +134,45 @@ export const logout = (navigate: any) => {
     navigate("/auth");
   };
 };
+
+
+export const userUpdate = (userData: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      let res = await gateAxios.put(`user/userUpdate/${userData.id}`, userData.data);
+      dispatch({
+        type: USER_DETAILS,
+        payload: res.data.data,
+      }); 
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
+
+export const deleteUser = (id: any,navigate:any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+      await gateAxios.delete(`user/userDelete/${id}`);
+      dispatch(logout(navigate)); 
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+};
