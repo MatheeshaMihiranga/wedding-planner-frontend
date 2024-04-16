@@ -26,7 +26,7 @@ const RegisterUser = () => {
     formState: { errors },
     watch,
     control,
-  } = useForm();
+  } = useForm({ mode: 'onChange' });
   const password = useRef({});
   password.current = watch("password", "");
 
@@ -81,6 +81,9 @@ const RegisterUser = () => {
               placeholder="Enter Email"
               name="email"
               errorMessage="Please enter email"
+              validateHandle={(value:any)=>{
+                return value.includes("@") || "Invalid email format";
+              }}
             />
           </Grid.Column>
           <Grid.Column

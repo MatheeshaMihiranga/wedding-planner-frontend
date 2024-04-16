@@ -26,7 +26,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: 'onChange' });
 
   //handle login
   const onSubmit =  (data: any) => {
@@ -63,6 +63,9 @@ const Login = () => {
               placeholder="Enter Username"
               name="email"
               errorMessage="Please enter email"
+              validateHandle={(value:any)=>{
+                return value.includes("@") || "Invalid email format";
+              }}
             />
           </Grid.Column>
           <Grid.Column
