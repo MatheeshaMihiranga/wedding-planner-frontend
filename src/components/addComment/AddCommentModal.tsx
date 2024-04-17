@@ -32,7 +32,7 @@ const AddCommentModal = ({
   useEffect(() => {
     setStarValue(0);
     reset();
-  }, [viewModal]);
+  }, [viewModal]);  
 
   const submitData = async(data: any) => {
     data.userName = userDetails.name

@@ -101,12 +101,12 @@ const UserDashBoard = () => {
 
           <div className="viewUserDetailsContent">
             <Icon size="big" name="female" />
-            <p>{userDetails?.bride || "Please update your bride Name"}</p>
+            <p>{userDetails?.brideName || "Please update your bride Name"}</p>
           </div>
 
           <div className="viewUserDetailsContent">
             <Icon size="big" name="male" />
-            <p>{userDetails?.groom || "Please update your groom Name"}</p>
+            <p>{userDetails?.groomName || "Please update your groom Name"}</p>
           </div>
 
           <div className="viewUserDetailsContent">

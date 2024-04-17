@@ -65,12 +65,12 @@ const AddCheckList = ({
             <Grid.Column computer={16}>
               <InputText
                 register={registerPackage}
-                errors={errors.userReview}
+                errors={errors.name}
                 required={true}
-                labelName={"Name"}
-                placeholder="Name"
+                labelName={"Add task"}
+                placeholder="task"
                 name="name"
-                errorMessage="Please add name"
+                errorMessage="Please add task"
               />
             </Grid.Column>
             <Grid.Column computer={16}>

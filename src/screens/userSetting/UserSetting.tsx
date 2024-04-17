@@ -60,14 +60,15 @@ const UserSetting = () => {
     }
   }, [id]);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     data.eventDate = eventDate;
     const userUpdateData = {
       id: id,
       data: data,
     };
 
-    dispatch(userUpdate(userUpdateData));
+    await dispatch(userUpdate(userUpdateData));
+    navigate(`/user-dashboard/${id}`)
   };
 
   const updateUserImage = (data: any) => {

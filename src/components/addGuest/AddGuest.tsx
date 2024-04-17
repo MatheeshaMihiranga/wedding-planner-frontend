@@ -115,6 +115,9 @@ const AddGuest = ({
                 placeholder="Email"
                 name="email"
                 errorMessage="Please enter email"
+                validateHandle={(value:any)=>{
+                  return value.includes("@") || "Invalid email format";
+                }}
               />
             </Grid.Column>
             <Grid.Column

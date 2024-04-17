@@ -359,7 +359,7 @@ export const getMySupplierData = (id: any) => {
         payload: true,
       });
       const res = await gateAxios.get(
-        `enquire/getAllEnquireBySupplierId/${id}`
+        `enquire/getSupplierListByUserId/${id}`
       );
 
       dispatch({

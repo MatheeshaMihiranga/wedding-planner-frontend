@@ -282,6 +282,7 @@ const Guest = () => {
         currentGuest={currentGuest}
         tableId={tableId}
         id={id}
+        
       />
       <ConfirmModal
         viewModal={visibleDeleteModal}

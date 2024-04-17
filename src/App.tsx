@@ -28,7 +28,7 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
-      <AuthContextProvider>
+      
           <BrowserRouter>
             <MainContentLayout>
               <Routes>
@@ -53,7 +53,7 @@ const App: React.FC = () => {
               </Routes>
             </MainContentLayout>
           </BrowserRouter>
-      </AuthContextProvider>
+      
     </div>
   );
 };

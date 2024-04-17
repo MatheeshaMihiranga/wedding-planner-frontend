@@ -262,7 +262,7 @@ const Budget = () => {
         subTitle="Are you sure you want to delete category expenses?"
       />
       <AddCategory
-        title="Add Expenses"
+        title="Add Category"
         viewModal={visibleNewCategory}
         cancel={() => {
           setVisibleNewCategory(false);
