@@ -132,7 +132,7 @@ const SupplierDetailsView = () => {
         </Grid.Column>
       </Grid>
       <AddCommentModal
-        title="Add Comment"
+        title="Add Your Review"
         viewModal={visibleComment}
         cancel={() => setVisibleComment(false)}
       />

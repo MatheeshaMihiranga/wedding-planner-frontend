@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducer";
 import { isEmpty } from "lodash";
 import { errorView } from "../../helpers/ErrorHandler";
+import "./AddCommentModal.scss";
 
 const AddCommentModal = ({
   viewModal = false,
@@ -43,7 +44,7 @@ const AddCommentModal = ({
         reviewId:supplierData.reviewId._id,
         supplierId:supplierData._id,
         data:data
-    }    
+    }
     if(isEmpty(userDetails._id)) return errorView("Something went wrong")
     let res =  await dispatch(addComment(commentData));
     if(res){
@@ -67,23 +68,30 @@ const AddCommentModal = ({
           <p className="subTitleModalView">{subTitle}</p>
           <Grid>
             <Grid.Column computer={16}>
-              <Rating
-                size="huge"
-                icon="star"
-                defaultRating={starValue}
-                maxRating={5}
-                onRate={handleRate}
-              />
+              <div className="writeReview-container">
+                <div className="writeReview-userName">
+                  <span>{userDetails.name}</span>
+                </div>
+                <div className="writeReview-rating">
+                  <Rating
+                    size="huge"
+                    icon="star"
+                    defaultRating={starValue}
+                    maxRating={5}
+                    onRate={handleRate}
+                  />
+                </div>
+              </div>              
             </Grid.Column>
             <Grid.Column computer={16}>
               <InputTextArea
                 register={registerPackage}
                 errors={errors.userReview}
                 required={true}
-                labelName={"Comment"}
-                placeholder="Comment"
+                labelName={"Review"}
+                placeholder="Add your review here"
                 name="userReview"
-                errorMessage="Please add comment"
+                errorMessage="Please add a review"
               />
             </Grid.Column>
           </Grid>

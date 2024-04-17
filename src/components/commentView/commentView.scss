@@ -1,40 +1,63 @@
 .commentViewWithUser{
-    display: flex !important;
+  display: flex !important;
 }
 
-.commentUserName{
-    margin-right: 10px !important;
+.review-header {
+width: 100%;
+max-width: 100%;
+position: relative;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.username-container, .createdAt-container {
+padding: 5px;
+}
+
+.username-container span, .createdAt-container span {
+font-size: 18px;
+font-family: sans-serif;
+font-weight: 550;
+}
+
+.rating-container {
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+padding: 5px;
 }
 
 .userReviewContentView {
-    align-items: center !important;
-    padding: 0px !important;
-    margin: 0px !important;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    min-height: 70px;
-    background: #ffffff;
-    margin-bottom: 15px !important;
-  }
+  align-items: center !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  min-height: 70px;
+  background: #ffffff;
+  margin-bottom: 15px !important;
+}
 
-  .commentView{
-    border-width: 1px;
-    border-color: black;
-    border: solid;
-    border-radius: 5px;
-    padding: 12px 10px;
-  }
+.commentView{
+  border-width: 1px;
+  border-color: black;
+  border: solid;
+  border-radius: 5px;
+  padding: 12px 10px;
+}
 
-  .commentViewReply{
-    border-width: 1px;
-    border-color: black;
-    border: solid;
-    border-radius: 5px;
-    padding: 12px 10px;
-    width: 95%;
-  }
+.commentViewReply{
+  border-width: 1px;
+  border-color: black;
+  border: solid;
+  border-radius: 5px;
+  padding: 12px 10px;
+  width: 95%;
+}
 
-  .commentReplyViewMain{
-    display: flex !important;
-    justify-content: flex-end !important;
-  }
+.commentReplyViewMain{
+  display: flex !important;
+  justify-content: flex-end !important;
+}

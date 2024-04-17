@@ -81,8 +81,8 @@ const ReplayCommentModal = ({
                 register={registerPackage}
                 errors={errors.supplierReview}
                 required={true}
-                labelName={"Reply"}
-                placeholder="Comment"
+                labelName={"Feedback"}
+                placeholder="Add your feedback here"
                 name="supplierReview"
                 errorMessage="Please add review"
               />
