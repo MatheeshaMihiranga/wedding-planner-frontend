@@ -252,7 +252,7 @@ const UserDashboardData = [
     text: "Guests",
     navigate: "user/my-guest/",
     image:images.Guest
-  },
+  }
 ];
 
 const SupplierDashboardData = [

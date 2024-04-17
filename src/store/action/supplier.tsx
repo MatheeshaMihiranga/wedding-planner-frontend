@@ -378,6 +378,31 @@ export const getMySupplierData = (id: any) => {
   };
 };
 
+export const deleteEnquery = (data: any) => {
+  return async (dispatch: Function) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+
+      const res = await gateAxios.delete(
+        `enquire/deleteEnquire/${data.id}/${data.enquireId}`
+      );
+
+      dispatch(getMySupplierData(data.id))
+
+      return true;
+    } catch (err: any) {
+      errorView(err);
+      dispatch({
+        type: LOADING,
+        payload: false,
+      });
+    }
+  };
+}
+
 export const getCheckListData = (id: any) => {
   return async (dispatch: Function) => {
     try {
@@ -409,7 +434,7 @@ export const updateCheckListData = (data: any) => {
         payload: true,
       });
       await gateAxios.put(
-        `checkList/updateCheckList/${data.parentId}/${data.checkListId}`,data.data
+        `checkList/updateCheckList/${data.parentId}/${data.checkListId}`, data.data
       );
       dispatch(getCheckListData(data.id));
       return true;
@@ -453,7 +478,7 @@ export const createCheckListData = (data: any) => {
         payload: true,
       });
       await gateAxios.post(
-        `checkList/createCheckList/${data.id}`,data.data
+        `checkList/createCheckList/${data.id}`, data.data
       );
       dispatch(getCheckListData(data.userId));
       return true;
@@ -502,8 +527,8 @@ export const createNewBudgetCategory = (data: any) => {
         type: LOADING,
         payload: true,
       });
-       await gateAxios.post(
-        `budget/createNewCategory/${data.budgetId}`,data.data
+      await gateAxios.post(
+        `budget/createNewCategory/${data.budgetId}`, data.data
       );
       dispatch(getUserBudget(data.id))
       return true;
@@ -524,8 +549,8 @@ export const createNewCategoryExpenses = (data: any) => {
         type: LOADING,
         payload: true,
       });
-       await gateAxios.post(
-        `budget/createNewCategoryExpenses/${data.budgetId}/${data.categoryId}`,data.data
+      await gateAxios.post(
+        `budget/createNewCategoryExpenses/${data.budgetId}/${data.categoryId}`, data.data
       );
       dispatch(getUserBudget(data.id))
       return true;
@@ -546,8 +571,8 @@ export const updateCategoryExpenses = (data: any) => {
         type: LOADING,
         payload: true,
       });
-       await gateAxios.put(
-        `budget/updateCategoryExpenses/${data.budgetId}/${data.categoryId}/${data.expensesId}`,data.data
+      await gateAxios.put(
+        `budget/updateCategoryExpenses/${data.budgetId}/${data.categoryId}/${data.expensesId}`, data.data
       );
       dispatch(getUserBudget(data.id))
       return true;
@@ -568,7 +593,7 @@ export const deleteCategoryExpenses = (data: any) => {
         type: LOADING,
         payload: true,
       });
-       await gateAxios.delete(
+      await gateAxios.delete(
         `budget/deleteCategoryExpenses/${data.budgetId}/${data.expensesId}`
       );
       dispatch(getUserBudget(data.id))
@@ -619,8 +644,8 @@ export const createNewTable = (data: any) => {
         type: LOADING,
         payload: true,
       });
-       await gateAxios.post(
-        `guest/createNewTable/${data.guestId}`,data.data
+      await gateAxios.post(
+        `guest/createNewTable/${data.guestId}`, data.data
       );
       dispatch(getUserGuest(data.id))
       return true;
@@ -641,8 +666,8 @@ export const createNewTableGuest = (data: any) => {
         type: LOADING,
         payload: true,
       });
-       await gateAxios.post(
-        `guest/createNewTableGuest/${data.guestId}/${data.tableId}`,data.data
+      await gateAxios.post(
+        `guest/createNewTableGuest/${data.guestId}/${data.tableId}`, data.data
       );
       dispatch(getUserGuest(data.id))
       return true;
@@ -663,8 +688,8 @@ export const updateTableGuest = (data: any) => {
         type: LOADING,
         payload: true,
       });
-       await gateAxios.put(
-        `guest/updateTableGuest/${data.guestId}/${data.tableId}/${data.guestDataId}`,data.data
+      await gateAxios.put(
+        `guest/updateTableGuest/${data.guestId}/${data.tableId}/${data.guestDataId}`, data.data
       );
       dispatch(getUserGuest(data.id))
       return true;
@@ -685,8 +710,8 @@ export const updateTable = (data: any) => {
         type: LOADING,
         payload: true,
       });
-       await gateAxios.put(
-        `guest/updateTable/${data.guestId}/${data.tableId}`,data.data
+      await gateAxios.put(
+        `guest/updateTable/${data.guestId}/${data.tableId}`, data.data
       );
       dispatch(getUserGuest(data.id))
       return true;
@@ -707,7 +732,7 @@ export const deleteTableGuest = (data: any) => {
         type: LOADING,
         payload: true,
       });
-       await gateAxios.delete(
+      await gateAxios.delete(
         `guest/deleteTableGest/${data.guestId}/${data.guestDataId}`
       );
       dispatch(getUserGuest(data.id))
@@ -729,7 +754,7 @@ export const deleteTableData = (data: any) => {
         type: LOADING,
         payload: true,
       });
-       await gateAxios.delete(
+      await gateAxios.delete(
         `guest/deleteTableData/${data.guestId}/${data.tableId}`
       );
       dispatch(getUserGuest(data.id))

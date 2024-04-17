@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Grid, Icon, Message, MessageHeader } from "semantic-ui-react";
 
@@ -6,11 +6,12 @@ import { images } from "../../assets/images";
 import { RootState } from "../../store/reducer";
 import { useParams } from "react-router-dom";
 import { useDispatchApp } from "../../store/Store";
-import { getMySupplierData } from "../../store/action/supplier";
+import { deleteEnquery, getMySupplierData } from "../../store/action/supplier";
 import { ImageView, TabView } from "../../components";
 import { UserDashboardData } from "../../config/constants";
 
 import "./mySupplier.scss";
+import ConfirmModal from "../../components/confirmViewModal/ConfirmModal";
 
 const MySupplier = () => {
   const { id } = useParams();
@@ -18,11 +19,23 @@ const MySupplier = () => {
   const { userDetails } = useSelector((state: RootState) => state.auth);
   const { mySupplier } = useSelector((state: RootState) => state.supplier);
 
+  const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
+  const [deleteData, setDeleteData] = useState<any>({});
+
+
   useEffect(() => {
     if (id) {
       dispatch(getMySupplierData(id));
     }
   }, [id]);
+
+  const deleteEnquiry = (currentDeleteData:any) =>{
+    const details = {
+      id: currentDeleteData.supplierData.enquireId,
+      enquireId: currentDeleteData._id
+    }
+    dispatch(deleteEnquery(details))
+  }
 
   return (
     <>
@@ -40,7 +53,7 @@ const MySupplier = () => {
               >
                 <Grid>
                   <Grid.Column
-                    computer={8}
+                    computer={7}
                     tablet={16}
                     mobile={16}
                     className="supplierNameViewMain"
@@ -103,6 +116,12 @@ const MySupplier = () => {
                       </Grid.Column>
                     </Grid>
                   </Grid.Column>
+                  <Grid.Column computer={1} tablet={16} mobile={16}>
+                    <Icon name="delete" onClick={() => {
+                  setVisibleDeleteModal(true);
+                  setDeleteData(data);
+                    }} />
+                  </Grid.Column>
                 </Grid>
               </Grid.Column>
             );
@@ -115,6 +134,20 @@ const MySupplier = () => {
           </Grid.Column>
         )}
       </Grid>
+      <ConfirmModal
+        viewModal={visibleDeleteModal}
+        closeModal={() => setVisibleDeleteModal(false)}
+        cancel={() => {
+          setVisibleDeleteModal(false);
+          setDeleteData({});
+        }}
+        approve={() => {
+          setVisibleDeleteModal(false);
+          deleteEnquiry(deleteData);
+        }}
+        title="Delete Enquiry"
+        subTitle="Are you sure you want to delete enquiry?"
+      />
     </>
   );
 };
