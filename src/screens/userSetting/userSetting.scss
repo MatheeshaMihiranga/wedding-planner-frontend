@@ -80,9 +80,11 @@
 }
 
 .customUserImage{
-  width: 250px !important;
-  border-radius: 5px !important;
-  z-index: 200px;
+  width: 250px;
+  height: 250px;
+  border-radius: 180px;
+  z-index: 200px;  
+  border: solid 1px #000;
 }
 
 .closeImageIcon{

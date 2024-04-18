@@ -129,6 +129,10 @@ const UserSetting = () => {
               labelName={"Bride name*"}
               placeholder="Bride Username"
               name="brideName"
+              errorMessage="Please enter contact user name"
+              validateHandle={(value: string) => {
+                return /^[A-Za-z\s]+$/.test(value) || "Please enter only letters and spaces";
+              }}
             />
           </Grid.Column>
           <Grid.Column
@@ -143,6 +147,10 @@ const UserSetting = () => {
               labelName={"Groom name*"}
               placeholder="Groom Username"
               name="groomName"
+              errorMessage="Please enter contact user name"
+              validateHandle={(value: string) => {
+                return /^[A-Za-z\s]+$/.test(value) || "Please enter only letters and spaces";
+              }}
             />
           </Grid.Column>
           <Grid.Column

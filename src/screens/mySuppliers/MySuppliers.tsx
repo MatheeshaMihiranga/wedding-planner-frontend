@@ -117,10 +117,11 @@ const MySupplier = () => {
                     </Grid>
                   </Grid.Column>
                   <Grid.Column computer={1} tablet={16} mobile={16}>
-                    <Icon name="delete" onClick={() => {
+                    <Icon name="delete calendar" size="large" onClick={() => {
                   setVisibleDeleteModal(true);
                   setDeleteData(data);
                     }} />
+                    <p>Delete Inquiry</p>
                   </Grid.Column>
                 </Grid>
               </Grid.Column>

@@ -53,6 +53,7 @@ export const InputText = ({
               onChange: (e: any) => onChangeFunction(e),
               validate: validateHandle,
               valueAsNumber: valueAsNumber,
+              
             })}
             onFocus={onFocus}
             pattern={pattern}

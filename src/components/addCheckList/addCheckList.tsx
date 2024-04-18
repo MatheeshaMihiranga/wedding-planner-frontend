@@ -71,6 +71,9 @@ const AddCheckList = ({
                 placeholder="task"
                 name="name"
                 errorMessage="Please add task"
+                validateHandle={(value: string) => {
+                  return /^[A-Za-z\s]+$/.test(value) || "Please enter only letters and spaces";
+                }}
               />
             </Grid.Column>
             <Grid.Column computer={16}>

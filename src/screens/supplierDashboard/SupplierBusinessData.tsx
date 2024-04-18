@@ -353,6 +353,9 @@ const SupplierBusinessData = ({ route }: any) => {
               name="contactEmail"
               required={true}
               errorMessage="Please enter contact email"
+              validateHandle={(value:any)=>{
+                return value.includes("@") || "Invalid email format";
+              }}
             />
           </Grid.Column>
           <Grid.Column computer={8} tablet={16} mobile={16}>
@@ -364,6 +367,9 @@ const SupplierBusinessData = ({ route }: any) => {
               name="contactUserName"
               required={true}
               errorMessage="Please enter contact user name"
+              validateHandle={(value: string) => {
+                return /^[A-Za-z\s]+$/.test(value) || "Please enter only letters and spaces";
+              }}
             />
           </Grid.Column>
           <Grid.Column computer={16} className="supplierDatePicker">
@@ -421,6 +427,7 @@ const SupplierBusinessData = ({ route }: any) => {
                 placeholder="Package Name"
                 name="packageName"
                 errorMessage="Please enter user name"
+           
               />
             </Grid.Column>
             {isCategoryVenue ? (
