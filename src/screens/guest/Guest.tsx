@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Grid, Icon, Message, MessageHeader, Table } from "semantic-ui-react";
+import { CSVLink } from "react-csv";
 
 import { RootState } from "../../store/reducer";
 import { useParams } from "react-router-dom";
@@ -129,6 +130,17 @@ const Guest = () => {
       );
     });
   };
+  const prepareCsvData = () => {
+    const csvData: { Name: string, Email: string, Status: string }[] = TableData.flatMap((table: { guest: { name: string, email: string, status: string }[] }) =>
+      table.guest.map((guest) => ({
+        Name: guest.name,
+        Email: guest.email,
+        Status: guest.status,
+      }))
+    );
+    return csvData;
+  };
+
 
   return (
     <>
@@ -156,6 +168,15 @@ const Guest = () => {
               <h3 className="budgetTracker">
                 {getTotalAttendingCount("Awaiting")}
               </h3>
+            </Grid.Column>
+            <Grid.Column computer={16}>
+              <CSVLink
+                data={prepareCsvData()}
+                filename={"guest_data.csv"}
+                className="ui button"
+              >
+                Download Guest Data as CSV
+              </CSVLink>
             </Grid.Column>
           </Grid>
         </Grid.Column>

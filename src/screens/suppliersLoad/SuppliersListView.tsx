@@ -25,7 +25,7 @@ const SuppliersListView = ({supplierSearchData}:any) => {
           style={{ height: height - 190 }}
         >
           <CommonContainer>
-            <Grid columns={3} divided>
+            <Grid columns={4} divided>
               <GridRow>
                 {supplierSearchData.map((data:any)=>{
                   return(

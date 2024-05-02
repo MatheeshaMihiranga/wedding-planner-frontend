@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Grid, Message, MessageHeader, Table } from "semantic-ui-react";
+import { CSVLink } from "react-csv"; // Import CSVLink from react-csv
 
 import { RootState } from "../../store/reducer";
 import { useParams } from "react-router-dom";
@@ -112,6 +113,17 @@ const Budget = () => {
     });
   };
 
+  const csvData = categoryData.flatMap((category: any) => {
+    return category.expenses.map((expense: any) => ({
+      Category: category.categoryName,
+      Description: expense.description,
+      Cost: expense.cost,
+      Notes: expense.notes,
+    }));
+  });
+
+
+
   return (
     <>
       <TabView loadData={UserDashboardData} id={userDetails?._id} />
@@ -135,6 +147,13 @@ const Budget = () => {
                 {userDetails.budget - getTotalCostAllCategory()}
               </h3>
             </Grid.Column>
+            <CSVLink
+              data={csvData}
+              filename={"budget_data.csv"}
+              className="ui button download"
+            >
+              Download
+            </CSVLink>
           </Grid>
         </Grid.Column>
       </Grid>

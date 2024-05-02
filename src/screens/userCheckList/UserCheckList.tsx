@@ -8,6 +8,7 @@ import {
   MessageHeader,
   Progress,
 } from "semantic-ui-react";
+import { CSVLink } from "react-csv"; // Import CSVLink from react-csv
 
 import { RootState } from "../../store/reducer";
 import { useParams } from "react-router-dom";
@@ -189,6 +190,13 @@ const UserCheckList = () => {
     dispatch(deleteCheckListData(updateCheckListDetails));
   };
 
+  // CSV data conversion
+  const csvData = checkListData.map((data: any) => ({
+    Category: data.category,
+    Description: data.name,
+    Status: data.status ? "Complete" : "Not Complete",
+  }));
+
   return (
     <>
       <TabView loadData={UserDashboardData} id={userDetails?._id} />
@@ -216,6 +224,9 @@ const UserCheckList = () => {
             theme={"blue"}
             title="Status"
           />
+          <CSVLink data={csvData} filename={"checklist.csv"} className="ui button">
+          Download 
+         </CSVLink>
         </Grid.Column>
       </Grid>
       {loadContentAccordingToSort()}
@@ -250,3 +261,4 @@ const UserCheckList = () => {
 };
 
 export default UserCheckList;
+
