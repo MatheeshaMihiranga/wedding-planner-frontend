@@ -7,8 +7,9 @@ import {
   Message,
   MessageHeader,
   Progress,
+  Input,
 } from "semantic-ui-react";
-import { CSVLink } from "react-csv"; // Import CSVLink from react-csv
+import { CSVLink } from "react-csv";
 
 import { RootState } from "../../store/reducer";
 import { useParams } from "react-router-dom";
@@ -37,6 +38,7 @@ const UserCheckList = () => {
   const [deleteData, setDeleteData] = useState<any>({});
   const [categoryType, setCategoryType] = useState<any>("Month");
   const [visibleAddCheckList, setVisibleAddCheckList] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const { checkList } = useSelector((state: RootState) => state.supplier);
   const checkListData = checkList?.checkListData || [];
   const checkListCount = checkListData.length;
@@ -59,50 +61,60 @@ const UserCheckList = () => {
     }
   }, [id]);
 
+  const filteredCheckListData = checkListData.filter((item:any) =>
+    item.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   const checkListDataFilterByCategory = () => {
-    const filterByCategory = checkListData.reduce((result: any, data: any) => {
-      const availableCategoryIndex = result.findIndex(
-        (e: any) => e.categoryName == data.category
-      );
-      if (availableCategoryIndex > -1) {
-        result[availableCategoryIndex].categoryData.push(data);
-        return result;
-      } else {
-        let category = {
-          categoryName: data.category,
-          categoryData: [data],
-        };
-        return [...result, category];
-      }
-    }, []);
+    const filterByCategory = filteredCheckListData.reduce(
+      (result: any, data: any) => {
+        const availableCategoryIndex = result.findIndex(
+          (e: any) => e.categoryName == data.category
+        );
+        if (availableCategoryIndex > -1) {
+          result[availableCategoryIndex].categoryData.push(data);
+          return result;
+        } else {
+          let category = {
+            categoryName: data.category,
+            categoryData: [data],
+          };
+          return [...result, category];
+        }
+      },
+      []
+    );
 
     return filterByCategory;
   };
 
   const checkListDataFilterByStatus = () => {
-    const filterByCategory = checkListData.reduce((result: any, data: any) => {
-      const getStatus = data.status ? "Complete" : "Not Complete";
-      const availableCategoryIndex = result.findIndex(
-        (e: any) => e.status == getStatus
-      );
-      if (availableCategoryIndex > -1) {
-        result[availableCategoryIndex].categoryData.push(data);
-        return result;
-      } else {
-        let category = {
-          status: data.status ? "Complete" : "Not Complete",
-          categoryData: [data],
-        };
-        return [...result, category];
-      }
-    }, []);
+    const filterByCategory = filteredCheckListData.reduce(
+      (result: any, data: any) => {
+        const getStatus = data.status ? "Complete" : "Not Complete";
+        const availableCategoryIndex = result.findIndex(
+          (e: any) => e.status == getStatus
+        );
+        if (availableCategoryIndex > -1) {
+          result[availableCategoryIndex].categoryData.push(data);
+          return result;
+        } else {
+          let category = {
+            status: data.status ? "Complete" : "Not Complete",
+            categoryData: [data],
+          };
+          return [...result, category];
+        }
+      },
+      []
+    );
     return filterByCategory;
   };
 
   const checkListDataFilterByMonth = () => {
     const getYearMonthData = getYearMonthDetails(userDetails.eventDate);
     const getYearMonthLength = getYearMonthData.length;
-    const includeForMonth = checkListCount / getYearMonthLength;
+    const includeForMonth = filteredCheckListData.length / getYearMonthLength;
 
     const filterByCategory = getYearMonthData.map((data: any, index: any) => {
       const start =
@@ -112,10 +124,12 @@ const UserCheckList = () => {
           ? index - 1 + includeForMonth
           : index * includeForMonth;
       const end =
-        index == 0 ? 1 * includeForMonth : (index + 1) * includeForMonth;
+        index == 0
+          ? 1 * includeForMonth
+          : (index + 1) * includeForMonth;
       return {
         monthRange: data,
-        categoryData: checkListData.slice(start, end),
+        categoryData: filteredCheckListData.slice(start, end),
       };
     });
 
@@ -133,7 +147,7 @@ const UserCheckList = () => {
       default:
         break;
     }
-  }, [categoryType, checkListData]);
+  }, [categoryType, filteredCheckListData]);
 
   const loadContentAccordingToSort = () => {
     switch (categoryType) {
@@ -190,8 +204,7 @@ const UserCheckList = () => {
     dispatch(deleteCheckListData(updateCheckListDetails));
   };
 
-  // CSV data conversion
-  const csvData = checkListData.map((data: any) => ({
+  const csvData = filteredCheckListData.map((data: any) => ({
     Category: data.category,
     Description: data.name,
     Status: data.status ? "Complete" : "Not Complete",
@@ -225,9 +238,17 @@ const UserCheckList = () => {
             title="Status"
           />
           <CSVLink data={csvData} filename={"checklist.csv"} className="ui button">
-          Download 
-         </CSVLink>
+            Download
+          </CSVLink>
         </Grid.Column>
+        <Grid.Column computer={16} className="paddingRemoveBottom">
+          <Input
+            icon="search"
+            placeholder="Search tasks..."
+            value={searchValue}
+            onChange={(e, { value }) => setSearchValue(value)}
+          />
+      </Grid.Column>
       </Grid>
       {loadContentAccordingToSort()}
       <Grid.Column computer={16}>

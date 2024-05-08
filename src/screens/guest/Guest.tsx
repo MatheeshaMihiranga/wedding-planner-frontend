@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Grid, Icon, Message, MessageHeader, Table } from "semantic-ui-react";
+import { Grid, Icon, Message, MessageHeader, Table,Input } from "semantic-ui-react";
 import { CSVLink } from "react-csv";
 
 import { RootState } from "../../store/reducer";
@@ -37,6 +37,8 @@ const Guest = () => {
   const [visibleEditTable, setVisibleEditTable] = useState(false);
   const [currentTable, setCurrentTable] = useState({});
   const [deleteType, setDeleteType] = useState<any>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredGuestData, setFilteredGuestData] = useState([]);
 
   const { userDetails } = useSelector((state: RootState) => state.auth);
   const { guestData } = useSelector((state: RootState) => state.supplier);
@@ -83,7 +85,12 @@ const Guest = () => {
   };
 
   const loadTableData = (details: any, tableId: any) => {
-    return details.map((data: any) => {
+
+    const filteredData = details.filter((data: any) =>
+      data.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return filteredData.map((data: any) => {
       return (
         <Table.Row className="tbleR">
           <Table.Cell>
@@ -140,30 +147,43 @@ const Guest = () => {
     );
     return csvData;
   };
+  useEffect(() => {
+
+    if (searchQuery) {
+      const filteredData = TableData.filter((table: any) =>
+        table.guest.some((expense: any) =>
+          expense.name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+      setFilteredGuestData(filteredData);
+    } else {
+      setFilteredGuestData(TableData);
+    }
+  }, [searchQuery, guestData]);
 
 
   return (
     <>
       <TabView loadData={UserDashboardData} id={userDetails?._id} />
-      <Grid className="budgetDataViewMain">
+      <Grid className="budgetDataViewMainTop">
         <Grid.Column computer={16}>
           <h2 className="budgetTracker">Guest List</h2>
         </Grid.Column>
         <Grid.Column computer={16}>
           <Grid>
-            <Grid.Column>
+            <Grid.Column computer={3}>
               <h3 className="budgetTracker">Attending</h3>
               <h3 className="budgetTracker">
                 {getTotalAttendingCount("Attending")}
               </h3>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column computer={3}>
               <h3 className="budgetTracker">Declined</h3>
               <h3 className="budgetTracker">
                 {getTotalAttendingCount("Declined")}
               </h3>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column computer={3}>
               <h3 className="budgetTracker">Awaiting</h3>
               <h3 className="budgetTracker">
                 {getTotalAttendingCount("Awaiting")}
@@ -178,101 +198,115 @@ const Guest = () => {
                 Download Guest Data as CSV
               </CSVLink>
             </Grid.Column>
+            <Grid.Column computer={4}>
+              <Input
+                icon="search"
+                placeholder="Search Guests..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />       
+            </Grid.Column>
           </Grid>
         </Grid.Column>
       </Grid>
       <Grid className="budgetDataViewMain">
-        {TableData?.length > 0 ? (
-          TableData.map((data: any, index: any) => {
+        {filteredGuestData?.length > 0 ? (
+          filteredGuestData.map((data: any, index: any) => {
             return (
-              <Grid.Column
-                key={index}
-                computer={8}
-                tablet={16}
-                mobile={16}
-                className="budgetDataView"
-              >
-                <Grid>
-                  <Grid.Column
-                    key={index}
-                    computer={16}
-                    tablet={16}
-                    mobile={16}
-                    className="budgetDataSubView"
-                  >
-                    <Message>
-                      <Grid>
-                        <Grid.Column computer={8}>
-                          <MessageHeader>{data?.tableName}</MessageHeader>
-                        </Grid.Column>
-                        <Grid.Column computer={8} className="costViewMain">
-                          <Icon
-                            size="large"
-                            name="edit"
-                            className="editIconMain"
-                            onClick={() => {
-                              setVisibleEditTable(true);
-                              setCurrentTable(data);
-                            }}
-                          />
-                          <Icon
-                            size="large"
-                            name="delete"
-                            onClick={() => {
-                              setDeleteData(data);
-                              setVisibleDeleteModal(true);
-                              setDeleteType("table");
-                            }}
-                          />
-                        </Grid.Column>
-                      </Grid>
-                    </Message>
-                  </Grid.Column>
-                  <Grid.Column
-                    key={index}
-                    computer={16}
-                    tablet={16}
-                    mobile={16}
-                    className="budgetDataSubView"
-                  >
-                    {data?.guest?.length > 0 ? (
-                      <CommonTable tableHeaderData={GuestDataView}>
-                        {loadTableData(data.guest, data._id)}
-                      </CommonTable>
-                    ) : (
-                      <p>Not Available {data?.tableName} Guest </p>
-                    )}
-                  </Grid.Column>
-                  <Grid.Column
-                    key={index}
-                    computer={16}
-                    tablet={16}
-                    mobile={16}
-                    className="budgetDataSubView"
-                  >
-                    <CustomButton
-                      theme="blue"
-                      title="Add Guest"
-                      onClick={() => {
-                        setViewExpensesModal(true);
-                        setTableId(data._id);
-                      }}
-                    />
-                  </Grid.Column>
-                </Grid>
-              </Grid.Column>
+              <>
+                <Grid.Column computer={1} />
+                <Grid.Column
+                  key={index}
+                  computer={6}
+                  tablet={16}
+                  mobile={16}
+                  className="budgetDataView"
+                >
+                  <Grid>
+                    <Grid.Column
+                      key={index}
+                      computer={16}
+                      tablet={16}
+                      mobile={16}
+                      className="budgetDataSubView"
+                    >
+                      <Message>
+                        <Grid>
+                          <Grid.Column computer={8}>
+                            <MessageHeader>{data?.tableName}</MessageHeader>
+                          </Grid.Column>
+                          <Grid.Column computer={8} className="costViewMain">
+                            <Icon
+                              size="large"
+                              name="edit"
+                              className="editIconMain"
+                              onClick={() => {
+                                setVisibleEditTable(true);
+                                setCurrentTable(data);
+                              }}
+                            />
+                            <Icon
+                              size="large"
+                              name="delete"
+                              onClick={() => {
+                                setDeleteData(data);
+                                setVisibleDeleteModal(true);
+                                setDeleteType("table");
+                              }}
+                            />
+                          </Grid.Column>
+                        </Grid>
+                      </Message>
+                    </Grid.Column>
+                    <Grid.Column
+                      key={index}
+                      computer={16}
+                      tablet={16}
+                      mobile={16}
+                      className="budgetDataSubView"
+                    >
+                      {data?.guest?.length > 0 ? (
+                        <CommonTable tableHeaderData={GuestDataView}>
+                          {loadTableData(data.guest, data._id)}
+                        </CommonTable>
+                      ) : (
+                        <p>Not Available {data?.tableName} Guest </p>
+                      )}
+                    </Grid.Column>
+                    <Grid.Column
+                      key={index}
+                      computer={16}
+                      tablet={16}
+                      mobile={16}
+                      className="budgetDataSubView"
+                    >
+                      <CustomButton
+                        theme="blue"
+                        title="Add Guest"
+                        onClick={() => {
+                          setViewExpensesModal(true);
+                          setTableId(data._id);
+                        }}
+                      />
+                    </Grid.Column>
+                  </Grid>
+                </Grid.Column>
+                <Grid.Column computer={1} />
+              </>
+
             );
           })
         ) : (
           <Grid.Column computer={16}>
             <Message>
-              <MessageHeader>Not Available Budget</MessageHeader>
+              <MessageHeader>Not Available Guest</MessageHeader>
             </Message>
           </Grid.Column>
         )}
 
+        <Grid.Column computer={1} />
         <Grid.Column
-          computer={8}
+          computer={6}
           tablet={16}
           mobile={16}
           className="addNewBudgetMain"
@@ -290,6 +324,7 @@ const Guest = () => {
             />
           </Grid.Column>
         </Grid.Column>
+        <Grid.Column computer={2} />
       </Grid>
 
       <AddGuest
@@ -303,7 +338,7 @@ const Guest = () => {
         currentGuest={currentGuest}
         tableId={tableId}
         id={id}
-        
+
       />
       <ConfirmModal
         viewModal={visibleDeleteModal}

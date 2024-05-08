@@ -6,6 +6,21 @@
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     min-height: 70px;
+    background: rgba(202, 228, 243, 1);
+    margin-bottom: 15px !important;
+    margin-top: 25px !important;
+    border: solid;
+    border-width: 1px;
+}
+
+
+.budgetDataViewMainTop {
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    min-height: 70px;
     background: #ffffff;
     margin-bottom: 15px !important;
     margin-top: 25px !important;
@@ -17,7 +32,8 @@
     min-height: 70px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
     padding: 15px !important;
-    margin-top: 25px !important
+    margin-top: 25px !important;
+    background: #ffffff;
 }
 
 .budgetDataSubView {
@@ -54,7 +70,8 @@
     min-height: 70px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
     padding: 15px !important;
-    margin-top: 25px !important
+    margin-top: 25px !important;
+    background: #ffffff;
 }
 
 .addNewCategoryButton{

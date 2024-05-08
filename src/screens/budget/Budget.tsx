@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Grid, Message, MessageHeader, Table } from "semantic-ui-react";
+import { Grid, Message, MessageHeader, Table , Input} from "semantic-ui-react";
 import { CSVLink } from "react-csv"; // Import CSVLink from react-csv
 
 import { RootState } from "../../store/reducer";
@@ -28,6 +28,8 @@ const Budget = () => {
   const [deleteData, setDeleteData] = useState({});
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
   const [visibleNewCategory, setVisibleNewCategory] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredCategoryData, setFilteredCategoryData] = useState([]);
 
   const { userDetails } = useSelector((state: RootState) => state.auth);
   const { mySupplier, budgetData } = useSelector(
@@ -66,7 +68,11 @@ const Budget = () => {
   };
 
   const loadTableData = (details: any, categoryId: any) => {
-    return details.map((data: any) => {
+    const filteredData = details.filter((data: any) =>
+      data.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return filteredData.map((data: any) => {
       return (
         <Table.Row className="tbleR">
           <Table.Cell>
@@ -113,7 +119,7 @@ const Budget = () => {
     });
   };
 
-  const csvData = categoryData.flatMap((category: any) => {
+  const csvData = filteredCategoryData.flatMap((category: any) => {
     return category.expenses.map((expense: any) => ({
       Category: category.categoryName,
       Description: expense.description,
@@ -122,118 +128,145 @@ const Budget = () => {
     }));
   });
 
-
+  useEffect(() => {
+    if (searchQuery) {
+      const filteredData = categoryData.filter((category: any) =>
+        category.expenses.some((expense: any) =>
+          expense.description.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+      setFilteredCategoryData(filteredData);
+    } else {
+      setFilteredCategoryData(categoryData);
+    }
+  }, [searchQuery, categoryData]);
 
   return (
     <>
       <TabView loadData={UserDashboardData} id={userDetails?._id} />
-      <Grid className="budgetDataViewMain">
+      <Grid className="budgetDataViewMainTop">
         <Grid.Column computer={16}>
           <h2 className="budgetTracker">Budget Tracker</h2>
         </Grid.Column>
         <Grid.Column computer={16}>
           <Grid>
-            <Grid.Column>
+            <Grid.Column computer={3}>
               <h3 className="budgetTracker">Budget</h3>
               <h3 className="budgetTracker">{userDetails.budget}</h3>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column computer={3}>
               <h3 className="budgetTracker">Total cost</h3>
               <h3 className="budgetTracker">{getTotalCostAllCategory()}</h3>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column computer={3}>
               <h3 className="budgetTracker">Total remaining</h3>
               <h3 className="budgetTracker">
                 {userDetails.budget - getTotalCostAllCategory()}
               </h3>
             </Grid.Column>
-            <CSVLink
-              data={csvData}
-              filename={"budget_data.csv"}
-              className="ui button download"
-            >
-              Download
-            </CSVLink>
+            <Grid.Column computer={16}>
+              <CSVLink
+                data={csvData}
+                filename={"budget_data.csv"}
+                className="ui button"
+              >
+                Download Expences Data as CSV
+              </CSVLink>
+            </Grid.Column>
+            <Grid.Column computer={4}>
+             
+              <Input
+                icon="search"
+                placeholder="Search Description..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />    
+            </Grid.Column>
+
           </Grid>
         </Grid.Column>
       </Grid>
       <Grid className="budgetDataViewMain">
-        {categoryData?.length > 0 ? (
-          categoryData.map((data: any, index: any) => {
+        {filteredCategoryData?.length > 0 ? (
+          filteredCategoryData.map((data: any, index: any) => {
             return (
-              <Grid.Column
-                key={index}
-                computer={8}
-                tablet={16}
-                mobile={16}
-                className="budgetDataView"
-              >
-                <Grid>
-                  <Grid.Column
-                    key={index}
-                    computer={16}
-                    tablet={16}
-                    mobile={16}
-                    className="budgetDataSubView"
-                  >
-                    <Message>
-                      <Grid>
-                        <Grid.Column computer={8}>
-                          <MessageHeader>{data?.categoryName}</MessageHeader>
-                        </Grid.Column>
-                        <Grid.Column computer={8} className="costViewMain">
-                          <MessageHeader>
-                            {getTotalCost(data?.expenses)}
-                          </MessageHeader>
-                        </Grid.Column>
-                      </Grid>
-                    </Message>
-                  </Grid.Column>
-                  <Grid.Column
-                    key={index}
-                    computer={16}
-                    tablet={16}
-                    mobile={16}
-                    className="budgetDataSubView"
-                  >
-                    {data?.expenses?.length > 0 ? (
-                      <CommonTable tableHeaderData={BudgetDataView}>
-                        {loadTableData(data.expenses, data._id)}
-                      </CommonTable>
-                    ) : (
-                      <p>Not Available {data?.categoryName} Expenses </p>
-                    )}
-                  </Grid.Column>
-                  <Grid.Column
-                    key={index}
-                    computer={16}
-                    tablet={16}
-                    mobile={16}
-                    className="budgetDataSubView"
-                  >
-                    <CustomButton
-                      theme="blue"
-                      title="Add Expenses"
-                      onClick={() => {
-                        setViewExpensesModal(true);
-                        setCategoryId(data._id);
-                      }}
-                    />
-                  </Grid.Column>
-                </Grid>
-              </Grid.Column>
+              <>
+                <Grid.Column computer={1} />
+                <Grid.Column
+                  key={index}
+                  computer={6}
+                  tablet={16}
+                  mobile={16}
+                  className="budgetDataView"
+                >
+                  <Grid>
+                    <Grid.Column
+                      key={index}
+                      computer={16}
+                      tablet={16}
+                      mobile={16}
+                      className="budgetDataSubView"
+                    >
+                      <Message>
+                        <Grid>
+                          <Grid.Column computer={8}>
+                            <MessageHeader>{data?.categoryName}</MessageHeader>
+                          </Grid.Column>
+                          <Grid.Column computer={8} className="costViewMain">
+                            <MessageHeader>
+                              {getTotalCost(data?.expenses)}
+                            </MessageHeader>
+                          </Grid.Column>
+                        </Grid>
+                      </Message>
+                    </Grid.Column>
+                    <Grid.Column
+                      key={index}
+                      computer={16}
+                      tablet={16}
+                      mobile={16}
+                      className="budgetDataSubView"
+                    >
+                      {data?.expenses?.length > 0 ? (
+                        <CommonTable tableHeaderData={BudgetDataView}>
+                          {loadTableData(data.expenses, data._id)}
+                        </CommonTable>
+                      ) : (
+                        <p>Not Available {data?.categoryName} Expenses </p>
+                      )}
+                    </Grid.Column>
+                    <Grid.Column
+                      key={index}
+                      computer={16}
+                      tablet={16}
+                      mobile={16}
+                      className="budgetDataSubView"
+                    >
+                      <CustomButton
+                        theme="blue"
+                        title="Add Expenses"
+                        onClick={() => {
+                          setViewExpensesModal(true);
+                          setCategoryId(data._id);
+                        }}
+                      />
+                    </Grid.Column>
+                  </Grid>
+                </Grid.Column>
+                <Grid.Column computer={1} />
+              </>
             );
           })
         ) : (
           <Grid.Column computer={16}>
             <Message>
-              <MessageHeader>Not Available Budget</MessageHeader>
+              <MessageHeader>No Expenses Found</MessageHeader>
             </Message>
           </Grid.Column>
         )}
-
+        <Grid.Column computer={1} />
         <Grid.Column
-          computer={8}
+          computer={6}
           tablet={16}
           mobile={16}
           className="addNewBudgetMain"
@@ -251,6 +284,7 @@ const Budget = () => {
             />
           </Grid.Column>
         </Grid.Column>
+        <Grid.Column computer={2} />
       </Grid>
 
       <AddExpenses
