@@ -55,16 +55,21 @@ const Login = () => {
             tablet={16}
             mobile={16}
           >
+            
             <InputText
               register={register}
               errors={errors.email}
-              required={true}
               labelName={"Email*"}
-              placeholder="Enter Username"
+              placeholder="Enter Email"
               name="email"
-              errorMessage="Please enter email"
-              validateHandle={(value:any)=>{
-                return value.includes("@") || "Invalid email format";
+              required={true}
+              errorMessage={errors.email ? 
+                (errors.email.type === "required" ? "Please enter a  email" : "Invalid email format") : ""}
+              validateHandle={(value: string) => {
+                if (value.trim() === "") {
+                  return false;
+                }
+                return value.includes("@");
               }}
             />
           </Grid.Column>

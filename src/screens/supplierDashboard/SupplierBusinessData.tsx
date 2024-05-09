@@ -93,6 +93,9 @@ const SupplierBusinessData = ({ route }: any) => {
     values: values,
   });
 
+ 
+
+
   const {
     register: registerPackage,
     handleSubmit: handleSubmitPackages,
@@ -298,14 +301,21 @@ const SupplierBusinessData = ({ route }: any) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid className="weddingVenue">
           <Grid.Column computer={8} tablet={16} mobile={16}>
-            <InputText
-              register={register}
-              errors={errors.supplierName}
-              required={true}
-              labelName={"Supplier Name"}
-              placeholder="Supplier Name"
-              name="supplierName"
-              errorMessage="Please enter supplier Name"
+          <InputText
+            register={register}
+            errors={errors.supplierName}
+            required={true}
+            labelName={"Supplier Name"}
+            placeholder="Supplier Name"
+            name="supplierName"
+            errorMessage={errors.supplierName ? 
+              (errors.supplierName.type === "required" ? "Please enter a supplier name" : "Please enter only letters and spaces") : ""}
+            validateHandle={(value: string) => {
+              if (value.trim() === "") {
+                return false;
+              }
+              return /^[A-Za-z\s]+$/.test(value);
+            }}
             />
           </Grid.Column>
           <Grid.Column computer={8} tablet={16} mobile={16}>
@@ -324,6 +334,7 @@ const SupplierBusinessData = ({ route }: any) => {
             <DropDown
               labelName="Location"
               placeholder="Location"
+              required={true}
               defaultValue={location}
               currentData={Districts}
               handleChangeState={(e: any, { value }: any) => {
@@ -332,6 +343,7 @@ const SupplierBusinessData = ({ route }: any) => {
               search
               key={"userType"}
               customGridColumn={"customGridColomnTyp"}
+              
             />
           </Grid.Column>
 
@@ -339,37 +351,47 @@ const SupplierBusinessData = ({ route }: any) => {
             <InputText
               register={register}
               errors={errors.webLink}
+              required={true}
               labelName={"Web Site"}
               placeholder="Web Site"
               name="webLink"
+              errorMessage="Please enter Web site"
             />
           </Grid.Column>
           <Grid.Column computer={8} tablet={16} mobile={16}>
-            <InputText
+          <InputText
               register={register}
               errors={errors.contactEmail}
               labelName={"Contact Email"}
               placeholder="Contact Email"
               name="contactEmail"
               required={true}
-              errorMessage="Please enter contact email"
-              validateHandle={(value:any)=>{
-                return value.includes("@") || "Invalid email format";
+              errorMessage={errors.contactEmail ? 
+                (errors.contactEmail.type === "required" ? "Please enter a contact email" : "Invalid email format") : ""}
+              validateHandle={(value: string) => {
+                if (value.trim() === "") {
+                  return false;
+                }
+                return value.includes("@");
               }}
             />
           </Grid.Column>
           <Grid.Column computer={8} tablet={16} mobile={16}>
             <InputText
-              register={register}
-              errors={errors.contactUserName}
-              labelName={"Contact User Name"}
-              placeholder="Contact User Name"
-              name="contactUserName"
-              required={true}
-              errorMessage="Please enter contact user name"
-              validateHandle={(value: string) => {
-                return /^[A-Za-z\s]+$/.test(value) || "Please enter only letters and spaces";
-              }}
+            register={register}
+            errors={errors.contactUserName}
+            required={true}
+            labelName={"Contact User Name"}
+            placeholder="Contact User Name"
+            name="contactUserName"
+            errorMessage={errors.contactUserName ? 
+              (errors.contactUserName.type === "required" ? "Please enter a contact UserName" : "Please enter only letters and spaces") : ""}
+            validateHandle={(value: string) => {
+              if (value.trim() === "") {
+                return false;
+              }
+              return /^[A-Za-z\s]+$/.test(value);
+            }}
             />
           </Grid.Column>
           <Grid.Column computer={16} className="supplierDatePicker">
@@ -442,6 +464,7 @@ const SupplierBusinessData = ({ route }: any) => {
                     name="hallName"
                     errorMessage="Please enter user name"
                   />
+                  
                 </Grid.Column>
                 <Grid.Column computer={4} tablet={16} mobile={16}>
                   <DropDown
@@ -469,6 +492,7 @@ const SupplierBusinessData = ({ route }: any) => {
                 name="price"
                 errorMessage="Please enter user name"
               />
+              
             </Grid.Column>
             <Grid.Column computer={8} tablet={16} mobile={16}>
               <InputTextArea

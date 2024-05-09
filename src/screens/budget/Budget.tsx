@@ -180,6 +180,7 @@ const Budget = () => {
                 placeholder="Search Description..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                
               />    
             </Grid.Column>
 

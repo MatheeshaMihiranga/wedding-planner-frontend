@@ -28,7 +28,7 @@ const AddCheckList = ({
     handleSubmit: handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm( );
 
   useEffect(() => {
     setCategory("Preparation")
@@ -64,17 +64,21 @@ const AddCheckList = ({
           <Grid>
             <Grid.Column computer={16}>
               <InputText
-                register={registerPackage}
-                errors={errors.name}
-                required={true}
-                labelName={"Add task"}
-                placeholder="task"
-                name="name"
-                errorMessage="Please add task"
-                validateHandle={(value: string) => {
-                  return /^[A-Za-z\s]+$/.test(value) || "Please enter only letters and spaces";
-                }}
-              />
+              register={registerPackage}
+              errors={errors.name}
+              required={true}
+              labelName={"Add task"}
+              placeholder="Add task"
+              name="name"
+              errorMessage={errors.name ? 
+                (errors.name.type === "required" ? "Please enter a task " : "Please enter only letters and spaces") : ""}
+              validateHandle={(value: string) => {
+                if (value.trim() === "") {
+                  return false;
+                }
+                return /^[A-Za-z\s]+$/.test(value);
+              }}
+            />
             </Grid.Column>
             <Grid.Column computer={16}>
               <DropDown

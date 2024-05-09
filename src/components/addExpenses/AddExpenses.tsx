@@ -90,15 +90,23 @@ const AddExpenses = ({
               computer={16}
               className="paddingRemoveTop supplierDatePicker"
             >
+            
               <InputText
-                register={register}
-                errors={errors.description}
-                required={true}
-                labelName={"Description"}
-                placeholder="Description"
-                name="description"
-                errorMessage="Please enter description"
-              />
+              register={register}
+              errors={errors.description}
+              required={true}
+              labelName={"Description"}
+              placeholder="Description"
+              name="description"
+              errorMessage={errors.description ? 
+                (errors.description.type === "required" ? "Please enter a description " : "Please enter only letters and spaces") : ""}
+              validateHandle={(value: string) => {
+                if (value.trim() === "") {
+                  return false;
+                }
+                return /^[A-Za-z\s]+$/.test(value);
+              }}
+            />
             </Grid.Column>
             <Grid.Column
               computer={16}

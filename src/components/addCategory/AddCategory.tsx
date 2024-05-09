@@ -57,14 +57,21 @@ const AddCategory = ({
               className="paddingRemoveTop supplierDatePicker"
             >
               <InputText
-                register={register}
-                errors={errors.categoryName}
-                required={true}
-                labelName={"Category"}
-                placeholder="Category"
-                name="categoryName"
-                errorMessage="Please enter category name"
-              />
+              register={register}
+              errors={errors.categoryName}
+              required={true}
+              labelName={"Category"}
+              placeholder="Category"
+              name="categoryName"
+              errorMessage={errors.categoryName ? 
+                (errors.categoryName.type === "required" ? "Please enter a categoryName " : "Please enter only letters and spaces") : ""}
+              validateHandle={(value: string) => {
+                if (value.trim() === "") {
+                  return false;
+                }
+                return /^[A-Za-z\s]+$/.test(value);
+              }}
+            />
             </Grid.Column>
           </Grid>
         </Modal.Content>

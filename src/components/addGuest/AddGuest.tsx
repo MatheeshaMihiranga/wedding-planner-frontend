@@ -93,32 +93,44 @@ const AddGuest = ({
               computer={16}
               className="paddingRemoveTop supplierDatePicker"
             >
+              
               <InputText
-                register={register}
-                errors={errors.name}
-                required={true}
-                labelName={"Name"}
-                placeholder="Name"
-                name="name"
-                errorMessage="Please enter name"
-              />
+              register={register}
+              errors={errors.name}
+              required={true}
+              labelName={"Name"}
+              placeholder="Name"
+              name="name"
+              errorMessage={errors.name ? 
+                (errors.name.type === "required" ? "Please enter a name " : "Please enter only letters and spaces") : ""}
+              validateHandle={(value: string) => {
+                if (value.trim() === "") {
+                  return false;
+                }
+                return /^[A-Za-z\s]+$/.test(value);
+              }}
+            />
             </Grid.Column>
             <Grid.Column
               computer={16}
               className="paddingRemoveTop supplierDatePicker"
             >
               <InputText
-                register={register}
-                errors={errors.email}
-                required={true}
-                labelName={"Email"}
-                placeholder="Email"
-                name="email"
-                errorMessage="Please enter email"
-                validateHandle={(value:any)=>{
-                  return value.includes("@") || "Invalid email format";
-                }}
-              />
+              register={register}
+              errors={errors.email}
+              labelName={"Email"}
+              placeholder="Email"
+              name="email"
+              required={true}
+              errorMessage={errors.email ? 
+                (errors.email.type === "required" ? "Please enter a email" : "Invalid email format") : ""}
+              validateHandle={(value: string) => {
+                if (value.trim() === "") {
+                  return false;
+                }
+                return value.includes("@");
+              }}
+            />
             </Grid.Column>
             <Grid.Column
               computer={16}

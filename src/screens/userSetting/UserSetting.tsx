@@ -123,16 +123,22 @@ const UserSetting = () => {
             mobile={16}
             className="userSummeryDetails"
           >
+          
             <InputText
-              register={register}
-              errors={errors.brideName}
-              labelName={"Bride name*"}
-              placeholder="Bride Username"
-              name="brideName"
-              errorMessage="Please enter contact user name"
-              validateHandle={(value: string) => {
-                return /^[A-Za-z\s]+$/.test(value) || "Please enter only letters and spaces";
-              }}
+            register={register}
+            errors={errors.brideName}
+            required={true}
+            labelName={"Bride name*"}
+            placeholder="Bride name*"
+            name="brideName"
+            errorMessage={errors.brideName ? 
+              (errors.brideName.type === "required" ? "Please enter a Bride Name" : "Please enter only letters and spaces") : ""}
+            validateHandle={(value: string) => {
+              if (value.trim() === "") {
+                return false;
+              }
+              return /^[A-Za-z\s]+$/.test(value);
+            }}
             />
           </Grid.Column>
           <Grid.Column
@@ -141,15 +147,21 @@ const UserSetting = () => {
             mobile={16}
             className="userSummeryDetails"
           >
+            
             <InputText
               register={register}
               errors={errors.groomName}
+              required={true}
               labelName={"Groom name*"}
               placeholder="Groom Username"
               name="groomName"
-              errorMessage="Please enter contact user name"
+              errorMessage={errors.groomName ? 
+                (errors.groomName.type === "required" ? "Please enter a Groom Name " : "Please enter only letters and spaces") : ""}
               validateHandle={(value: string) => {
-                return /^[A-Za-z\s]+$/.test(value) || "Please enter only letters and spaces";
+                if (value.trim() === "") {
+                  return false;
+                }
+                return /^[A-Za-z\s]+$/.test(value);
               }}
             />
           </Grid.Column>
@@ -159,13 +171,22 @@ const UserSetting = () => {
             mobile={16}
             className="userSummeryDetails"
           >
+            
             <InputText
               register={register}
               errors={errors.email}
               labelName={"Email"}
               placeholder="Email"
               name="email"
-              disabled={true}
+              required={true}
+              errorMessage={errors.email ? 
+                (errors.email.type === "required" ? "Please enter a email" : "Invalid email format") : ""}
+              validateHandle={(value: string) => {
+                if (value.trim() === "") {
+                  return false;
+                }
+                return value.includes("@");
+              }}
             />
           </Grid.Column>
           <Grid.Column

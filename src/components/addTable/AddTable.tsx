@@ -56,15 +56,23 @@ const AddTable = ({
               computer={16}
               className="paddingRemoveTop supplierDatePicker"
             >
+
               <InputText
-                register={register}
-                errors={errors.tableName}
-                required={true}
-                labelName={"Table"}
-                placeholder="Table"
-                name="tableName"
-                errorMessage="Please enter table name"
-              />
+              register={register}
+              errors={errors.tableName}
+              required={true}
+              labelName={"Table"}
+              placeholder="Table"
+              name="tableName"
+              errorMessage={errors.tableName ? 
+                (errors.tableName.type === "required" ? "Please enter a Table Name " : "Please enter only letters and spaces") : ""}
+              validateHandle={(value: string) => {
+                if (value.trim() === "") {
+                  return false;
+                }
+                return /^[A-Za-z\s]+$/.test(value);
+              }}
+            />
             </Grid.Column>
           </Grid>
         </Modal.Content>

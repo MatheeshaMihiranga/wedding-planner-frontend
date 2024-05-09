@@ -58,13 +58,20 @@ const RegisterUser = () => {
             mobile={16}
           >
             <InputText
-              register={register}
-              errors={errors.name}
-              required={true}
-              labelName={"User name*"}
-              placeholder="Enter Username"
-              name="name"
-              errorMessage="Please enter user name"
+            register={register}
+            errors={errors.name}
+            required={true}
+            labelName={"User name"}
+            placeholder="Enter Username"
+            name="name"
+            errorMessage={errors.name ? 
+              (errors.name.type === "required" ? "Please enter a Username" : "Please enter only letters and spaces") : ""}
+            validateHandle={(value: string) => {
+              if (value.trim() === "") {
+                return false;
+              }
+              return /^[A-Za-z\s]+$/.test(value);
+            }}
             />
           </Grid.Column>
           <Grid.Column
@@ -76,13 +83,17 @@ const RegisterUser = () => {
             <InputText
               register={register}
               errors={errors.email}
-              required={true}
               labelName={"Email*"}
               placeholder="Enter Email"
               name="email"
-              errorMessage="Please enter email"
-              validateHandle={(value:any)=>{
-                return value.includes("@") || "Invalid email format";
+              required={true}
+              errorMessage={errors.email ? 
+                (errors.email.type === "required" ? "Please enter a  email" : "Invalid email format") : ""}
+              validateHandle={(value: string) => {
+                if (value.trim() === "") {
+                  return false;
+                }
+                return value.includes("@");
               }}
             />
           </Grid.Column>
