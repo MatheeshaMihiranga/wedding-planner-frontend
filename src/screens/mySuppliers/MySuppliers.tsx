@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Grid, Icon, Message, MessageHeader } from "semantic-ui-react";
+import { Grid, GridColumn, Icon, Message, MessageHeader,Input } from "semantic-ui-react";
 
 import { images } from "../../assets/images";
 import { RootState } from "../../store/reducer";
@@ -21,7 +21,7 @@ const MySupplier = () => {
 
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
   const [deleteData, setDeleteData] = useState<any>({});
-
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (id) {
@@ -29,20 +29,35 @@ const MySupplier = () => {
     }
   }, [id]);
 
-  const deleteEnquiry = (currentDeleteData:any) =>{
+  const deleteEnquiry = (currentDeleteData: any) => {
     const details = {
       id: currentDeleteData.supplierData.enquireId,
       enquireId: currentDeleteData._id
-    }
-    dispatch(deleteEnquery(details))
-  }
+    };
+    dispatch(deleteEnquery(details));
+  };
+
+  const filteredSuppliers = mySupplier.filter((supplier:any) =>
+    supplier.supplierData.supplierName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
       <TabView loadData={UserDashboardData} id={userDetails?._id} />
+      <Grid>
+        <GridColumn>
+          <Input
+          icon="search"
+          placeholder="Search supplier..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        </GridColumn>
+      </Grid>
+      
       <Grid className="mySupplierMain">
-        {mySupplier?.length > 0 ? (
-          mySupplier.map((data: any, index: any) => {
+        {filteredSuppliers?.length > 0 ? (
+          filteredSuppliers.map((data: any, index: any) => {
             return (
               <Grid.Column
                 key={index}
@@ -117,10 +132,14 @@ const MySupplier = () => {
                     </Grid>
                   </Grid.Column>
                   <Grid.Column computer={1} tablet={16} mobile={16}>
-                    <Icon name="delete calendar" size="large" onClick={() => {
-                  setVisibleDeleteModal(true);
-                  setDeleteData(data);
-                    }} />
+                    <Icon
+                      name="delete calendar"
+                      size="large"
+                      onClick={() => {
+                        setVisibleDeleteModal(true);
+                        setDeleteData(data);
+                      }}
+                    />
                     <p>Delete Inquiry</p>
                   </Grid.Column>
                 </Grid>
