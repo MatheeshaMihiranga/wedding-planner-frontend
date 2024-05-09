@@ -126,14 +126,14 @@ const UserDashBoard = () => {
               <TitleView title="Budget Summery" />
               <div className="viewUserDetailsContent">
                 <p>
-                  {"Total cost : "}
+                  {"Total cost (Rs.) : "}
                   {getTotalCostAllCategory()}
                 </p>
               </div>
 
               <div className="viewUserDetailsContent">
                 <p>
-                  {"Remaining : "}
+                  {"Remaining (Rs.) : "}
                   {userDetails.budget - getTotalCostAllCategory()}
                 </p>
               </div>

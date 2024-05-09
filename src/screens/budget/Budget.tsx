@@ -151,15 +151,15 @@ const Budget = () => {
         <Grid.Column computer={16}>
           <Grid>
             <Grid.Column computer={3}>
-              <h3 className="budgetTracker">Budget</h3>
+              <h3 className="budgetTracker">Budget(Rs.)</h3>
               <h3 className="budgetTracker">{userDetails.budget}</h3>
             </Grid.Column>
             <Grid.Column computer={3}>
-              <h3 className="budgetTracker">Total cost</h3>
+              <h3 className="budgetTracker">Total cost(Rs.)</h3>
               <h3 className="budgetTracker">{getTotalCostAllCategory()}</h3>
             </Grid.Column>
             <Grid.Column computer={3}>
-              <h3 className="budgetTracker">Total remaining</h3>
+              <h3 className="budgetTracker">Total remaining(Rs.)</h3>
               <h3 className="budgetTracker">
                 {userDetails.budget - getTotalCostAllCategory()}
               </h3>
