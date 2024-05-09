@@ -77,6 +77,7 @@ const ReplayCommentModal = ({
               <p className="commentView">{reviewData?.userReview}</p>
             </Grid.Column>
             <Grid.Column computer={16} className="paddingRemoveTop">
+              
               <InputTextArea
                 register={registerPackage}
                 errors={errors.supplierReview}
@@ -84,8 +85,17 @@ const ReplayCommentModal = ({
                 labelName={"Reply"}
                 placeholder="Comment"
                 name="supplierReview"
-                errorMessage="Please add review"
-              />
+                errorMessage={errors.supplierReview ? 
+                  (errors.supplierReview.type === "required" ? "Please enter a reply comment." : "Please enter only letters and spaces") : ""}
+                validateHandle={(value: string) => {
+                  if (value.trim() === "") {
+                    return false;
+                  }
+                  return /^[A-Za-z\s.]+$/.test(value);
+                }}
+                />
+
+
             </Grid.Column>
           </Grid>
         </Modal.Content>

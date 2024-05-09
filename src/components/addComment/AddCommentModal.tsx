@@ -76,15 +76,24 @@ const AddCommentModal = ({
               />
             </Grid.Column>
             <Grid.Column computer={16}>
-              <InputTextArea
+             
+
+               <InputTextArea
                 register={registerPackage}
                 errors={errors.userReview}
                 required={true}
                 labelName={"Comment"}
                 placeholder="Comment"
                 name="userReview"
-                errorMessage="Please add comment"
-              />
+                errorMessage={errors.userReview ? 
+                  (errors.userReview.type === "required" ? "Please enter a comment." : "Please enter only letters and spaces") : ""}
+                validateHandle={(value: string) => {
+                  if (value.trim() === "") {
+                    return false;
+                  }
+                  return /^[A-Za-z\s.]+$/.test(value);
+                }}
+                />
             </Grid.Column>
           </Grid>
         </Modal.Content>
